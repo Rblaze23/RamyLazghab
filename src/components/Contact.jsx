@@ -79,7 +79,7 @@ const Contact = () => {
 
           <div className="resume-wrapper">
             <a
-              href="my-portfolio\public\assets\Resume.pd"
+              href={`${process.env.PUBLIC_URL}/assets/Resume.pdf`}
               download="Ramy_Lazghab_Resume.pdf"
               className="resume-button"
             >
