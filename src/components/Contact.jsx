@@ -79,7 +79,7 @@ const Contact = () => {
 
           <div className="resume-wrapper">
             <a
-              href="/assets/Resume.pdf"
+              href="my-portfolio\public\assets\Resume.pd"
               download="Ramy_Lazghab_Resume.pdf"
               className="resume-button"
             >
