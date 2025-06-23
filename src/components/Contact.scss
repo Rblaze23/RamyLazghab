@@ -1,0 +1,102 @@
+.contact {
+  background-color: #1a1a1a;
+  color: #f5f5dc;
+  padding: 4rem 2rem;
+  text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    color: #deb887;
+    margin-bottom: 2rem;
+  }
+
+  .contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+    }
+  }
+
+  .contact-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 300px;
+      max-width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #c7a977aa;
+    }
+  }
+
+  .contact-info {
+    flex: 1;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      text-align: left;
+    }
+
+    .email {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+
+      a {
+        color: #deb887;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1rem 0;
+
+      @media (min-width: 768px) {
+        justify-content: flex-start;
+      }
+
+      .icon {
+        color: #c7a977;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.1);
+          color: #f5f5dc;
+        }
+      }
+    }
+
+    .resume-wrapper {
+      margin-top: 1.5rem;
+
+      .resume-button {
+        padding: 12px 24px;
+        font-size: 1rem;
+        background-color: transparent;
+        color: #deb887;
+        border: 2px solid #c7a977;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          background-color: #c7a977;
+          color: #111;
+        }
+      }
+    }
+  }
+}

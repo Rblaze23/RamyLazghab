@@ -1,0 +1,90 @@
+.projects {
+  background-color: #1a1a1a;
+  color: #f5f5dc;
+  padding: 4rem 2rem;
+  text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #deb887;
+  }
+
+  .project-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .project-card {
+    background: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(222, 184, 135, 0.2);
+    transition: transform 0.3s, box-shadow 0.4s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow:
+        0 0 10px #c7a977,
+        0 0 20px #c7a977,
+        0 0 30px #c7a977;
+    }
+
+    img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .project-info {
+      padding: 1rem;
+
+      h3 {
+        color: #ffddaa;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+    }
+  }
+}
+.projects {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+
+  .projects-blob-bg {
+    position: absolute;
+    top: -100px;
+    left: -150px;
+    width: 200%;
+    height: 150%;
+    z-index: -1;
+    opacity: 0.1;
+
+    path {
+      transition: all 0.5s ease-in-out;
+    }
+  }
+.project-card:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 10px #c7a977cc,
+    0 0 20px #c7a97799,
+    0 0 40px #c7a97744;
+}
+
+  // Keep your original styles here...
+}

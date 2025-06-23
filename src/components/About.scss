@@ -1,0 +1,123 @@
+.about {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: #111;
+  padding: 4rem 2rem;
+  color: #f5f5dc;
+
+  .about-blob-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120%;
+    height: 120%;
+    z-index: -1;
+    opacity: 0.15;
+
+    path {
+      fill: url(#blobGradient);
+    }
+  }
+
+  .about-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  .about-text {
+    max-width: 600px;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #deb887;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 1rem;
+
+      strong {
+        color: #f5deb3;
+      }
+
+      em {
+        color: #ffc107;
+      }
+    }
+  }
+
+  .about-image {
+    .image-wrapper {
+      width: auto;
+      height: auto;
+      border-radius: 0;
+      background: linear-gradient(#c7a97733, #111);
+      padding: 1px;
+      transition: transform 0.3s ease;
+
+      img {
+        width: 100%;
+        height: 50%;
+        border-radius: 0;
+        object-fit: cover;
+        border: 1px solid #deb887;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 10px transparent;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+
+        img {
+          animation: glow 4s infinite ease-in-out;
+        }
+      }
+    }
+  }
+.sparkle {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.3;
+  animation: sparkleFloat 6s ease-in-out infinite;
+}
+
+@keyframes sparkleFloat {
+  0% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.2;
+  }
+}
+
+
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 5px #c7a977, 0 0 10px #c7a977;
+    }
+    50% {
+      box-shadow: 0 0 15px #c7a977, 0 0 30px #c7a977;
+    }
+    100% {
+      box-shadow: 0 0 5px #c7a977, 0 0 10px #c7a977;
+    }
+  }
+}

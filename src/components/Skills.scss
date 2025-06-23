@@ -1,0 +1,113 @@
+.skills {
+  padding: 4rem 2rem;
+  background-color: #111;
+  color: #f5f5dc;
+  text-align: center;
+
+  h2 {
+    color: #deb887;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    margin-top: 2rem;
+    color: #ffddaa;
+    font-size: 1.5rem;
+  }
+
+  .skills-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  .skill-card {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 8px;
+
+    img {
+      height: 70px;
+      filter: brightness(0.9);
+      transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 10px;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #deb887aa, 0 0 25px #deb88766;
+
+      img {
+        transform: scale(1.1);
+        filter: brightness(1.2);
+        box-shadow: 0 0 12px #deb887aa, 0 0 24px #deb88766;
+      }
+    }
+
+    .tooltip {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(222, 184, 135, 0.85);
+      color: #000;
+      font-size: 13px;
+      border-radius: 5px;
+      padding: 4px 8px;
+      margin-top: 5px;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+    }
+
+    &:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+.cog {
+  position: absolute;
+  fill: none;
+  stroke: #deb88744;
+  pointer-events: none;
+  z-index: 0;
+  animation: spinCog linear infinite;
+  opacity: 0.07;
+}
+
+.skills {
+  position: relative;
+  overflow: hidden;
+  z-index: 1; // content is above cogs
+}
+
+@keyframes spinCog {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes softGlow {
+  0% {
+    box-shadow: 0 0 5px #deb887, 0 0 10px #deb88766;
+  }
+  50% {
+    box-shadow: 0 0 15px #deb887aa, 0 0 25px #deb88755;
+  }
+  100% {
+    box-shadow: 0 0 5px #deb887, 0 0 10px #deb88766;
+  }
+}
+.skill-card:hover img {
+  animation: softGlow 1.5s infinite ease-in-out;
+}
