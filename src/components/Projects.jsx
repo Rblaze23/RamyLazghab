@@ -8,6 +8,7 @@ import diabetes from "../assets/img/diabetes.png";
 import blended from "../assets/img/blended.png";
 import satisfaction from "../assets/img/satisfaction.png";
 import sportiq from "../assets/img/SportiQ.png";
+import ragenius from "../assets/img/ragenius.png";
 const projects = [
   {
     title: "MoodSync – AI for Psychologists",
@@ -50,6 +51,12 @@ const projects = [
     description:
       "Developed a real-time video analysis tool for athletes that extracts frames, performs pose estimation, emotion recognition, and NLP-based coaching feedback. Provides detailed metrics and visualizations to improve form and mental focus.",
     image: sportiq,
+  },
+  {
+    title: "RAGenius – AI-Powered CSV & PDF Assistant",
+    description:
+      "Developed a multi-modal AI assistant that analyzes CSV datasets and PDF documents using Retrieval-Augmented Generation (RAG). Enables users to upload multiple files, get automatic summaries, and ask intelligent questions that combine data insights and document knowledge. Built with LangChain, FAISS, and local LLMs via Ollama. Features a clean Streamlit dashboard for interactive exploration.",
+    image: ragenius,
   },
 ];
 
