@@ -34,7 +34,7 @@ const CrownSVG = ({ style, delay }) => (
 );
 
 const Hero = () => {
-  const images = [ramyImg1, ramyImg2];
+  const images = [ramyImg2, ramyImg1];
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
