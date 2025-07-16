@@ -112,3 +112,4 @@ const Projects = () => {
 };
 
 export default Projects;
+//ps: PS  npm run deploy to push on my portfolio
