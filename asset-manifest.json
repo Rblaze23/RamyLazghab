@@ -1,11 +1,12 @@
 {
   "files": {
     "main.css": "/RamyLazghab/static/css/main.291ca620.css",
-    "main.js": "/RamyLazghab/static/js/main.6e5c4de4.js",
+    "main.js": "/RamyLazghab/static/js/main.ac2f2c20.js",
     "static/media/meee.png": "/RamyLazghab/static/media/meee.1ff3b692019ef25c1685.png",
     "static/media/sleek.png": "/RamyLazghab/static/media/sleek.e31ea1c0ac899f4cf3e5.png",
     "static/media/SportiQ.png": "/RamyLazghab/static/media/SportiQ.519898291bd63aec7fdf.png",
     "static/media/metoo.jpg": "/RamyLazghab/static/media/metoo.4c005f141a9880f02f39.jpg",
+    "static/media/ragenius.png": "/RamyLazghab/static/media/ragenius.5ac22813e65d897c889d.png",
     "static/media/blended.png": "/RamyLazghab/static/media/blended.ab36b6d3e033b259988a.png",
     "static/media/invest.jpg": "/RamyLazghab/static/media/invest.43bdc76ae3260d7a6c8c.jpg",
     "static/media/aboutmee.jpg": "/RamyLazghab/static/media/aboutmee.a25c94448eacd06f6f34.jpg",
@@ -14,10 +15,10 @@
     "static/media/moodsync.png": "/RamyLazghab/static/media/moodsync.b075d0574230b4002b67.png",
     "index.html": "/RamyLazghab/index.html",
     "main.291ca620.css.map": "/RamyLazghab/static/css/main.291ca620.css.map",
-    "main.6e5c4de4.js.map": "/RamyLazghab/static/js/main.6e5c4de4.js.map"
+    "main.ac2f2c20.js.map": "/RamyLazghab/static/js/main.ac2f2c20.js.map"
   },
   "entrypoints": [
     "static/css/main.291ca620.css",
-    "static/js/main.6e5c4de4.js"
+    "static/js/main.ac2f2c20.js"
   ]
 }
