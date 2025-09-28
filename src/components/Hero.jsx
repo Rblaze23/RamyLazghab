@@ -66,10 +66,11 @@ const Hero = () => {
           <p>
             <Typewriter
               words={[
+                "AI Engineer",
+                "MLOps Specialist",
+                "LLM Orchestrator",
+                "Generative AI Developer",
                 "Data Scientist",
-                "AI Enthusiast",
-                "ML Engineer",
-                "Tech Explorer",
               ]}
               loop
               cursor
