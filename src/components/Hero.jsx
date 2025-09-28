@@ -71,7 +71,7 @@ const Hero = () => {
                 "LLM Orchestrator",
                 "Generative AI Developer",
                 "Data Scientist",
-              ]}
+              ]} 
               loop
               cursor
               cursorStyle="_"
