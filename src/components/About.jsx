@@ -72,22 +72,19 @@ const About = () => {
       <div className="about-container">
         <div className="about-text">
           <h2>About Me</h2>
-          <p>
-            I’m <strong>Ramy Lazghab</strong>, a passionate Data Science and AI student at
-            <strong> Dauphine Paris University</strong> currently pursuing a Master’s in
-            <strong> Big Data & Artificial Intelligence</strong>.
-            <br /><br />
-            With a background in <strong>Computer Engineering</strong>, I have hands-on experience in
-            <strong> ML, NLP, software development</strong>, and <strong>IoT systems</strong>.
-            <br /><br />
-            I’ve worked on AI projects like <em>MoodSync</em>, a mental health assistant integrating
-            <strong> emotion detection</strong> and <strong>adaptive environments</strong>.
-            <br /><br />
-            I also developed <em>SportIQ</em>, an AI-powered sports analytics tool that analyzes posture and emotions from video to
-            provide personalized coaching feedback.
-            <br /><br />
-            I’m now seeking internships or roles where I can contribute, learn, and solve real-world problems.
-          </p>
+<p>
+  I’m <strong>Ramy Lazghab</strong>, a Master’s student at <strong>Dauphine Paris University</strong>, specializing in <strong>Big Data & Artificial Intelligence</strong>. My expertise is twofold: building robust <strong>Deep Learning (DL)</strong> and <strong>Machine Learning (ML)</strong> solutions, and specializing in scalable <strong>Generative AI</strong> systems.
+  <br /><br />
+  With a background in Computer Engineering, I possess strong foundational competency in various ML tasks, including <strong>advanced classification, regression, and time-series analysis</strong>. I excel in the production pipeline, focusing on <strong>LLM Orchestration</strong> and deploying solutions using <strong>Python, Docker, and MLOps principles</strong>.
+  <br /><br />
+  My portfolio showcases this full-stack capability:
+  <ul>
+    <li><strong>DL & Core ML:</strong> My <strong>MoodSync</strong> project utilized <strong>deep neural networks for real-time speech-emotion classification</strong> (DL) and I've applied models like <strong>XGBoost and SVM</strong> for clinical and regression tasks, achieving quantifiable results (e.g., high <strong>AUC/F1 scores</strong>).</li>
+    <li><strong>Generative AI & Orchestration:</strong> I designed <strong>RAGenius</strong>, a modern LLM project demonstrating expertise in <strong>Retrieval-Augmented Generation (RAG)</strong>, vector indexing, and LangChain orchestration for grounded, scalable outputs.</li>
+  </ul>
+  <br />
+  I am seeking an AI Engineer internship to leverage this blend of foundational DL mastery and cutting-edge GenAI orchestration in a dynamic international setting.
+</p>
         </div>
         <div className="about-image">
           <div className="image-wrapper">
