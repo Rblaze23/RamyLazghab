@@ -1,8 +1,8 @@
 // src/components/Hero.jsx
 import React, { useEffect, useState } from "react";
 import "./Hero.scss";
-import ramyImg1 from "../assets/img/metoo.jpg";
-import ramyImg2 from "../assets/img/sleek.png";
+import ramyImg1 from "../assets/img/sleek.png";
+import ramyImg2 from "../assets/img/linkedinphoto.jpeg";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 
@@ -71,7 +71,7 @@ const Hero = () => {
                 "LLM Orchestrator",
                 "Generative AI Developer",
                 "Data Scientist",
-              ]} 
+              ]}
               loop
               cursor
               cursorStyle="_"
