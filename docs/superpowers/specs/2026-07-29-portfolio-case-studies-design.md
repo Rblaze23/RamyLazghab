@@ -131,7 +131,7 @@ A legend appears once on the homepage above the work section.
 - **Hero photo:** `meee.png`, compressed to ~150 KB, square crop at `center 20%`, amber border and radial glow
 - **About photo:** `aboutmee.jpg`
 - **Favicon:** `cyberpunkme.png` cropped tight to the face, generated at 16/32/180px
-- **Removed:** floating crown SVGs, sparkle field, rotating cogs, `SectionIndicator`, `ParticlesBackground` if unreferenced
+- **Removed:** floating crown SVGs, sparkle field, rotating cogs, `SectionIndicator.jsx` (imports a hook that does not exist), `ParticlesBackground.jsx` (verified unreferenced by any component), and the empty `Footer.jsx` (0 bytes) which is replaced by a real footer
 
 ## Homepage
 
@@ -139,7 +139,9 @@ Order: **Hero → Selected work → Skills → About → Certifications → Achi
 
 Header is sticky: brand, section links, and a `Download CV` button. Hero carries CV, LinkedIn, GitHub and email above the fold.
 
-**Selected work** — three flagship glyph cards (ORACLE, PIF AI, TelecomPlus), then three reduced cards (Movie Recommender, Alzheimer's, RAGenius), then a compact *More projects* grid holding SportIQ, MoodSync, Startup Investment, House Prices, Diabetes and Blended Learning.
+**Selected work** — three flagship glyph cards (ORACLE, PIF AI, TelecomPlus), then three reduced cards (Movie Recommender, Alzheimer's, RAGenius), then a compact *More projects* grid holding all seven remaining projects: SportIQ, MoodSync, Startup Investment, House Prices, Diabetes, Career Satisfaction and Blended Learning.
+
+Every one of the eight cards currently on the live site is accounted for: RAGenius is promoted to a Tier 2 case study, SportIQ and the other six appear in *More projects*. Nothing is dropped.
 
 **Skills**, rebuilt from the CV:
 
