@@ -200,21 +200,43 @@ These two are **homepage only**. No route, no case-study page, no deeper version
 
 ### ORACLE — Regulatory intelligence
 
-> **Problem.** EU cosmetics regulation changes continuously, and the signals that indicate an ingredient is heading toward restriction are spread across a large volume of regulatory and scientific literature. Monitoring that by hand doesn't scale.
+> **The problem**
 >
-> **What I did.** I worked on an internal regulatory intelligence system that combines retrieval over a large document corpus with autonomous agents that gather public signals, feeding machine-learning models that forecast regulatory risk. I also worked on making the model output explainable, so specialists without an ML background could interpret and trust a prediction.
+> In a heavily regulated industry, the rules change continuously, and the evidence that predicts what gets restricted next is scattered across a large body of scientific and legal literature plus fast-moving public sources. No team can track that manually at the volume it arrives. Finding out late means reformulating a product under deadline instead of planning for it.
 >
-> `LangGraph` `RAG` `Qdrant` `XGBoost` `Anthropic API` `Streamlit`
+> **What I built**
+>
+> I worked on the AI side of an internal regulatory intelligence platform, where three things work together.
+>
+> First, a retrieval layer over a large curated document corpus, so the system answers questions with evidence drawn from real source material rather than generating plausible-sounding text.
+>
+> Second, a set of autonomous agents I designed and orchestrated to continuously gather live information from public sources and convert it into structured signals the rest of the system can use — turning a constantly moving external picture into something measurable.
+>
+> Third, machine learning models I trained on those signals to produce forward-looking risk predictions, rather than only describing the present.
+>
+> On top of that I built the explanation layer: LLMs that articulate why a model reached a given prediction and generate a supporting visual for each contributing factor. That mattered more than it sounds — the people who act on these predictions are regulatory specialists, not ML engineers, and a forecast they can't interrogate is a forecast they won't use.
+>
+> `Multi-agent orchestration` `LangGraph` `RAG` `Qdrant` `XGBoost` `Anthropic API` `Streamlit`
 
-### PIF AI — Document intelligence
+### PIF AI — Generative document intelligence
 
-> **Problem.** Producing regulatory compliance dossiers means reading scattered customer documents and assembling structured sections by hand — slow, repetitive work on a document that exists to be audited.
+> **The problem**
 >
-> **What I did.** I built an LLM-based document-understanding pipeline that drafts these dossiers automatically, with validation agents checking the generated content and a human review step for corrections. It shipped as part of the company's production web application.
+> Regulatory compliance dossiers are slow, manual document work. Someone reads scattered customer-supplied material, extracts what matters, and rewrites it into a fixed, auditable structure — repeatedly, for every product. It's expensive, and it's exactly the kind of work where a small oversight surfaces later in an audit.
 >
-> `Anthropic API` `LLM document understanding` `RAG` `Agents`
+> **What I built**
+>
+> I built a generative AI system that produces these dossiers automatically. It reads the customer's source documents, interprets what's in them, and renders the required structured document from that content.
+>
+> Because the output is a compliance artifact rather than a draft, generation on its own isn't sufficient — plausible is not the same as correct. So the system also runs validation agents that check what was produced, and sits behind a human review workflow where a reviewer can accept or regenerate any individual part of the document instead of discarding the whole thing and starting again.
+>
+> It shipped as part of the company's production web application, as a feature real customers use.
+>
+> `Generative AI` `LLM document understanding` `RAG` `Validation agents` `Anthropic API`
 
-**Deliberately excluded from both:** pipeline steps, named external data sources, document counts, architecture breakdowns, challenge write-ups, internal mechanics, client names, and any figure describing scale or performance. Tech names are retained — they are industry-standard, already public on the CV, and describe capability rather than implementation.
+**Deliberately excluded from both:** document counts, named external data sources, model architectures, chunking or retrieval strategy, prompt design, validation logic, client names, and any performance figure. What remains is what each system does and what Ramy was responsible for — enough for a recruiter to grasp scope and an engineer to recognise real work, with nothing describing how it is built.
+
+Approved verbatim by Ramy on 2026-07-29. **Do not expand.** Any future edit that adds implementation detail to these two entries is a confidentiality regression.
 
 ## Case studies
 
