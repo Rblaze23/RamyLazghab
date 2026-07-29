@@ -133,6 +133,23 @@ A legend appears once on the homepage above the work section.
 - **Favicon:** `cyberpunkme.png` cropped tight to the face, generated at 16/32/180px
 - **Removed:** floating crown SVGs, sparkle field, rotating cogs, `SectionIndicator.jsx` (imports a hook that does not exist), `ParticlesBackground.jsx` (verified unreferenced by any component), and the empty `Footer.jsx` (0 bytes) which is replaced by a real footer
 
+### Responsive behaviour
+
+The current site is only partially responsive. `Header.scss` and `Skills.scss` contain **no media queries at all**, so the fixed nav is untested on phones. Every existing breakpoint sits at 768px or 1024px with nothing below, and the codebase mixes seven `min-width` rules with one `max-width` rule, so the two approaches fight at the boundary.
+
+The rebuild is **mobile-first throughout**, one consistent direction, with breakpoints at **375 / 640 / 768 / 1024 / 1440**.
+
+| Element | Behaviour |
+| --- | --- |
+| Hero | Stacks vertically below 768px, photo above text; headline scales with `clamp()` |
+| Nav | Collapses to a hamburger below 768px — new, there is nothing to collapse today |
+| Project grid | 3 columns → 2 → 1 |
+| Architecture glyphs | SVG with `viewBox`, scale to any width without clipping |
+| Case-study body | Capped measure (~70ch) so text stays readable on wide monitors |
+| Tap targets | Minimum 44×44px |
+
+Recruiters routinely open portfolios on a phone, often straight from a LinkedIn message, so mobile is a primary target rather than a fallback. Verified by emulating real device sizes in Chrome DevTools and capturing screenshots at 375px, 768px and 1440px — not by inspection.
+
 ## Homepage
 
 Order: **Hero → Selected work → Skills → About → Certifications → Achievements → Contact.**
@@ -234,5 +251,6 @@ Tracked as `// TODO` comments in source, invisible to visitors:
 - No `TODO`, `FIXME` or placeholder text appears in built output: `grep -ri "todo\|screenshot placeholder" build/`
 - CV downloads and resolves to `RamyLazghabEN1.pdf`
 - Certification and repo links resolve
-- Layout holds at 375px, 768px and 1440px
+- Layout verified by Chrome DevTools device emulation at 375px, 768px and 1440px, with screenshots captured at each — homepage and at least one case study
+- Nav is usable on a 375px viewport; no horizontal page scroll at any breakpoint
 - Hero photo is under 200 KB in the build
