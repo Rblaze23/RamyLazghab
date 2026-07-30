@@ -1,8 +1,17 @@
 import React from 'react';
 import experience from '../content/experience';
 import SectionHeading from './SectionHeading';
+import { getGlyph } from './glyphs';
 import avatarExperience from '../assets/img/avatar-experience.jpg';
 import './Experience.scss';
+
+// Diagrams sit at the same level of detail as the approved copy, so they add
+// no information a reader does not already get from the words.
+function renderGlyph(id) {
+  const Glyph = getGlyph(id);
+  if (!Glyph) return null;
+  return <div className="experience-glyph"><Glyph /></div>;
+}
 
 // Rendered as static content. No <Link>, no route, no "read more" —
 // see the confidentiality note in src/content/experience.js.
@@ -18,6 +27,7 @@ export default function Experience() {
               <header>
                 <h3>{item.title}</h3>
                 <p className="subtitle">{item.subtitle}</p>
+                {renderGlyph(item.id)}
               </header>
 
               <div className="experience-body">
