@@ -1,34 +1,48 @@
-// src/components/Header.jsx
-import React from "react";
-import "./Header.scss";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import site from '../content/site';
+import './Header.scss';
 
-const Header = () => {
+const NAV = [
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#work', label: 'Work' },
+  { href: '/#skills', label: 'Skills' },
+  { href: '/#about', label: 'About' },
+  { href: '/#contact', label: 'Contact' },
+];
+
+export default function Header() {
+  const [open, setOpen] = useState(false);
+  const cv = `${process.env.PUBLIC_URL}${site.links.cv}`;
+
   return (
-    <header className="main-header">
-      <nav className="nav-container">
-        {/* Brand name that links to top */}
-        <a href="#home" className="brand-name">
-          Ramy Lazghab
-        </a>
+    <header className="site-header">
+      <div className="container header-inner">
+        <Link to="/" className="brand" onClick={() => setOpen(false)}>
+          ramy.lazghab
+        </Link>
 
-        {/* Navigation Links */}
-        <ul className="nav-links">
-          <li>
-            <a href="#about">About</a>
-          </li>
-          <li>
-            <a href="#projects">Projects</a>
-          </li>
-          <li>
-            <a href="#skills">Skills</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
-        </ul>
-      </nav>
+        <button
+          type="button"
+          className="menu-toggle"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span className={`bars ${open ? 'is-open' : ''}`} aria-hidden="true" />
+        </button>
+
+        <nav className={`nav ${open ? 'is-open' : ''}`}>
+          {NAV.map((item) => (
+            <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+              {item.label}
+            </a>
+          ))}
+          <a className="cv-button" href={cv} download="Ramy_Lazghab_CV.pdf">
+            Download CV
+          </a>
+        </nav>
+      </div>
     </header>
   );
-};
-
-export default Header;
+}

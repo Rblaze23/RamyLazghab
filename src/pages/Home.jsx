@@ -1,10 +1,10 @@
 import React from 'react';
-import site from '../content/site';
+import Hero from '../components/Hero';
 
 export default function Home() {
   return (
     <main>
-      <h1>{site.headline}</h1>
+      <Hero />
     </main>
   );
 }

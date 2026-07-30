@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import CaseStudy from '../pages/CaseStudy';
+import Header from '../components/Header';
 
 const renderAt = (path) =>
   render(
@@ -32,5 +33,32 @@ describe('routing', () => {
   test('an unknown slug does not crash', () => {
     renderAt('/case-studies/does-not-exist');
     expect(screen.getByText(/not found/i)).toBeInTheDocument();
+  });
+});
+
+describe('header', () => {
+  test('exposes a mobile menu toggle', () => {
+    render(<MemoryRouter><Header /></MemoryRouter>);
+    expect(screen.getByRole('button', { name: /menu/i })).toBeInTheDocument();
+  });
+
+  test('links to the CV', () => {
+    render(<MemoryRouter><Header /></MemoryRouter>);
+    const cv = screen.getByRole('link', { name: /cv/i });
+    expect(cv).toHaveAttribute('href', expect.stringContaining('Resume.pdf'));
+  });
+});
+
+describe('hero', () => {
+  test('shows location and the three primary links', () => {
+    renderAt('/');
+    expect(screen.getByText(/Based in Paris, France\. Open to relocation\./)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /github/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /linkedin/i })).toBeInTheDocument();
+  });
+
+  test('does not name an employer', () => {
+    renderAt('/');
+    expect(screen.queryByText(/Relay ?X/i)).toBeNull();
   });
 });

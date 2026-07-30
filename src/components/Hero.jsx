@@ -1,121 +1,58 @@
-// src/components/Hero.jsx
-import React, { useEffect, useState } from "react";
-import "./Hero.scss";
-import ramyImg1 from "../assets/img/sleek.png";
-import ramyImg2 from "../assets/img/linkedinphoto.jpeg";
-import { motion } from "framer-motion";
-import { Typewriter } from "react-simple-typewriter";
+import React from 'react';
+import { motion } from 'framer-motion';
+import site from '../content/site';
+import heroPhoto from '../assets/img/hero.jpg';
+import './Hero.scss';
 
-// Floating crown SVG
-const CrownSVG = ({ style, delay }) => (
-  <motion.svg
-    viewBox="0 0 64 64"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="floating-crown"
-    style={style}
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 0.12, y: [10, -10, 10] }}
-    transition={{
-      duration: 8,
-      repeat: Infinity,
-      repeatType: "mirror",
-      delay,
-      ease: "easeInOut",
-    }}
-  >
-    <path
-      d="M12 44L8 16L24 32L32 12L40 32L56 16L52 44H12Z"
-      fill="#c7a977"
-      stroke="#f5deb3"
-      strokeWidth="2"
-    />
-  </motion.svg>
-);
-
-const Hero = () => {
-  const images = [ramyImg2, ramyImg1];
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
+export default function Hero() {
+  const cv = `${process.env.PUBLIC_URL}${site.links.cv}`;
+  const plain = site.headline.replace(site.headlineAccent, '').trim();
 
   return (
     <section className="hero" id="home">
-      {/* Animated Crowns */}
-      <CrownSVG style={{ top: "20%", left: "10%" }} delay={0} />
-      <CrownSVG style={{ top: "40%", left: "80%", width: "40px" }} delay={1} />
-      <CrownSVG style={{ top: "70%", left: "25%", width: "30px" }} delay={2} />
-      <CrownSVG style={{ top: "60%", left: "60%", width: "35px" }} delay={3} />
-      <CrownSVG style={{ top: "50%", left: "30%", width: "30px" }} delay={4} />
-
-      <div className="hero-container">
+      <div className="container hero-inner">
         <motion.div
           className="hero-text"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
+          <p className="kicker">{site.role}</p>
+
           <h1>
-            Hi, I’m <span className="highlight">Ramy Lazghab</span>
+            {plain} <em>{site.headlineAccent}</em>
           </h1>
-          <p>
-            <Typewriter
-              words={[
-                "AI Engineer",
-                "MLOps Specialist",
-                "LLM Orchestrator",
-                "Generative AI Developer",
-                "Data Scientist",
-              ]}
-              loop
-              cursor
-              cursorStyle="_"
-              typeSpeed={80}
-              deleteSpeed={50}
-              delaySpeed={2000}
-            />
+
+          <p className="tagline">{site.tagline}</p>
+
+          <p className="location">
+            <span className="dot" aria-hidden="true" />
+            {site.location}
+          </p>
+
+          <div className="hero-actions">
+            <a className="btn-primary" href="/#work">Read the case studies</a>
+            <a className="btn-ghost" href={cv} download="Ramy_Lazghab_CV.pdf">Download CV</a>
+          </div>
+
+          <p className="hero-links">
+            <a href={site.links.github} target="_blank" rel="noreferrer">GitHub</a>
+            <span aria-hidden="true">·</span>
+            <a href={site.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+            <span aria-hidden="true">·</span>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
           </p>
         </motion.div>
 
         <motion.div
-          className="hero-image"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
+          className="hero-photo"
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <div className="image-wrapper">
-            {images.map((src, i) => (
-              <motion.img
-                key={i}
-                src={src}
-                alt="Ramy Lazghab"
-                className="hero-image-fade"
-                initial={false}
-                animate={{ opacity: index === i ? 1 : 0 }}
-                transition={{ duration: 1.5 }}
-              />
-            ))}
-          </div>
+          <img src={heroPhoto} alt="Ramy Lazghab" width="600" height="600" />
         </motion.div>
       </div>
-
-      <div className="scroll-indicator">
-        <span></span>
-      </div>
-
-      <motion.div
-        className="hero-overlay"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
-      />
     </section>
   );
-};
-
-export default Hero;
+}
