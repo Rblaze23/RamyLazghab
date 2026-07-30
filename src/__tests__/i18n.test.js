@@ -64,12 +64,12 @@ describe('language switch', () => {
   test('switching to French changes the visible copy', () => {
     renderAt('/');
 
-    expect(screen.getByText(/end-to-end AI platforms/i)).toBeInTheDocument();
+    expect(screen.getByText(/production-grade LLM and agentic AI systems/i)).toBeInTheDocument();
 
     userEvent.click(screen.getAllByRole('button', { name: 'FR' })[0]);
 
-    expect(screen.getByText(/plateformes IA de bout en bout/i)).toBeInTheDocument();
-    expect(screen.queryByText(/end-to-end AI platforms/i)).toBeNull();
+    expect(screen.getByText(/systèmes LLM et d’IA agentique/i)).toBeInTheDocument();
+    expect(screen.queryByText(/production-grade LLM and agentic AI systems/i)).toBeNull();
   });
 
   test('switching language updates the document language attribute', () => {

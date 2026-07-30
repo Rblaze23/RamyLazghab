@@ -17,7 +17,7 @@ const renderAt = (path) =>
 describe('routing', () => {
   test('home renders the headline', () => {
     renderAt('/');
-    expect(screen.getByText(/end-to-end AI platforms/i)).toBeInTheDocument();
+    expect(screen.getByText(/production-grade LLM and agentic AI systems/i)).toBeInTheDocument();
   });
 
   test('a known case study renders its title', () => {
