@@ -144,7 +144,8 @@ describe('remaining sections', () => {
   test('skills show the CV positioning keywords the old site was missing', () => {
     renderAt('/');
     const skills = section('skills');
-    ['LangGraph', 'Qdrant', 'MCP', 'MLflow', 'LightGBM', 'GCP — Vertex AI'].forEach((kw) =>
+    ['LangGraph', 'Qdrant', 'MCP', 'MLflow', 'LightGBM', 'Vertex AI (GCP)',
+     'Random Forest', 'Neural Networks', 'Reinforcement Learning'].forEach((kw) =>
       expect(skills.getByText(kw)).toBeInTheDocument()
     );
   });

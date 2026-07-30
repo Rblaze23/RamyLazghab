@@ -88,6 +88,18 @@ describe('projects content', () => {
     });
   });
 
+  test('no em dash in any visitor-facing string', () => {
+    // Em dashes are a strong tell for machine-written copy, and this site is
+    // read by people who recognise it. Rewrite the sentence instead.
+    const walk = (v) =>
+      typeof v === 'string' ? [v]
+        : Array.isArray(v) ? v.flatMap(walk)
+        : v && typeof v === 'object' ? Object.values(v).flatMap(walk)
+        : [];
+    const offenders = walk(projects).concat(walk(site)).filter((s) => s.includes('\u2014'));
+    expect(offenders).toEqual([]);
+  });
+
   test('no visitor-facing string contains a TODO marker', () => {
     const walk = (v) =>
       typeof v === 'string' ? [v]

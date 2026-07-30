@@ -10,7 +10,7 @@ import Contact from '../components/Contact';
 export default function Home() {
   useEffect(() => {
     document.title =
-      'Ramy Lazghab — AI & Machine Learning Engineer | LLMs, Agentic AI, RAG';
+      'Ramy Lazghab | AI & Machine Learning Engineer | LLMs, Agentic AI, RAG';
   }, []);
 
   return (

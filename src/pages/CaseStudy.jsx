@@ -13,7 +13,7 @@ export default function CaseStudy() {
 
   useEffect(() => {
     document.title = project
-      ? `${project.title} — Case study | Ramy Lazghab`
+      ? `${project.title} case study | Ramy Lazghab`
       : 'Not found | Ramy Lazghab';
   }, [project]);
 

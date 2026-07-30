@@ -30,7 +30,7 @@ const projects = [
       {
         title: 'Tables inside PDFs were destroying answer quality',
         body:
-          'The corpus was mostly PDF documentation, and the answers users actually wanted lived in tables: pricing tiers, plan comparisons, technical specs. Standard text extraction flattens a table into a stream of loose cell values — the row and column relationships that give a number its meaning are simply gone. Retrieval returned chunks that were topically right and factually unusable, and the model answered confidently and wrongly. I changed ingestion to detect tables and render them as Markdown before chunking, preserving structure in a format the model reads natively. Answers went from approximately correct to exact.',
+          'The corpus was mostly PDF documentation, and the answers users actually wanted lived in tables: pricing tiers, plan comparisons, technical specs. Standard text extraction flattens a table into a stream of loose cell values. The row and column relationships that give a number its meaning are simply gone. Retrieval returned chunks that were topically right and factually unusable, and the model answered confidently and wrongly. I changed ingestion to detect tables and render them as Markdown before chunking, preserving structure in a format the model reads natively. Answers went from approximately correct to exact.',
       },
       {
         title: 'Routing between retrieval and structured queries',
@@ -69,7 +69,7 @@ const projects = [
     challenges: [],
     results: [
       'Trained model deployed and reachable as a REST endpoint.',
-      'Fully managed pipeline — no self-hosted infrastructure.',
+      'Fully managed pipeline with no self-hosted infrastructure.',
     ],
     lessons: '',
     links: { repo: 'https://github.com/Rblaze23/GCP-Personalized-Movie-Recommendation-System', demo: null },

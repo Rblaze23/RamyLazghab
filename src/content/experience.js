@@ -20,9 +20,9 @@ const experience = [
     role: [
       'I worked on the AI side of an internal regulatory intelligence platform, where three things work together.',
       'First, a retrieval layer over a large curated document corpus, so the system answers questions with evidence drawn from real source material rather than generating plausible-sounding text.',
-      'Second, a set of autonomous agents I designed and orchestrated to continuously gather live information from public sources and convert it into structured signals the rest of the system can use — turning a constantly moving external picture into something measurable.',
+      'Second, a set of autonomous agents I designed and orchestrated to continuously gather live information from public sources and convert it into structured signals the rest of the system can use, turning a constantly moving external picture into something measurable.',
       'Third, machine learning models I trained on those signals to produce forward-looking risk predictions, rather than only describing the present.',
-      'On top of that I built the explanation layer: LLMs that articulate why a model reached a given prediction and generate a supporting visual for each contributing factor. That mattered more than it sounds — the people who act on these predictions are regulatory specialists, not ML engineers, and a forecast they cannot interrogate is a forecast they will not use.',
+      'On top of that I built the explanation layer: LLMs that articulate why a model reached a given prediction and generate a supporting visual for each contributing factor. That mattered more than it sounds. The people who act on these predictions are regulatory specialists, not ML engineers, and a forecast they cannot interrogate is a forecast they will not use.',
     ],
     tech: ['Multi-agent orchestration', 'LangGraph', 'RAG', 'Qdrant', 'XGBoost', 'Anthropic API', 'Streamlit'],
   },
@@ -31,10 +31,10 @@ const experience = [
     title: 'PIF AI',
     subtitle: 'Generative document intelligence',
     problem:
-      'Regulatory compliance dossiers are slow, manual document work. Someone reads scattered customer-supplied material, extracts what matters, and rewrites it into a fixed, auditable structure — repeatedly, for every product. It is expensive, and it is exactly the kind of work where a small oversight surfaces later in an audit.',
+      'Regulatory compliance dossiers are slow, manual document work. Someone reads scattered customer-supplied material, extracts what matters, and rewrites it into a fixed, auditable structure, then does it again for the next product. It is expensive, and it is exactly the kind of work where a small oversight surfaces later in an audit.',
     role: [
       'I built a generative AI system that produces these dossiers automatically. It reads the customer’s source documents, interprets what is in them, and renders the required structured document from that content.',
-      'Because the output is a compliance artifact rather than a draft, generation on its own is not sufficient — plausible is not the same as correct. So the system also runs validation agents that check what was produced, and sits behind a human review workflow where a reviewer can accept or regenerate any individual part of the document instead of discarding the whole thing and starting again.',
+      'Because the output is a compliance artifact rather than a draft, generation on its own is not sufficient, because plausible is not the same as correct. So the system also runs validation agents that check what was produced, and sits behind a human review workflow where a reviewer can accept or regenerate any individual part of the document instead of discarding the whole thing and starting again.',
       'It shipped as part of the company’s production web application, as a feature real customers use.',
     ],
     tech: ['Generative AI', 'LLM document understanding', 'RAG', 'Validation agents', 'Anthropic API'],

@@ -16,10 +16,10 @@ const site = {
   about: [
     'I’m an AI & Machine Learning Engineer specialising in production systems built on LLMs, agentic AI and RAG. I design end-to-end platforms that combine document intelligence, forecasting and multi-agent orchestration for real business problems.',
     'I’m currently building regulatory intelligence systems for the cosmetics industry, where the work spans retrieval over large document corpora, autonomous agents gathering live signals, and machine learning models whose output has to be explainable to people without an ML background.',
-    'M.Sc. Data Science & Artificial Intelligence, Université Paris Dauphine — PSL (2024–2026). B.Sc. Computer Engineering (IoT), Faculty of Sciences of Tunis.',
+    'M.Sc. Data Science & Artificial Intelligence, Université Paris Dauphine-PSL (2024 to 2026). B.Sc. Computer Engineering (IoT), Faculty of Sciences of Tunis.',
   ],
 
-  languages: 'English — Fluent (IELTS) · French — Professional',
+  languages: 'English: Fluent (IELTS) · French: Professional',
 
   // Every entry below is backed either by the CV or by a public repository:
   // classical ML from Diabetes-Diagnosis and House-Prices-Prediction, deep
@@ -51,7 +51,7 @@ const site = {
     },
     {
       group: 'Cloud & Data',
-      items: ['GCP — Vertex AI', 'BigQuery', 'BigQuery ML', 'Cloud Run', 'Pandas', 'NumPy',
+      items: ['Vertex AI (GCP)', 'BigQuery', 'BigQuery ML', 'Cloud Run', 'Pandas', 'NumPy',
               'Spark', 'PostgreSQL', 'Neo4j', 'FAISS', 'Qdrant'],
     },
     {
@@ -69,7 +69,7 @@ const site = {
 
   achievements: [
     { result: '3rd place', title: 'RAISE Summit AI Hackathon', detail: 'Paris', url: null },
-    { result: 'Winner', title: 'Hack for Good', detail: 'MoodSync — real-time assistant for psychologists', url: null },
+    { result: 'Winner', title: 'Hack for Good', detail: 'MoodSync, a real-time assistant for psychologists', url: null },
     { result: 'Participant', title: 'EY Hack for Smart Insurance', detail: 'InsurAI', url: 'https://github.com/Rblaze23/InsurAI' },
     { result: 'Competitor', title: 'IEEE Xtreme 15.0 & 16.0', detail: '24-hour global programming competition', url: null },
   ],
