@@ -1,10 +1,14 @@
 @use '../styles/mixins' as *;
 
+// Mobile navigation only. From 768px up the fixed left rail replaces it
+// entirely, which is what removes the duplicated CV button and social links.
 .site-header {
   position: sticky; top: 0; z-index: 50;
   background: rgba(11, 13, 14, .82);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
+
+  @include bp(lg) { display: none; }
 }
 
 .header-inner {

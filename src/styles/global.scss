@@ -39,12 +39,21 @@ a { color: inherit; }
 
 :focus-visible { outline: 2px solid var(--a); outline-offset: 3px; border-radius: 4px; }
 
+// The shell holds the scrolling content between the fixed rails.
+.shell {
+  @include bp(lg)  { margin-left: 216px; }
+  @include bp(xxl) { &.has-scene { margin-right: 330px; } }
+}
+
 .container {
   width: 100%;
   max-width: 1180px;
   margin-inline: auto;
   padding-inline: var(--space-3);
   @include bp(lg) { padding-inline: var(--space-4); }
+  // Inside the shell the usable width is already reduced by the rails, so the
+  // content no longer needs to be centred in a narrow column.
+  @include bp(xxl) { max-width: 900px; margin-inline: 0; padding-inline: var(--space-5); }
 }
 
 .section { padding-block: var(--space-5); @include bp(lg) { padding-block: var(--space-6); } }
@@ -72,3 +81,22 @@ a { color: inherit; }
 
 // Wide content must scroll inside itself, never the page.
 .scroll-x { overflow-x: auto; }
+
+// Hides anything the fixed left rail already provides, once that rail exists.
+// Deliberately two classes deep: component rules like `.hero-links{display:flex}`
+// are single-class, so a single-class utility would lose on source order.
+@include bp(lg) {
+  .shell .only-mobile { display: none; }
+}
+
+// The dashed strokes in the architecture glyphs are the "data flow" colour, so
+// making them actually flow is motion that carries meaning rather than
+// decoration. Applies to every glyph, on cards and on case-study pages.
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes dash-flow { to { stroke-dashoffset: -12; } }
+
+  .card-glyph svg [stroke-dasharray],
+  .cs-glyph svg [stroke-dasharray] {
+    animation: dash-flow 1.1s linear infinite;
+  }
+}

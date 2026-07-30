@@ -16,7 +16,9 @@ export default function Contact() {
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </p>
         </div>
-        <div className="contact-actions">
+        {/* Same links as the left rail, so they only show when the rail is
+            hidden. The email above is the section's actual call to action. */}
+        <div className="contact-actions only-mobile">
           <a className="btn-primary" href={cv} download="Ramy_Lazghab_CV.pdf">Download CV (PDF)</a>
           <a className="btn-ghost" href={site.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
           <a className="btn-ghost" href={site.links.github} target="_blank" rel="noreferrer">GitHub</a>

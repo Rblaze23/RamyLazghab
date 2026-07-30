@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import site from '../content/site';
+import SectionLink from './SectionLink';
 import './Header.scss';
 
 const NAV = [
-  { href: '/#experience', label: 'Experience' },
-  { href: '/#work', label: 'Work' },
-  { href: '/#skills', label: 'Skills' },
-  { href: '/#about', label: 'About' },
-  { href: '/#contact', label: 'Contact' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'work', label: 'Work' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'about', label: 'About' },
+  { id: 'contact', label: 'Contact' },
 ];
 
 export default function Header() {
@@ -34,9 +35,9 @@ export default function Header() {
 
         <nav className={`nav ${open ? 'is-open' : ''}`}>
           {NAV.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+            <SectionLink key={item.id} id={item.id} onNavigate={() => setOpen(false)}>
               {item.label}
-            </a>
+            </SectionLink>
           ))}
           <a className="cv-button" href={cv} download="Ramy_Lazghab_CV.pdf">
             Download CV

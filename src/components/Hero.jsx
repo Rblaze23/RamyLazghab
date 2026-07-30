@@ -1,5 +1,6 @@
 import React from 'react';
 import site from '../content/site';
+import SectionLink from './SectionLink';
 import heroPhoto from '../assets/img/hero.jpg';
 import './Hero.scss';
 
@@ -29,12 +30,17 @@ export default function Hero() {
             {site.location}
           </p>
 
+          {/* The CV button and social links live in the left rail, where they
+              stay visible the whole way down the page. Below 768px the rail is
+              hidden, so they appear here instead of being unreachable. */}
           <div className="hero-actions">
-            <a className="btn-primary" href="/#work">Read the case studies</a>
-            <a className="btn-ghost" href={cv} download="Ramy_Lazghab_CV.pdf">Download CV</a>
+            <SectionLink id="work" className="btn-primary">Read the case studies</SectionLink>
+            <a className="btn-ghost only-mobile" href={cv} download="Ramy_Lazghab_CV.pdf">
+              Download CV
+            </a>
           </div>
 
-          <p className="hero-links">
+          <p className="hero-links only-mobile">
             <a href={site.links.github} target="_blank" rel="noreferrer">GitHub</a>
             <span aria-hidden="true">·</span>
             <a href={site.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
