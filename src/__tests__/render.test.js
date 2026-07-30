@@ -105,3 +105,31 @@ describe('work section', () => {
     expect(screen.getByText(/Agents & LLM/i)).toBeInTheDocument();
   });
 });
+
+describe('case study page', () => {
+  test('tier 1 renders every deep section', () => {
+    renderAt('/case-studies/telecomplus');
+    ['Problem', 'Architecture', 'Pipeline', 'Technologies', 'Challenges', 'Results', 'Lessons learned']
+      .forEach((h) =>
+        expect(screen.getByRole('heading', { name: new RegExp(`^${h}$`, 'i') })).toBeInTheDocument()
+      );
+  });
+
+  test('tier 2 omits pipeline and challenges rather than showing empty sections', () => {
+    renderAt('/case-studies/ragenius');
+    expect(screen.queryByRole('heading', { name: /^Pipeline$/i })).toBeNull();
+    expect(screen.queryByRole('heading', { name: /^Challenges$/i })).toBeNull();
+    expect(screen.getByRole('heading', { name: /^Results$/i })).toBeInTheDocument();
+  });
+
+  test('no screenshot section when there are no images', () => {
+    renderAt('/case-studies/telecomplus');
+    expect(screen.queryByRole('heading', { name: /screenshot/i })).toBeNull();
+    expect(screen.queryByText(/TODO/i)).toBeNull();
+  });
+
+  test('a project without a repo shows no repo link', () => {
+    renderAt('/case-studies/alzheimers');
+    expect(screen.queryByRole('link', { name: /view repository/i })).toBeNull();
+  });
+});
