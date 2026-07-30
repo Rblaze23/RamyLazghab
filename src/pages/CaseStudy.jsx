@@ -44,11 +44,20 @@ export default function CaseStudy() {
           <div className="chip-row">
             {project.tech.map((t) => <span className="chip" key={t}>{t}</span>)}
           </div>
-          {project.links.repo && (
-            <a className="cs-repo" href={project.links.repo} target="_blank" rel="noreferrer">
-              {ui.viewRepository}
-            </a>
-          )}
+          <div className="cs-links">
+            {/* A live demo outranks a repository: a visitor can use it in
+                seconds. Shown first when one exists. */}
+            {project.links.demo && (
+              <a className="cs-demo" href={project.links.demo} target="_blank" rel="noreferrer">
+                {ui.liveDemo}
+              </a>
+            )}
+            {project.links.repo && (
+              <a className="cs-repo" href={project.links.repo} target="_blank" rel="noreferrer">
+                {ui.viewRepository}
+              </a>
+            )}
+          </div>
         </header>
 
         <section className="cs-section">

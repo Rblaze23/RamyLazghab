@@ -28,21 +28,18 @@ const siteFr = {
   skills: [
     {
       group: 'IA générative & LLM',
-      items: ['LLMs', 'RAG', 'IA agentique', 'Systèmes multi-agents', 'Prompt Engineering',
-              'LangChain', 'LangGraph', 'Hugging Face', 'MCP', 'LangSmith',
-              'Anthropic API', 'OpenAI API', 'Évaluation LLM-as-a-Judge'],
+      items: ['LLMs', 'RAG', 'IA agentique', 'Systèmes multi-agents', 'LangChain', 'LangGraph',
+              'MCP', 'LangSmith', 'Anthropic API', 'OpenAI API', 'Évaluation LLM-as-a-Judge'],
     },
     {
       group: 'Machine Learning',
-      items: ['Apprentissage supervisé', 'Apprentissage non supervisé', 'Régression logistique',
-              'Random Forest', 'Arbres de décision', 'SVM', 'XGBoost', 'LightGBM',
-              'Méthodes d’ensemble', 'Feature Engineering', 'ACP', 'SHAP', 'scikit-learn'],
+      items: ['Régression logistique', 'Random Forest', 'Arbres de décision', 'SVM',
+              'XGBoost', 'LightGBM', 'Feature Engineering', 'ACP', 'SHAP', 'scikit-learn'],
     },
     {
       group: 'Deep Learning & apprentissage par renforcement',
-      items: ['Réseaux de neurones', 'CNN', 'RNN & LSTM', 'Transformers', 'BERT',
-              'PyTorch', 'TensorFlow', 'Vision par ordinateur', 'NLP',
-              'Apprentissage par renforcement', 'A2C', 'Méthodes de gradient de politique'],
+      items: ['Réseaux de neurones', 'CNN', 'Transformers', 'BERT', 'PyTorch', 'TensorFlow',
+              'Hugging Face', 'Apprentissage par renforcement', 'A2C'],
     },
     {
       group: 'MLOps & outils',
@@ -50,8 +47,8 @@ const siteFr = {
     },
     {
       group: 'Cloud & données',
-      items: ['Vertex AI (GCP)', 'BigQuery', 'BigQuery ML', 'Cloud Run', 'Pandas', 'NumPy',
-              'Spark', 'PostgreSQL', 'Neo4j', 'FAISS', 'Qdrant'],
+      items: ['Vertex AI (GCP)', 'BigQuery ML', 'Cloud Run', 'Spark',
+              'PostgreSQL', 'Neo4j', 'FAISS', 'Qdrant'],
     },
     {
       group: 'Programmation',

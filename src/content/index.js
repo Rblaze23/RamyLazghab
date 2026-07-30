@@ -41,6 +41,7 @@ const UI = {
     achievementsLabel: 'Hackathons & achievements',
     caseStudySuffix: 'case study',
     atAGlance: 'At a glance',
+    liveDemo: 'Try the live demo ↗',
     legend: {
       doc: 'Source documents',
       store: 'Retrieval & vector store',
@@ -77,6 +78,7 @@ const UI = {
     achievementsLabel: 'Hackathons & distinctions',
     caseStudySuffix: 'étude de cas',
     atAGlance: 'En bref',
+    liveDemo: 'Essayer la démo ↗',
     legend: {
       doc: 'Documents sources',
       store: 'Recherche & magasin vectoriel',

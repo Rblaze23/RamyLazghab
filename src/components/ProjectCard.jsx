@@ -17,6 +17,7 @@ export default function ProjectCard({ project, showGlyph = false, feature = fals
         <div className="chip-row">
           {project.tech.slice(0, feature ? 8 : 4).map((t) => <span className="chip" key={t}>{t}</span>)}
         </div>
+        {project.links.demo && <span className="card-demo">{ui.liveDemo}</span>}
         {project.slug && <span className="card-cta">{ui.readCaseStudy}</span>}
       </div>
     </>

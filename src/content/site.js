@@ -29,21 +29,18 @@ const site = {
   skills: [
     {
       group: 'Generative AI & LLMs',
-      items: ['LLMs', 'RAG', 'Agentic AI', 'Multi-Agent Systems', 'Prompt Engineering',
-              'LangChain', 'LangGraph', 'Hugging Face', 'MCP', 'LangSmith',
-              'Anthropic API', 'OpenAI API', 'LLM-as-a-Judge evaluation'],
+      items: ['LLMs', 'RAG', 'Agentic AI', 'Multi-Agent Systems', 'LangChain', 'LangGraph',
+              'MCP', 'LangSmith', 'Anthropic API', 'OpenAI API', 'LLM-as-a-Judge evaluation'],
     },
     {
       group: 'Machine Learning',
-      items: ['Supervised Learning', 'Unsupervised Learning', 'Logistic Regression',
-              'Random Forest', 'Decision Trees', 'SVM', 'XGBoost', 'LightGBM',
-              'Ensemble Methods', 'Feature Engineering', 'PCA', 'SHAP', 'scikit-learn'],
+      items: ['Logistic Regression', 'Random Forest', 'Decision Trees', 'SVM',
+              'XGBoost', 'LightGBM', 'Feature Engineering', 'PCA', 'SHAP', 'scikit-learn'],
     },
     {
       group: 'Deep Learning & Reinforcement Learning',
-      items: ['Neural Networks', 'CNNs', 'RNNs & LSTMs', 'Transformers', 'BERT',
-              'PyTorch', 'TensorFlow', 'Computer Vision', 'NLP',
-              'Reinforcement Learning', 'A2C', 'Policy Gradient Methods'],
+      items: ['Neural Networks', 'CNNs', 'Transformers', 'BERT', 'PyTorch', 'TensorFlow',
+              'Hugging Face', 'Reinforcement Learning', 'A2C'],
     },
     {
       group: 'MLOps & Tooling',
@@ -51,8 +48,8 @@ const site = {
     },
     {
       group: 'Cloud & Data',
-      items: ['Vertex AI (GCP)', 'BigQuery', 'BigQuery ML', 'Cloud Run', 'Pandas', 'NumPy',
-              'Spark', 'PostgreSQL', 'Neo4j', 'FAISS', 'Qdrant'],
+      items: ['Vertex AI (GCP)', 'BigQuery ML', 'Cloud Run', 'Spark',
+              'PostgreSQL', 'Neo4j', 'FAISS', 'Qdrant'],
     },
     {
       group: 'Programming',

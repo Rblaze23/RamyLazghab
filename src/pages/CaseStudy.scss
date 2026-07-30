@@ -28,7 +28,7 @@
 .cs-lede { color: var(--dim); font-size: 1.05rem; margin-bottom: var(--space-3); }
 
 .cs-repo {
-  display: inline-flex; align-items: center; margin-top: var(--space-3);
+  display: inline-flex; align-items: center;
   font: 600 12px/1 var(--font-mono); color: var(--a); text-decoration: none;
   border: 1px solid rgba(255, 180, 84, .35); border-radius: var(--radius-sm);
   padding: 0 13px; min-height: 44px;
@@ -99,4 +99,16 @@
     strong { color: var(--a); font-weight: 600; }
     &:hover { color: var(--ink); }
   }
+}
+
+.cs-links { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+
+// A working demo is the strongest thing a visitor can be handed, so it gets
+// the solid button and the repository link becomes secondary.
+.cs-demo {
+  display: inline-flex; align-items: center;
+  background: linear-gradient(96deg, var(--a2), var(--a));
+  color: #14100a; font: 650 12px/1 var(--font-sans);
+  border-radius: var(--radius-sm); padding: 0 15px; min-height: 44px;
+  text-decoration: none;
 }
