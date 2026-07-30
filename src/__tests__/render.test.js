@@ -72,8 +72,36 @@ describe('experience section', () => {
 
   test('entries are not links — there is deliberately no deeper page', () => {
     renderAt('/');
-    const oracle = screen.getByRole('heading', { name: 'ORACLE' });
-    expect(oracle.closest('a')).toBeNull();
-    expect(screen.queryByText(/read case study/i)).toBeNull();
+    ['ORACLE', 'PIF AI'].forEach((name) => {
+      const heading = screen.getByRole('heading', { name });
+      const card = heading.closest('article');
+      // The whole entry must contain no anchor and no call to action.
+      expect(heading.closest('a')).toBeNull();
+      expect(card.querySelector('a')).toBeNull();
+      expect(card.textContent).not.toMatch(/read case study|read more/i);
+    });
+  });
+});
+
+describe('work section', () => {
+  test('case studies link to their pages', () => {
+    renderAt('/');
+    const link = screen.getByRole('link', { name: /TelecomPlus/i });
+    expect(link).toHaveAttribute('href', '/case-studies/telecomplus');
+  });
+
+  test('every original project is still listed', () => {
+    renderAt('/');
+    ['SportIQ', 'MoodSync', 'House Price Prediction', 'Diabetes Prediction',
+     'Blended Learning Platform', 'Career Satisfaction Analysis',
+     'Startup Investment Program', 'RAGenius'].forEach((title) => {
+      expect(screen.getByText(title)).toBeInTheDocument();
+    });
+  });
+
+  test('the diagram legend explains the colour code', () => {
+    renderAt('/');
+    expect(screen.getByText(/Retrieval & vector store/i)).toBeInTheDocument();
+    expect(screen.getByText(/Agents & LLM/i)).toBeInTheDocument();
   });
 });
