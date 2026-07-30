@@ -3,18 +3,63 @@
 .contact { border-top: 1px solid var(--line); }
 
 .contact-inner {
-  display: flex; flex-direction: column; gap: var(--space-3);
+  display: flex; flex-direction: column; gap: var(--space-4);
   @include bp(lg) { flex-direction: row; align-items: center; justify-content: space-between; }
 }
 
+// The email is the single most important thing in this section, so it is
+// treated as display type rather than a line of body copy.
 .contact-email {
-  font-size: clamp(1.1rem, 3.5vw, 1.6rem); font-weight: 650; letter-spacing: -.02em;
+  font-size: clamp(1.35rem, 4.5vw, 2.1rem);
+  font-weight: 700; letter-spacing: -.03em;
   word-break: break-word;
 
   a {
-    text-decoration: none; border-bottom: 2px solid rgba(255, 180, 84, .55);
+    text-decoration: none;
+    background: linear-gradient(96deg, var(--a2), var(--a) 55%, var(--a3));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    border-bottom: 2px solid rgba(255, 180, 84, .35);
+    transition: border-color .2s ease;
     &:hover { border-color: var(--a); }
   }
 }
 
 .contact-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+.contact-cta {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 46px; padding: 0 20px; border-radius: 10px;
+  background: linear-gradient(96deg, var(--a2), var(--a));
+  color: #14100a; font: 650 13px/1 var(--font-sans); text-decoration: none;
+  box-shadow: 0 6px 20px rgba(255, 180, 84, .18);
+  transition: transform .2s ease, box-shadow .2s ease;
+  &:hover { transform: translateY(-1px); box-shadow: 0 9px 26px rgba(255, 180, 84, .26); }
+}
+
+// Each network keeps its own colour so the row reads at a glance instead of
+// being three identical grey buttons.
+.contact-link {
+  display: inline-flex; align-items: center; gap: 9px;
+  min-height: 46px; padding: 0 16px; border-radius: 10px;
+  font: 600 13px/1 var(--font-sans); text-decoration: none;
+  border: 1px solid var(--line); background: var(--surface-2); color: var(--ink);
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+
+  .ico {
+    display: grid; place-items: center;
+    width: 22px; height: 22px; border-radius: 5px; flex: none;
+    font: 700 10px/1 var(--font-mono);
+  }
+
+  &:hover { transform: translateY(-1px); }
+
+  &.is-linkedin {
+    .ico { background: rgba(56, 189, 248, .16); border: 1px solid rgba(56, 189, 248, .4); color: #7dd3fc; }
+    &:hover { border-color: rgba(56, 189, 248, .5); background: rgba(56, 189, 248, .08); }
+  }
+
+  &.is-github {
+    .ico { background: rgba(167, 139, 250, .16); border: 1px solid rgba(167, 139, 250, .4); color: #c4b5fd; }
+    &:hover { border-color: rgba(167, 139, 250, .5); background: rgba(167, 139, 250, .08); }
+  }
+}

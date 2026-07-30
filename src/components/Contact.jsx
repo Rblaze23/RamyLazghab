@@ -18,12 +18,17 @@ export default function Contact() {
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </p>
         </div>
-        {/* Same links as the left rail, so they only show when the rail is
-            hidden. The email above is the section's actual call to action. */}
-        <div className="contact-actions only-mobile">
-          <a className="btn-primary" href={cv} download="Ramy_Lazghab_CV.pdf">{ui.downloadCv}</a>
-          <a className="btn-ghost" href={site.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-          <a className="btn-ghost" href={site.links.github} target="_blank" rel="noreferrer">GitHub</a>
+        {/* Repeated from the left rail on purpose. This is the end of the page
+            and the point at which someone decides to get in touch; making them
+            scroll back up to find a link would be the wrong kind of tidy. */}
+        <div className="contact-actions">
+          <a className="contact-cta" href={cv} download="Ramy_Lazghab_CV.pdf">{ui.downloadCv}</a>
+          <a className="contact-link is-linkedin" href={site.links.linkedin} target="_blank" rel="noreferrer">
+            <span className="ico" aria-hidden="true">in</span>LinkedIn
+          </a>
+          <a className="contact-link is-github" href={site.links.github} target="_blank" rel="noreferrer">
+            <span className="ico" aria-hidden="true">{'{ }'}</span>GitHub
+          </a>
         </div>
       </div>
     </section>

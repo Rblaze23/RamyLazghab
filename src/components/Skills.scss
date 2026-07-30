@@ -1,10 +1,47 @@
+@use '../styles/mixins' as *;
+
 .skill-group {
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
 
   h3 {
     font: 600 10px/1 var(--font-mono); letter-spacing: .14em;
-    text-transform: uppercase; color: var(--a); margin-bottom: var(--space-2);
+    text-transform: uppercase; margin-bottom: var(--space-2);
+    display: flex; align-items: center; gap: 8px;
+
+    // A short rule in the group colour, so the heading carries the tone even
+    // before the chips below it are read.
+    &::before {
+      content: ''; width: 18px; height: 2px; border-radius: 2px;
+      background: var(--tone); flex: none;
+    }
   }
 
-  .chip { font-family: var(--font-sans); font-size: 12px; padding: 7px 10px; }
+  .chip {
+    font-family: var(--font-sans); font-size: 12px; padding: 7px 10px;
+    color: var(--tone-text);
+    background: var(--tone-bg);
+    border-color: var(--tone-border);
+    transition: background .18s ease, border-color .18s ease, transform .18s ease;
+
+    &:hover { transform: translateY(-1px); background: var(--tone-bg-hover); }
+  }
 }
+
+// Tones. Saturation is kept low so six groups on one screen read as a family
+// rather than as a colour chart.
+@mixin tone($c) {
+  --tone: #{$c};
+  --tone-text: #{rgba($c, .92)};
+  --tone-bg: #{rgba($c, .10)};
+  --tone-bg-hover: #{rgba($c, .18)};
+  --tone-border: #{rgba($c, .30)};
+}
+
+.tone-llm  { @include tone(#a78bfa); }  // agents & LLM, as in the diagrams
+.tone-ml   { @include tone(#ffb454); }  // models & forecasts
+.tone-dl   { @include tone(#f472b6); }  // deep learning and RL
+.tone-ops  { @include tone(#7ee787); }  // shipping and running things
+.tone-data { @include tone(#38bdf8); }  // storage and retrieval
+.tone-code { @include tone(#9aa5a4); }  // languages, deliberately neutral
+
+h3 { color: var(--tone); }
