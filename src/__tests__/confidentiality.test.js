@@ -11,10 +11,13 @@ const BANNED = [
   'data leakage', 'compliance-validation agent', 'section regeneration',
 ];
 
-// Terms allowed ONLY in these files, because they are legitimate elsewhere.
+// Terms allowed ONLY in these files. The point is to keep them out of
+// content/experience.js, where ORACLE and PIF AI live — naming a specific
+// internal tool there would be a confidentiality regression. Listing the same
+// tool as a personal skill, or in an open project, is fine.
 const SCOPED = {
-  Langfuse: ['content/projects.js'],   // TelecomPlus is an open academic project
-  LightGBM: ['content/site.js'],       // skills list only
+  Langfuse: ['content/projects.js', 'content/site.js'], // TelecomPlus is open; also a skill
+  LightGBM: ['content/site.js', 'content/projects.js'], // skills list and open projects
 };
 
 function walk(dir, acc = []) {

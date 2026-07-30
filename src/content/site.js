@@ -21,19 +21,37 @@ const site = {
 
   languages: 'English — Fluent (IELTS) · French — Professional',
 
+  // Every entry below is backed either by the CV or by a public repository:
+  // classical ML from Diabetes-Diagnosis and House-Prices-Prediction, deep
+  // learning from the Alzheimer's ensemble and MoodSync, reinforcement
+  // learning from RL-A2C-Parallelized, PCA from Academic-Path-and-Career-
+  // Satisfaction. Nothing here is padding.
   skills: [
     {
-      group: 'AI / ML & Frameworks',
-      items: ['LLMs', 'RAG', 'Multi-Agent Systems', 'Prompt Engineering', 'LangChain', 'LangGraph',
-              'Hugging Face', 'PyTorch', 'TensorFlow', 'XGBoost', 'LightGBM'],
+      group: 'Generative AI & LLMs',
+      items: ['LLMs', 'RAG', 'Agentic AI', 'Multi-Agent Systems', 'Prompt Engineering',
+              'LangChain', 'LangGraph', 'Hugging Face', 'MCP', 'LangSmith',
+              'Anthropic API', 'OpenAI API', 'LLM-as-a-Judge evaluation'],
     },
     {
-      group: 'LLM Platforms & MLOps',
-      items: ['Anthropic API', 'OpenAI API', 'MCP', 'LangSmith', 'Docker', 'Git', 'MLflow'],
+      group: 'Machine Learning',
+      items: ['Supervised Learning', 'Unsupervised Learning', 'Logistic Regression',
+              'Random Forest', 'Decision Trees', 'SVM', 'XGBoost', 'LightGBM',
+              'Ensemble Methods', 'Feature Engineering', 'PCA', 'SHAP', 'scikit-learn'],
+    },
+    {
+      group: 'Deep Learning & Reinforcement Learning',
+      items: ['Neural Networks', 'CNNs', 'RNNs & LSTMs', 'Transformers', 'BERT',
+              'PyTorch', 'TensorFlow', 'Computer Vision', 'NLP',
+              'Reinforcement Learning', 'A2C', 'Policy Gradient Methods'],
+    },
+    {
+      group: 'MLOps & Tooling',
+      items: ['Docker', 'Git', 'MLflow', 'Langfuse', 'Streamlit', 'REST APIs'],
     },
     {
       group: 'Cloud & Data',
-      items: ['GCP — Vertex AI', 'BigQuery', 'Cloud Run', 'Streamlit', 'Pandas', 'NumPy',
+      items: ['GCP — Vertex AI', 'BigQuery', 'BigQuery ML', 'Cloud Run', 'Pandas', 'NumPy',
               'Spark', 'PostgreSQL', 'Neo4j', 'FAISS', 'Qdrant'],
     },
     {

@@ -26,6 +26,18 @@ describe('site content', () => {
       (kw) => expect(all).toContain(kw)
     );
   });
+
+  test('skills cover classical ML, deep learning and RL, not just gradient boosting', () => {
+    const all = site.skills.flatMap((g) => g.items).join(' ');
+    ['Random Forest', 'Logistic Regression', 'SVM', 'Decision Trees',
+     'Neural Networks', 'CNNs', 'Transformers',
+     'Reinforcement Learning'].forEach((kw) => expect(all).toContain(kw));
+  });
+
+  test('no skill is listed twice, even across groups', () => {
+    const all = site.skills.flatMap((g) => g.items);
+    expect(new Set(all).size).toBe(all.length);
+  });
 });
 
 describe('projects content', () => {
