@@ -2,81 +2,88 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/icon.ico" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      integrity="sha512-dfHkVd53UXAGH9DHk9gJb9f4E8M/4eR9y8FntciE6htYQo+v3yMLX9nG8xPa2nl2v+8WDm9ZEVNsF+U/4nUqWg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <style>
-      html,
-      body,
-      #root {
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-        box-shadow: none !important;
-        outline: none !important;
-        background-color: #111 !important;
-
-        scroll-behavior: smooth;
-        scroll-padding-top: 80px; /* Adjust this to match your fixed header's height */
-      }
-    </style>
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#0b0d0e" />
+
+    <title>Ramy Lazghab — AI &amp; Machine Learning Engineer | LLMs, Agentic AI, RAG</title>
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Ramy Lazghab is an AI Engineer and Machine Learning Engineer in Paris, building production AI systems with LLMs, Generative AI, Agentic AI, LangGraph and RAG. Case studies in multi-agent orchestration, document intelligence and forecasting."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/icon.ico" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <link rel="canonical" href="https://rblaze23.github.io/RamyLazghab/" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Ramy Lazghab</title>
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rblaze23.github.io/RamyLazghab/" />
+    <meta property="og:title" content="Ramy Lazghab — AI &amp; Machine Learning Engineer" />
+    <meta
+      property="og:description"
+      content="Production AI systems built on LLMs, agentic AI and RAG. Case studies in multi-agent orchestration, document intelligence and forecasting."
+    />
+    <meta property="og:image" content="https://rblaze23.github.io/RamyLazghab/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ramy Lazghab — AI &amp; Machine Learning Engineer" />
+    <meta
+      name="twitter:description"
+      content="Production AI systems built on LLMs, agentic AI and RAG."
+    />
+    <meta name="twitter:image" content="https://rblaze23.github.io/RamyLazghab/og-image.jpg" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ramy Lazghab",
+        "jobTitle": "AI & Machine Learning Engineer",
+        "email": "mailto:ramy.lazghab@dauphine.eu",
+        "url": "https://rblaze23.github.io/RamyLazghab/",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Paris",
+          "addressCountry": "FR"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "Université Paris Dauphine — PSL" },
+          { "@type": "CollegeOrUniversity", "name": "Faculty of Sciences of Tunis" }
+        ],
+        "knowsAbout": [
+          "Large Language Models",
+          "Generative AI",
+          "Agentic AI",
+          "LangGraph",
+          "Retrieval-Augmented Generation",
+          "Machine Learning",
+          "MLOps"
+        ],
+        "sameAs": [
+          "https://github.com/Rblaze23",
+          "https://www.linkedin.com/in/ramy-lazghab-1464a8201/"
+        ]
+      }
+    </script>
 
     <script>
       // Decodes the redirect written by 404.html back into a real path.
       (function (l) {
         if (l.search[1] === '/') {
-          var decoded = l.search.slice(1).split('&').map(function (s) {
-            return s.replace(/~and~/g, '&');
-          }).join('?');
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?');
           window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
         }
       })(window.location);
     </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>You need to enable JavaScript to view this portfolio.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>
