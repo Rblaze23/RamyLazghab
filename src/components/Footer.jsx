@@ -1,8 +1,9 @@
 import React from 'react';
-import site from '../content/site';
+import { useContent } from '../i18n/LanguageContext';
 import './Footer.scss';
 
 export default function Footer() {
+  const { site } = useContent();
   return (
     <footer className="site-footer">
       <div className="container footer-inner">

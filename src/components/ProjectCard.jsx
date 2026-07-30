@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getGlyph } from './glyphs';
+import { useContent } from '../i18n/LanguageContext';
 
 export default function ProjectCard({ project, showGlyph = false, feature = false }) {
+  const { ui } = useContent();
   const Glyph = showGlyph ? getGlyph(project.architecture.glyph) : null;
 
   const body = (
@@ -15,7 +17,7 @@ export default function ProjectCard({ project, showGlyph = false, feature = fals
         <div className="chip-row">
           {project.tech.slice(0, feature ? 8 : 4).map((t) => <span className="chip" key={t}>{t}</span>)}
         </div>
-        {project.slug && <span className="card-cta">Read case study →</span>}
+        {project.slug && <span className="card-cta">{ui.readCaseStudy}</span>}
       </div>
     </>
   );

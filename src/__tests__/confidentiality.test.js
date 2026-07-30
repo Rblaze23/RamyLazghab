@@ -16,8 +16,11 @@ const BANNED = [
 // internal tool there would be a confidentiality regression. Listing the same
 // tool as a personal skill, or in an open project, is fine.
 const SCOPED = {
-  Langfuse: ['content/projects.js', 'content/site.js'], // TelecomPlus is open; also a skill
-  LightGBM: ['content/site.js', 'content/projects.js'], // skills list and open projects
+  // Open projects and the skills list, in every language.
+  Langfuse: ['content/projects.js', 'content/site.js',
+             'content/fr/projects.js', 'content/fr/site.js'],
+  LightGBM: ['content/site.js', 'content/projects.js',
+             'content/fr/site.js', 'content/fr/projects.js'],
 };
 
 function walk(dir, acc = []) {
@@ -48,13 +51,36 @@ describe('confidentiality guard', () => {
     expect(offenders).toEqual([]);
   });
 
-  test('experience entries expose no slug, so they cannot gain a route', () => {
-    // eslint-disable-next-line global-require
-    const experience = require('../content/experience').default;
-    experience.forEach((e) => {
-      expect(e).not.toHaveProperty('slug');
-      expect(e).not.toHaveProperty('pipeline');
-      expect(e).not.toHaveProperty('challenges');
+  test.each(['../content/experience', '../content/fr/experience'])(
+    '%s exposes no slug, so it cannot gain a route',
+    (mod) => {
+      // eslint-disable-next-line global-require, import/no-dynamic-require
+      const experience = require(mod).default;
+      experience.forEach((e) => {
+        expect(e).not.toHaveProperty('slug');
+        expect(e).not.toHaveProperty('pipeline');
+        expect(e).not.toHaveProperty('challenges');
+      });
+    }
+  );
+
+  test('the French experience copy stays as vague as the English', () => {
+    /* eslint-disable global-require */
+    const en = require('../content/experience').default;
+    const fr = require('../content/fr/experience').default;
+    /* eslint-enable global-require */
+
+    // Same entries, same order, same ids. A translation must not add or
+    // reorder work history.
+    expect(fr.map((e) => e.id)).toEqual(en.map((e) => e.id));
+
+    // A French version substantially longer than the English one would mean
+    // detail was added in translation. French runs longer than English, so
+    // allow headroom, but not a rewrite.
+    en.forEach((e, i) => {
+      const enLen = (e.problem + e.role.join(' ')).length;
+      const frLen = (fr[i].problem + fr[i].role.join(' ')).length;
+      expect(frLen).toBeLessThan(enLen * 1.35);
     });
   });
 });

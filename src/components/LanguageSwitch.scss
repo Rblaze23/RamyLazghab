@@ -1,0 +1,29 @@
+.lang-switch {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .03);
+
+  button {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    background: transparent;
+    color: var(--dim2);
+    font: 600 10.5px/1 var(--font-mono);
+    letter-spacing: .06em;
+    padding: 7px 10px;
+    border-radius: 6px;
+    min-height: 32px;
+    transition: background .2s ease, color .2s ease;
+
+    &:hover { color: var(--ink); }
+
+    &.is-active {
+      background: linear-gradient(96deg, var(--a2), var(--a));
+      color: #14100a;
+    }
+  }
+}

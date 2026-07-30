@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import site from '../content/site';
+import { useContent } from '../i18n/LanguageContext';
+import LanguageSwitch from './LanguageSwitch';
 import SectionLink from './SectionLink';
 import './Header.scss';
 
-const NAV = [
-  { id: 'experience', label: 'Experience' },
-  { id: 'work', label: 'Work' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'about', label: 'About' },
-  { id: 'contact', label: 'Contact' },
-];
-
 export default function Header() {
+  const { site, sections, ui } = useContent();
   const [open, setOpen] = useState(false);
+  const NAV = sections.filter((s) => s.id !== 'home');
   const cv = `${process.env.PUBLIC_URL}${site.links.cv}`;
 
   return (
@@ -26,7 +21,7 @@ export default function Header() {
         <button
           type="button"
           className="menu-toggle"
-          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-label={open ? ui.closeMenu : ui.openMenu}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
@@ -40,8 +35,9 @@ export default function Header() {
             </SectionLink>
           ))}
           <a className="cv-button" href={cv} download="Ramy_Lazghab_CV.pdf">
-            Download CV
+            {ui.downloadCv}
           </a>
+          <LanguageSwitch className="nav-lang" />
         </nav>
       </div>
     </header>

@@ -1,5 +1,5 @@
 import React from 'react';
-import site from '../content/site';
+import { useContent } from '../i18n/LanguageContext';
 import SectionLink from './SectionLink';
 import heroPhoto from '../assets/img/hero.jpg';
 import './Hero.scss';
@@ -10,6 +10,7 @@ import './Hero.scss';
 // blank if the animation stalls, and CSS reduced-motion rules cannot override
 // framer-motion's inline styles.
 export default function Hero() {
+  const { site, ui } = useContent();
   const cv = `${process.env.PUBLIC_URL}${site.links.cv}`;
   const plain = site.headline.replace(site.headlineAccent, '').trim();
 
@@ -34,9 +35,9 @@ export default function Hero() {
               stay visible the whole way down the page. Below 768px the rail is
               hidden, so they appear here instead of being unreachable. */}
           <div className="hero-actions">
-            <SectionLink id="work" className="btn-primary">Read the case studies</SectionLink>
+            <SectionLink id="work" className="btn-primary">{ui.readCaseStudies}</SectionLink>
             <a className="btn-ghost only-mobile" href={cv} download="Ramy_Lazghab_CV.pdf">
-              Download CV
+              {ui.downloadCv}
             </a>
           </div>
 

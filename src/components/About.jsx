@@ -1,5 +1,5 @@
 import React from 'react';
-import site from '../content/site';
+import { useContent } from '../i18n/LanguageContext';
 import SectionHeading from './SectionHeading';
 import avatarAbout from '../assets/img/avatar-about.jpg';
 // 3D portrait, cropped above the watermark. Replaces aboutmee.jpg, which was
@@ -8,10 +8,12 @@ import aboutPhoto from '../assets/img/about-3d.jpg';
 import './About.scss';
 
 export default function About() {
+  const { site, sections } = useContent();
+  const label = sections.find((s) => s.id === 'about').label;
   return (
     <section className="about section" id="about">
       <div className="container">
-        <SectionHeading avatar={avatarAbout} label="About" />
+        <SectionHeading avatar={avatarAbout} label={label} />
 
         <div className="about-inner">
           <div className="about-photo">

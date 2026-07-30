@@ -1,5 +1,5 @@
 import React from 'react';
-import experience from '../content/experience';
+import { useContent } from '../i18n/LanguageContext';
 import SectionHeading from './SectionHeading';
 import { getGlyph } from './glyphs';
 import avatarExperience from '../assets/img/avatar-experience.jpg';
@@ -16,10 +16,12 @@ function renderGlyph(id) {
 // Rendered as static content. No <Link>, no route, no "read more" —
 // see the confidentiality note in src/content/experience.js.
 export default function Experience() {
+  const { experience, ui, sections } = useContent();
+  const label = sections.find((s) => s.id === 'experience').label;
   return (
     <section className="experience section" id="experience">
       <div className="container">
-        <SectionHeading avatar={avatarExperience} label="Experience" />
+        <SectionHeading avatar={avatarExperience} label={label} />
 
         <div className="experience-list">
           {experience.map((item) => (
@@ -31,10 +33,10 @@ export default function Experience() {
               </header>
 
               <div className="experience-body">
-                <p className="problem-label">The problem</p>
+                <p className="problem-label">{ui.theProblem}</p>
                 <p className="problem">{item.problem}</p>
 
-                <p className="problem-label">What I built</p>
+                <p className="problem-label">{ui.whatIBuilt}</p>
                 {item.role.map((para, i) => (
                   // eslint-disable-next-line react/no-array-index-key
                   <p className="role" key={i}>{para}</p>

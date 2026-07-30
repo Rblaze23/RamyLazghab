@@ -1,5 +1,5 @@
 import React from 'react';
-import sections from '../content/sections';
+import { useContent } from '../i18n/LanguageContext';
 import './SceneRail.scss';
 
 /**
@@ -13,6 +13,7 @@ import './SceneRail.scss';
  * visitor needs, so a screen reader should skip it entirely.
  */
 export default function SceneRail({ activeId }) {
+  const { sections } = useContent();
   const active = sections.find((s) => s.id === activeId) || sections[0];
 
   return (

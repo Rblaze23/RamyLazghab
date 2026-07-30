@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useContent } from '../i18n/LanguageContext';
 import Hero from '../components/Hero';
 import Experience from '../components/Experience';
 import Work from '../components/Work';
@@ -8,10 +9,11 @@ import Credentials from '../components/Credentials';
 import Contact from '../components/Contact';
 
 export default function Home() {
+  const { site } = useContent();
+
   useEffect(() => {
-    document.title =
-      'Ramy Lazghab | AI & Machine Learning Engineer | LLMs, Agentic AI, RAG';
-  }, []);
+    document.title = `${site.name} | ${site.role} | LLMs, Agentic AI, RAG`;
+  }, [site]);
 
   return (
     <main>
