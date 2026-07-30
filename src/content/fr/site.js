@@ -59,6 +59,15 @@ const siteFr = {
     },
   ],
 
+  // Faits compacts pour la colonne de droite. Tout y est déjà dit ailleurs sur
+  // la page ; cela garde l’essentiel à l’écran pendant la lecture.
+  glance: [
+    { label: 'Formation',    value: 'M2 Science des Données & IA, Paris Dauphine-PSL (2024 à 2026)' },
+    { label: 'Basé à',       value: 'Paris, France. Ouvert à la mobilité.' },
+    { label: 'Langues',      value: 'Anglais courant (IELTS) · Français professionnel' },
+    { label: 'En ce moment', value: 'Systèmes de veille réglementaire pour l’industrie cosmétique' },
+  ],
+
   certifications: [
     { name: 'LangChain Academy', issuer: 'LangChain', mark: 'LC',
       url: 'https://academy.langchain.com/certificates/nqrsewnhol' },

@@ -60,6 +60,15 @@ const site = {
     },
   ],
 
+  // Compact facts for the right rail. Everything here is already stated
+  // elsewhere on the page; this keeps it on screen while a visitor scrolls.
+  glance: [
+    { label: 'Education',    value: 'M.Sc. Data Science & AI, Paris Dauphine-PSL (2024 to 2026)' },
+    { label: 'Based in',     value: 'Paris, France. Open to relocation.' },
+    { label: 'Languages',    value: 'English fluent (IELTS) · French professional' },
+    { label: 'Now',          value: 'Regulatory intelligence systems for the cosmetics industry' },
+  ],
+
   certifications: [
     { name: 'LangChain Academy', issuer: 'LangChain', mark: 'LC',
       url: 'https://academy.langchain.com/certificates/nqrsewnhol' },

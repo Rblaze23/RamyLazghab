@@ -40,6 +40,7 @@ const UI = {
     certificationsLabel: 'Certifications',
     achievementsLabel: 'Hackathons & achievements',
     caseStudySuffix: 'case study',
+    atAGlance: 'At a glance',
     legend: {
       doc: 'Source documents',
       store: 'Retrieval & vector store',
@@ -75,6 +76,7 @@ const UI = {
     certificationsLabel: 'Certifications',
     achievementsLabel: 'Hackathons & distinctions',
     caseStudySuffix: 'étude de cas',
+    atAGlance: 'En bref',
     legend: {
       doc: 'Documents sources',
       store: 'Recherche & magasin vectoriel',
