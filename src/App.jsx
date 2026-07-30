@@ -1,23 +1,20 @@
-// src/App.jsx
 import React from 'react';
-import Hero from './components/Hero';
-import About from './components/About';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import Contact from './components/Contact';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Home from './pages/Home';
+import CaseStudy from './pages/CaseStudy';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
-function App() {
+export default function App() {
   return (
     <>
       <Header />
-      <Hero />
-      <About />
-      <Projects />
-      <Skills />
-      <Contact />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/case-studies/:slug" element={<CaseStudy />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+      <Footer />
     </>
   );
 }
-
-export default App;
