@@ -1,0 +1,31 @@
+:root {
+  --bg:      #0b0d0e;
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-2: rgba(255, 255, 255, 0.055);
+  --line:    rgba(255, 255, 255, 0.09);
+  --ink:     #e8eaed;
+  --dim:     #94a09e;
+  --dim2:    #6f7c7a;
+
+  // Accent — chrome only. NEVER used inside a diagram.
+  --a:  #ffb454;
+  --a2: #ffd79a;
+  --a3: #e09338;
+
+  // Semantic diagram colours — fixed site-wide, meaning is constant.
+  --c-doc:   #9aa5a4;  // source documents
+  --c-store: #38bdf8;  // retrieval & vector store
+  --c-agent: #a78bfa;  // agents & LLM
+  --c-model: #ffb454;  // models & forecasts
+  --c-flow:  #7ee787;  // data flow / live / validated
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --radius:    13px;
+  --radius-sm: 8px;
+  --measure:   70ch;
+
+  --space-1: 0.5rem;  --space-2: 0.75rem; --space-3: 1rem;
+  --space-4: 1.5rem;  --space-5: 2.5rem;  --space-6: 4rem;
+}
