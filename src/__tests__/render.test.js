@@ -62,3 +62,18 @@ describe('hero', () => {
     expect(screen.queryByText(/Relay ?X/i)).toBeNull();
   });
 });
+
+describe('experience section', () => {
+  test('renders both entries', () => {
+    renderAt('/');
+    expect(screen.getByRole('heading', { name: 'ORACLE' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'PIF AI' })).toBeInTheDocument();
+  });
+
+  test('entries are not links — there is deliberately no deeper page', () => {
+    renderAt('/');
+    const oracle = screen.getByRole('heading', { name: 'ORACLE' });
+    expect(oracle.closest('a')).toBeNull();
+    expect(screen.queryByText(/read case study/i)).toBeNull();
+  });
+});

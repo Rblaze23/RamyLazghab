@@ -1,0 +1,48 @@
+@use '../styles/mixins' as *;
+
+.experience-list { display: grid; gap: var(--space-3); }
+
+.experience-item {
+  @include surface;
+  padding: var(--space-3);
+
+  @include bp(lg) {
+    padding: var(--space-4);
+    display: grid; grid-template-columns: 200px 1fr; gap: var(--space-4);
+    align-items: start;
+  }
+
+  header h3 {
+    font-size: 1.25rem; font-weight: 680;
+    background: linear-gradient(96deg, var(--a2), var(--a) 70%, var(--a3));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    width: fit-content;
+  }
+
+  header .subtitle {
+    font: 500 11px/1.4 var(--font-mono);
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--dim2); margin-top: 6px;
+  }
+}
+
+.experience-body {
+  margin-top: var(--space-3);
+  @include bp(lg) { margin-top: 0; }
+}
+
+.problem-label {
+  font: 600 10px/1 var(--font-mono); letter-spacing: .16em; text-transform: uppercase;
+  color: var(--a); margin-bottom: var(--space-1);
+
+  &:not(:first-child) { margin-top: var(--space-3); }
+}
+
+.experience-body .problem,
+.experience-body .role {
+  color: var(--dim); font-size: .94rem; max-width: var(--measure);
+
+  & + .role { margin-top: var(--space-2); }
+}
+
+.experience-body .chip-row { margin-top: var(--space-3); }
