@@ -93,16 +93,52 @@ rewrites any unknown path to the SPA entry point. The bundle is compiled with
 build had to be staged under the matching path prefix before the check meant
 anything.
 
-## Responsive — PARTIALLY VERIFIED
+## Responsive — VERIFIED
 
-**Screenshots were NOT captured.** Chrome cannot launch in this WSL
-environment: the Puppeteer-bundled binary at
-`~/.cache/puppeteer/chrome/linux-144.0.7559.96/chrome-linux64/chrome` fails with
-`error while loading shared libraries: libnspr4.so`. Installing the missing
-libraries requires `sudo apt`, which was not run.
+Chrome could not launch in WSL (the Puppeteer binary fails with
+`error while loading shared libraries: libnspr4.so`, and installing it needs
+`sudo apt`). **Worked around** by driving the Windows Edge binary from WSL:
+`/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe --headless=new`.
 
-The plan required screenshots at 375 / 768 / 1440 px. **That step is
-outstanding.** What was verified instead, by inspecting the compiled CSS:
+Screenshots committed to `docs/superpowers/screenshots/`:
+
+| File | Viewport |
+| --- | --- |
+| `home-375.png` | 375 px |
+| `home-768.png` | 768 px |
+| `home-1440.png` | 1440 px |
+| `case-study-telecomplus-1440.png` | 1440 px, case study |
+
+### Two measurement traps hit along the way
+
+1. **`--window-size=375` does not give a 375 px viewport on Windows.** The OS
+   enforces a minimum window width, so the page laid out wider and the capture
+   was cropped to 375 — which *looked* exactly like horizontal clipping and sent
+   me hunting a layout bug that did not exist. Fixed by rendering the site in a
+   fixed-width `<iframe>` inside a large window, giving a genuine 375 px layout.
+
+2. **`--virtual-time-budget` froze the entrance animation at `opacity: 0`**,
+   making the hero appear completely blank. Real bug found underneath it — see
+   below. Final captures use `--force-prefers-reduced-motion`, which both yields
+   clean full-contrast screenshots and exercises the reduced-motion code path.
+
+### Bugs found by screenshotting and fixed
+
+1. **Hero photo rendered 240×600 instead of square.** The `<img>` carries
+   `width="600" height="600"` attributes to reserve space, and those map to a
+   presentational `height`. The CSS set `width: 100%` but never overrode
+   `height`, so both dimensions were definite and `aspect-ratio: 1/1` was
+   ignored. Fixed with `height: auto`. Confirmed by measurement: now 240×240.
+
+2. **Hero was invisible without JavaScript animation.** framer-motion's
+   `initial={{ opacity: 0 }}` leaves above-the-fold content blank if the
+   animation stalls, and the global CSS reduced-motion rules cannot override
+   framer-motion's inline styles. Replaced with a CSS keyframe animation with
+   **no fill-mode**, so the content is visible whenever the animation is absent,
+   paused or unsupported. Side effect: `framer-motion` is no longer imported
+   anywhere and is fully absent from the bundle (`grep -c framer` → 0).
+
+### Static CSS analysis
 
 | Check | Result |
 | --- | --- |
@@ -114,15 +150,31 @@ outstanding.** What was verified instead, by inspecting the compiled CSS:
 | Fluid type | 3 uses of `clamp()` |
 | Horizontal overflow guard | `overflow-x:hidden` on body |
 
-Static analysis proves the rules exist. It does **not** prove the layout looks
-right. Ramy should open the site at phone width before deploying, or the missing
-Chrome libraries can be installed to complete this step.
+### Visual confirmation from the screenshots
+
+- **375 px** — hamburger visible, square photo above text, headline wraps across
+  four lines with no clipping, location badge and both buttons fit, links row
+  wraps cleanly.
+- **1440 px** — full horizontal nav with the amber CV button, two-column hero,
+  three-line headline with the amber gradient on the accent clause, Experience
+  card in its 200 px + text two-column layout.
+- **Case study** — back link, context label, gradient title, tech chips, repo
+  button, architecture glyph rendering in the semantic colours (grey source,
+  violet router, cyan retrieval and SQL, green validated) with the legend
+  beneath, and the numbered pipeline steps.
+- No horizontal overflow at any width: measured `documentElement.scrollWidth`
+  = 360 against a 375 px viewport, with **zero elements** extending past the
+  viewport edge.
 
 ## Not verified
 
 1. **GitHub Pages `404.html` redirect.** Only testable on the live site — local
    static servers and GitHub Pages handle unknown paths differently. `404.html`
-   is present in `build/`.
-2. **Visual layout at any viewport** — see above.
-3. **Certification and repository URLs return 200.** The URLs were taken from
-   the GitHub API and the user's CV, but were not fetched during verification.
+   is present in `build/`. As a partial substitute, `index.html` was placed at
+   each deep case-study path locally, which confirms that serving the SPA entry
+   point at `/case-studies/<slug>` renders the correct case study — the outcome
+   the redirect is designed to produce.
+2. **Certification and repository URLs return 200.** The URLs came from the
+   GitHub API and Ramy's CV but were not fetched during verification.
+3. **Real-device rendering.** All captures are headless Edge on Windows. Safari
+   and real mobile browsers were not tested.

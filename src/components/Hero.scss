@@ -2,6 +2,19 @@
 
 .hero { padding-block: var(--space-5) var(--space-6); }
 
+// Entrance animation as pure enhancement. No fill-mode, so the content is
+// fully visible whenever the animation is absent, paused or unsupported —
+// the hero can never render blank.
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-text  { animation: hero-rise .5s cubic-bezier(.22, .61, .36, 1); }
+  .hero-photo { animation: hero-rise .6s cubic-bezier(.22, .61, .36, 1) .08s; }
+}
+
 .hero-inner {
   display: grid; gap: var(--space-4); align-items: center;
   grid-template-columns: 1fr;
@@ -14,7 +27,12 @@
   @include bp(lg) { order: 0; max-width: none; justify-self: stretch; }
 
   img {
-    width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 20%;
+    // height: auto is required, not cosmetic. The <img> carries width/height
+    // attributes (which reserve space and prevent layout shift), and those map
+    // to presentational height. With both dimensions definite, aspect-ratio is
+    // ignored and the image renders 240x600 instead of square.
+    width: 100%; height: auto;
+    aspect-ratio: 1 / 1; object-fit: cover; object-position: center 20%;
     display: block; border-radius: 16px; border: 1px solid rgba(255, 180, 84, .3);
   }
   &::after {
