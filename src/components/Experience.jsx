@@ -1,5 +1,7 @@
 import React from 'react';
 import experience from '../content/experience';
+import SectionHeading from './SectionHeading';
+import avatarExperience from '../assets/img/avatar-experience.jpg';
 import './Experience.scss';
 
 // Rendered as static content. No <Link>, no route, no "read more" —
@@ -8,7 +10,7 @@ export default function Experience() {
   return (
     <section className="experience section" id="experience">
       <div className="container">
-        <p className="section-label"><i>{'//'}</i> Experience</p>
+        <SectionHeading avatar={avatarExperience} label="Experience" />
 
         <div className="experience-list">
           {experience.map((item) => (

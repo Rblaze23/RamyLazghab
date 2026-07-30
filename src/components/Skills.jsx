@@ -1,12 +1,14 @@
 import React from 'react';
 import site from '../content/site';
+import SectionHeading from './SectionHeading';
+import avatarSkills from '../assets/img/avatar-skills.jpg';
 import './Skills.scss';
 
 export default function Skills() {
   return (
     <section className="skills section" id="skills">
       <div className="container">
-        <p className="section-label"><i>{'//'}</i> Skills</p>
+        <SectionHeading avatar={avatarSkills} label="Skills" />
         {site.skills.map((group) => (
           <div className="skill-group" key={group.group}>
             <h3>{group.group}</h3>

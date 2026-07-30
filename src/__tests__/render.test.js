@@ -174,3 +174,28 @@ describe('remaining sections', () => {
     expect(mail).toHaveAttribute('href', 'mailto:ramy.lazghab@dauphine.eu');
   });
 });
+
+describe('section avatars', () => {
+  test('each avatar-bearing section renders one decorative avatar', () => {
+    renderAt('/');
+    ['experience', 'work', 'skills', 'about', 'contact'].forEach((id) => {
+      const imgs = section(id).getAllByRole('presentation', { hidden: true });
+      expect(imgs.length).toBeGreaterThan(0);
+    });
+  });
+
+  test('avatars are decorative, so they carry empty alt and are hidden from AT', () => {
+    renderAt('/');
+    document.querySelectorAll('.section-avatar img').forEach((img) => {
+      expect(img.getAttribute('alt')).toBe('');
+      expect(img.closest('.section-avatar').getAttribute('aria-hidden')).toBe('true');
+    });
+  });
+
+  test('every section still shows its text label next to the avatar', () => {
+    renderAt('/');
+    ['Experience', 'Selected work', 'Skills', 'About', 'Contact'].forEach((label) => {
+      expect(screen.getAllByText(new RegExp(`^${label}$`, 'i')).length).toBeGreaterThan(0);
+    });
+  });
+});

@@ -2,6 +2,8 @@ import React from 'react';
 import { caseStudies, moreProjects } from '../content/projects';
 import ProjectCard from './ProjectCard';
 import DiagramLegend from './DiagramLegend';
+import SectionHeading from './SectionHeading';
+import avatarWork from '../assets/img/avatar-work.jpg';
 import './Work.scss';
 
 export default function Work() {
@@ -11,11 +13,15 @@ export default function Work() {
   return (
     <section className="work section" id="work">
       <div className="container">
-        <p className="section-label"><i>{'//'}</i> Selected work</p>
+        <SectionHeading avatar={avatarWork} label="Selected work" />
         <DiagramLegend />
 
-        <div className="card-grid card-grid--wide">
-          {flagship.map((p) => <ProjectCard key={p.title} project={p} showGlyph />)}
+        {/* A single flagship gets the full width as a feature card rather than
+            sitting in a two-column grid with an empty half beside it. */}
+        <div className={flagship.length === 1 ? 'work-feature' : 'card-grid card-grid--wide'}>
+          {flagship.map((p) => (
+            <ProjectCard key={p.title} project={p} showGlyph feature={flagship.length === 1} />
+          ))}
         </div>
 
         <div className="card-grid work-secondary">

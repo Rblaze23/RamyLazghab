@@ -2,18 +2,21 @@
 
 .about-inner {
   display: grid; gap: var(--space-4); grid-template-columns: 1fr;
-  @include bp(lg) { grid-template-columns: 260px 1fr; align-items: start; }
+  @include bp(lg) { grid-template-columns: 280px 1fr; align-items: start; }
 }
 
-// aboutmee.jpg is 301x1000 — an unusually narrow strip. A fixed 3/4 box with
-// object-fit: cover is required or it distorts badly.
 .about-photo {
-  max-width: 220px; justify-self: center; width: 100%;
+  max-width: 240px; justify-self: center; width: 100%;
   @include bp(lg) { max-width: none; justify-self: stretch; }
 
   img {
-    width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center;
-    display: block; border-radius: var(--radius); border: 1px solid var(--line);
+    // height: auto is required — the img carries width/height attributes and
+    // without this the presentational height wins over aspect-ratio, exactly
+    // as it did on the hero photo.
+    width: 100%; height: auto;
+    aspect-ratio: 3 / 4; object-fit: cover; object-position: center 12%;
+    display: block; border-radius: var(--radius);
+    border: 1px solid rgba(255, 180, 84, .22);
   }
 }
 

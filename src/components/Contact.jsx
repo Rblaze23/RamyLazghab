@@ -1,5 +1,7 @@
 import React from 'react';
 import site from '../content/site';
+import SectionHeading from './SectionHeading';
+import avatarContact from '../assets/img/avatar-contact.jpg';
 import './Contact.scss';
 
 export default function Contact() {
@@ -9,7 +11,7 @@ export default function Contact() {
     <section className="contact section" id="contact">
       <div className="container contact-inner">
         <div>
-          <p className="section-label"><i>{'//'}</i> Contact</p>
+          <SectionHeading avatar={avatarContact} label="Contact" />
           <p className="contact-email">
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </p>
