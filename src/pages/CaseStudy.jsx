@@ -16,7 +16,7 @@ export default function CaseStudy() {
     document.title = project
       ? `${project.title} ${ui.caseStudySuffix} | Ramy Lazghab`
       : `${ui.notFound} | Ramy Lazghab`;
-  }, [project]);
+  }, [project, ui.caseStudySuffix, ui.notFound]);
 
   if (!project) {
     return (
