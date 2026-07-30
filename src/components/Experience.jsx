@@ -8,7 +8,7 @@ export default function Experience() {
   return (
     <section className="experience section" id="experience">
       <div className="container">
-        <p className="section-label"><i>//</i> Experience</p>
+        <p className="section-label"><i>{'//'}</i> Experience</p>
 
         <div className="experience-list">
           {experience.map((item) => (

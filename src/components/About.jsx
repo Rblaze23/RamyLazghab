@@ -11,7 +11,7 @@ export default function About() {
           <img src={aboutPhoto} alt="Ramy Lazghab" loading="lazy" />
         </div>
         <div className="about-text">
-          <p className="section-label"><i>//</i> About</p>
+          <p className="section-label"><i>{'//'}</i> About</p>
           {/* eslint-disable-next-line react/no-array-index-key */}
           {site.about.map((para, i) => <p key={i}>{para}</p>)}
           <p className="about-languages">{site.languages}</p>

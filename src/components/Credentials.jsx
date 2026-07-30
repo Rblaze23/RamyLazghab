@@ -6,7 +6,7 @@ export default function Credentials() {
   return (
     <section className="credentials section" id="certifications">
       <div className="container">
-        <p className="section-label"><i>//</i> Certifications</p>
+        <p className="section-label"><i>{'//'}</i> Certifications</p>
         <div className="cert-grid">
           {site.certifications.map((c) => (
             <a className="cert" key={c.name} href={c.url} target="_blank" rel="noreferrer">
@@ -20,7 +20,7 @@ export default function Credentials() {
         </div>
 
         <p className="section-label credentials-ach-label">
-          <i>//</i> Hackathons &amp; achievements
+          <i>{'//'}</i> Hackathons &amp; achievements
         </p>
         <ul className="achievements">
           {site.achievements.map((a) => (

@@ -9,7 +9,7 @@ export default function Contact() {
     <section className="contact section" id="contact">
       <div className="container contact-inner">
         <div>
-          <p className="section-label"><i>//</i> Contact</p>
+          <p className="section-label"><i>{'//'}</i> Contact</p>
           <p className="contact-email">
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </p>

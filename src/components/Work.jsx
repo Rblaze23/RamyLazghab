@@ -11,7 +11,7 @@ export default function Work() {
   return (
     <section className="work section" id="work">
       <div className="container">
-        <p className="section-label"><i>//</i> Selected work</p>
+        <p className="section-label"><i>{'//'}</i> Selected work</p>
         <DiagramLegend />
 
         <div className="card-grid card-grid--wide">
@@ -22,7 +22,7 @@ export default function Work() {
           {secondary.map((p) => <ProjectCard key={p.title} project={p} showGlyph />)}
         </div>
 
-        <p className="section-label work-more-label"><i>//</i> More projects</p>
+        <p className="section-label work-more-label"><i>{'//'}</i> More projects</p>
         <div className="card-grid card-grid--compact">
           {moreProjects.map((p) => <ProjectCard key={p.title} project={p} />)}
         </div>

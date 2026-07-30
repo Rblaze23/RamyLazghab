@@ -6,7 +6,7 @@ export default function Skills() {
   return (
     <section className="skills section" id="skills">
       <div className="container">
-        <p className="section-label"><i>//</i> Skills</p>
+        <p className="section-label"><i>{'//'}</i> Skills</p>
         {site.skills.map((group) => (
           <div className="skill-group" key={group.group}>
             <h3>{group.group}</h3>
