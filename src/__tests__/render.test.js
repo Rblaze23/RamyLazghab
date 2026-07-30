@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import CaseStudy from '../pages/CaseStudy';
@@ -49,12 +49,18 @@ describe('header', () => {
   });
 });
 
+// Several strings legitimately appear more than once on the full page
+// (GitHub in the hero and the contact block, LangGraph in skills and on a
+// project card). Scope assertions to the section under test.
+const section = (id) => within(document.getElementById(id));
+
 describe('hero', () => {
   test('shows location and the three primary links', () => {
     renderAt('/');
     expect(screen.getByText(/Based in Paris, France\. Open to relocation\./)).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /github/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /linkedin/i })).toBeInTheDocument();
+    const hero = section('home');
+    expect(hero.getByRole('link', { name: /^GitHub$/ })).toBeInTheDocument();
+    expect(hero.getByRole('link', { name: /^LinkedIn$/ })).toBeInTheDocument();
   });
 
   test('does not name an employer', () => {
@@ -131,5 +137,40 @@ describe('case study page', () => {
   test('a project without a repo shows no repo link', () => {
     renderAt('/case-studies/alzheimers');
     expect(screen.queryByRole('link', { name: /view repository/i })).toBeNull();
+  });
+});
+
+describe('remaining sections', () => {
+  test('skills show the CV positioning keywords the old site was missing', () => {
+    renderAt('/');
+    const skills = section('skills');
+    ['LangGraph', 'Qdrant', 'MCP', 'MLflow', 'LightGBM', 'GCP — Vertex AI'].forEach((kw) =>
+      expect(skills.getByText(kw)).toBeInTheDocument()
+    );
+  });
+
+  test('certifications link to the real credentials', () => {
+    renderAt('/');
+    const certs = section('certifications');
+    expect(certs.getByRole('link', { name: /LangChain Academy/i }))
+      .toHaveAttribute('href', 'https://academy.langchain.com/certificates/nqrsewnhol');
+    expect(certs.getByRole('link', { name: /BigQuery ML/i }))
+      .toHaveAttribute('href', expect.stringContaining('credly.com/badges/9ec1dc8b'));
+  });
+
+  test('achievements are listed without claiming an unearned placement', () => {
+    renderAt('/');
+    const certs = section('certifications');
+    expect(certs.getByText(/RAISE Summit AI Hackathon/i)).toBeInTheDocument();
+    expect(certs.getByText(/IEEE Xtreme 15\.0 & 16\.0/i)).toBeInTheDocument();
+    // EY is listed as participation only — no placement is claimed for it.
+    const ey = certs.getByText(/EY Hack for Smart Insurance/i).closest('li');
+    expect(ey.querySelector('.badge').textContent).toBe('Participant');
+  });
+
+  test('contact email matches the displayed address', () => {
+    renderAt('/');
+    const mail = section('contact').getByRole('link', { name: /ramy\.lazghab@dauphine\.eu/i });
+    expect(mail).toHaveAttribute('href', 'mailto:ramy.lazghab@dauphine.eu');
   });
 });
