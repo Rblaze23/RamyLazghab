@@ -17,7 +17,7 @@
 }
 
 .brand {
-  font: 600 14px/1 var(--font-mono);
+  font: 700 16px/1 var(--font-mono);
   color: var(--ink); text-decoration: none; letter-spacing: -.01em;
 }
 
@@ -79,7 +79,11 @@
   @include bp(lg) { min-height: 0; padding: 9px 14px !important; }
 }
 
-.nav-lang {
-  align-self: flex-start;
-  @include bp(lg) { align-self: center; }
+// Language switch and hamburger sit at the opposite end of the bar from the
+// name, so both are reachable with a thumb and neither is hidden behind a menu.
+.header-actions {
+  display: flex; align-items: center; gap: var(--space-2);
+  @include bp(lg) { display: none; }
 }
+
+.header-lang button { min-height: 36px; padding: 8px 11px; font-size: 11px; }

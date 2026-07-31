@@ -18,15 +18,21 @@ export default function Header() {
           ramy.lazghab
         </Link>
 
-        <button
-          type="button"
-          className="menu-toggle"
-          aria-label={open ? ui.closeMenu : ui.openMenu}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className={`bars ${open ? 'is-open' : ''}`} aria-hidden="true" />
-        </button>
+        <div className="header-actions">
+          {/* In the bar, not inside the collapsed menu. On a phone a switch
+              hidden behind the hamburger is a switch nobody finds. */}
+          <LanguageSwitch className="header-lang" />
+
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-label={open ? ui.closeMenu : ui.openMenu}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className={`bars ${open ? 'is-open' : ''}`} aria-hidden="true" />
+          </button>
+        </div>
 
         <nav className={`nav ${open ? 'is-open' : ''}`}>
           {NAV.map((item) => (
@@ -37,7 +43,6 @@ export default function Header() {
           <a className="cv-button" href={cv} download="Ramy_Lazghab_CV.pdf">
             {ui.downloadCv}
           </a>
-          <LanguageSwitch className="nav-lang" />
         </nav>
       </div>
     </header>

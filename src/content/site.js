@@ -19,7 +19,7 @@ const site = {
     'M.Sc. Data Science & Artificial Intelligence, Université Paris Dauphine-PSL (2024 to 2026). B.Sc. Computer Engineering (IoT), Faculty of Sciences of Tunis.',
   ],
 
-  languages: 'English: Fluent (IELTS) · French: Professional',
+  languages: 'English: Fluent · French: Professional',
 
   // Every entry below is backed either by the CV or by a public repository:
   // classical ML from Diabetes-Diagnosis and House-Prices-Prediction, deep
@@ -62,7 +62,7 @@ const site = {
   glance: [
     { label: 'Education',    value: 'M.Sc. Data Science & AI, Paris Dauphine-PSL (2024 to 2026)' },
     { label: 'Based in',     value: 'Paris, France. Open to relocation.' },
-    { label: 'Languages',    value: 'English fluent (IELTS) · French professional' },
+    { label: 'Languages',    value: 'English fluent · French professional' },
     { label: 'Now',          value: 'Regulatory intelligence systems for the cosmetics industry' },
   ],
 

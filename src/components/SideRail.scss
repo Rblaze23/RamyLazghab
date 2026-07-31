@@ -23,11 +23,11 @@
   display: flex; align-items: center; gap: 10px;
   text-decoration: none; color: inherit;
 
-  img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; flex: none;
+  img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex: none;
         border: 1px solid rgba(255, 180, 84, .35); }
-  b  { display: block; font-size: 12.5px; font-weight: 620; letter-spacing: -.01em; }
-  em { display: block; font: 500 9px/1.3 var(--font-mono); font-style: normal;
-       letter-spacing: .08em; text-transform: uppercase; color: var(--dim2); margin-top: 3px; }
+  b  { display: block; font-size: 16px; font-weight: 720; letter-spacing: -.02em; }
+  em { display: block; font: 500 8.5px/1.4 var(--font-mono); font-style: normal;
+       letter-spacing: .09em; text-transform: uppercase; color: var(--dim2); margin-top: 4px; }
 }
 
 .rail-nav { display: flex; flex-direction: column; gap: 2px; margin-top: var(--space-1); }

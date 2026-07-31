@@ -23,7 +23,7 @@ const siteFr = {
     'M2 Science des Données & Intelligence Artificielle, Université Paris Dauphine-PSL (2024 à 2026). Licence en Génie Informatique (IoT), Faculté des Sciences de Tunis.',
   ],
 
-  languages: 'Anglais : courant (IELTS) · Français : professionnel',
+  languages: 'Anglais : courant · Français : professionnel',
 
   skills: [
     {
@@ -61,7 +61,7 @@ const siteFr = {
   glance: [
     { label: 'Formation',    value: 'M2 Science des Données & IA, Paris Dauphine-PSL (2024 à 2026)' },
     { label: 'Basé à',       value: 'Paris, France. Ouvert à la mobilité.' },
-    { label: 'Langues',      value: 'Anglais courant (IELTS) · Français professionnel' },
+    { label: 'Langues',      value: 'Anglais courant · Français professionnel' },
     { label: 'En ce moment', value: 'Systèmes de veille réglementaire pour l’industrie cosmétique' },
   ],
 
