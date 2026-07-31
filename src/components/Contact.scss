@@ -10,9 +10,12 @@
 // The email is the single most important thing in this section, so it is
 // treated as display type rather than a line of body copy.
 .contact-email {
-  font-size: clamp(1.35rem, 4.5vw, 2.1rem);
+  // Sized to hold "ramy.lazghab@dauphine.eu" on one line at every width the
+  // contact row is used at. The previous 4.5vw / 2.1rem ceiling wrapped it in
+  // two on wider screens.
+  font-size: clamp(1rem, 2.6vw, 1.5rem);
   font-weight: 700; letter-spacing: -.03em;
-  word-break: break-word;
+  white-space: nowrap;
 
   a {
     text-decoration: none;
