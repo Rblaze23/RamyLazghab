@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/RamyLazghab/static/css/main.43898c0a.css",
-    "main.js": "/RamyLazghab/static/js/main.10ef49e4.js",
-    "static/media/hero.jpg": "/RamyLazghab/static/media/hero.d7f99254446197ca0347.jpg",
+    "main.css": "/RamyLazghab/static/css/main.c869a633.css",
+    "main.js": "/RamyLazghab/static/js/main.55f09891.js",
     "static/media/scene-work.jpg": "/RamyLazghab/static/media/scene-work.794acefa6b88db594056.jpg",
     "static/media/scene-home.jpg": "/RamyLazghab/static/media/scene-home.dc8b1e6558dae3e0ed92.jpg",
     "static/media/scene-contact.jpg": "/RamyLazghab/static/media/scene-contact.7b0384a71807ce62a512.jpg",
+    "static/media/hero.jpg": "/RamyLazghab/static/media/hero.ea1d9437b6b47d38345f.jpg",
     "static/media/scene-experience.jpg": "/RamyLazghab/static/media/scene-experience.5862d2e3471dd12816e9.jpg",
     "static/media/scene-certifications.jpg": "/RamyLazghab/static/media/scene-certifications.e9ea56443b1b991f530a.jpg",
     "static/media/scene-skills.jpg": "/RamyLazghab/static/media/scene-skills.1365bcebe28f069a70d4.jpg",
@@ -13,11 +13,11 @@
     "static/media/about-3d.jpg": "/RamyLazghab/static/media/about-3d.fa1eae5419e776a7ef7d.jpg",
     "static/media/avatar-work.jpg": "/RamyLazghab/static/media/avatar-work.c0375eaaf209e7be8344.jpg",
     "index.html": "/RamyLazghab/index.html",
-    "main.43898c0a.css.map": "/RamyLazghab/static/css/main.43898c0a.css.map",
-    "main.10ef49e4.js.map": "/RamyLazghab/static/js/main.10ef49e4.js.map"
+    "main.c869a633.css.map": "/RamyLazghab/static/css/main.c869a633.css.map",
+    "main.55f09891.js.map": "/RamyLazghab/static/js/main.55f09891.js.map"
   },
   "entrypoints": [
-    "static/css/main.43898c0a.css",
-    "static/js/main.10ef49e4.js"
+    "static/css/main.c869a633.css",
+    "static/js/main.55f09891.js"
   ]
 }
