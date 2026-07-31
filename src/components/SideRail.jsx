@@ -19,7 +19,7 @@ export default function SideRail({ activeId }) {
   return (
     <aside className="side-rail">
       <Link to="/" className="rail-me">
-        <img src={railAvatar} alt="" width="42" height="42" />
+        <img src={railAvatar} alt="" width="46" height="46" />
         <span>
           <b>{site.name}</b>
           <em>{site.role}</em>
