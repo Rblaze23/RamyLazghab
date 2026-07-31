@@ -1,8 +1,8 @@
 const site = {
   name: 'Ramy Lazghab',
   role: 'AI & Machine Learning Engineer',
-  headline: 'I build production-grade LLM and agentic AI systems, turning unstructured documents and data into forecasts, decisions, and dashboards.',
-  headlineAccent: 'turning unstructured documents and data into forecasts, decisions, and dashboards.',
+  headline: 'I build production-grade LLM and agentic AI systems that turn scattered data into decisions.',
+  headlineAccent: 'that turn scattered data into decisions.',
   tagline: 'Currently building regulatory intelligence systems for the cosmetics industry.',
   location: 'Based in Paris, France. Open to relocation.',
   email: 'ramy.lazghab@dauphine.eu',

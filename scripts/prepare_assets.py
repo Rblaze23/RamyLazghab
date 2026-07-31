@@ -42,16 +42,23 @@ def load_font(weight, size):
     return None
 
 
-def hero():
-    """4 MB PNG -> progressive JPEG under 200 KB.
+# Head-and-shoulders box inside real.png. The bottom edge sits well above the
+# generator's sparkle watermark at roughly (722, 1138), so the watermark is
+# removed by framing rather than by patching pixels.
+HERO_CROP = (100, 180, 730, 810)
 
-    The hero renders at roughly 400px square on desktop and 240px on mobile,
-    so 600px wide covers 2x displays with room to spare.
+
+def hero():
+    """Real photograph, cropped square for the circular hero.
+
+    Rendered at 210px on desktop and 240px on mobile, so 640px covers 2x
+    displays. The frame keeps the Eiffel Tower visible on the left, which
+    quietly supports the "Based in Paris" line beneath it.
     """
-    im = Image.open(IMG / "meee.png").convert("RGB")
-    im.thumbnail((600, 1200), Image.LANCZOS)
+    im = Image.open(IMG / "real.png").convert("RGB").crop(HERO_CROP)
+    im = im.resize((640, 640), Image.LANCZOS)
     out = IMG / "hero.jpg"
-    im.save(out, "JPEG", quality=78, optimize=True, progressive=True)
+    im.save(out, "JPEG", quality=84, optimize=True, progressive=True)
     print(f"hero.jpg          {out.stat().st_size // 1024:>4} KB  {im.size}")
 
 

@@ -5,8 +5,8 @@
 const siteFr = {
   name: 'Ramy Lazghab',
   role: 'Ingénieur IA & Machine Learning',
-  headline: 'Je construis des systèmes LLM et d’IA agentique prêts pour la production, en transformant des documents et des données non structurés en prévisions, décisions et tableaux de bord.',
-  headlineAccent: 'en transformant des documents et des données non structurés en prévisions, décisions et tableaux de bord.',
+  headline: 'Je construis des systèmes LLM et d’IA agentique prêts pour la production, qui transforment des données éparses en décisions.',
+  headlineAccent: 'qui transforment des données éparses en décisions.',
   tagline: 'Actuellement, je développe des systèmes de veille réglementaire pour l’industrie cosmétique.',
   location: 'Basé à Paris, France. Ouvert à la mobilité.',
   email: 'ramy.lazghab@dauphine.eu',

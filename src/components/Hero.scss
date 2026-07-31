@@ -35,12 +35,14 @@
     // to presentational height. With both dimensions definite, aspect-ratio is
     // ignored and the image renders 240x600 instead of square.
     width: 100%; height: auto;
-    aspect-ratio: 1 / 1; object-fit: cover; object-position: center 20%;
-    display: block; border-radius: 16px; border: 1px solid rgba(255, 180, 84, .3);
+    aspect-ratio: 1 / 1; object-fit: cover; object-position: center 22%;
+    display: block; border-radius: 50%; border: 1px solid rgba(255, 180, 84, .32);
   }
+  // The glow follows the shape, so a circular portrait does not sit inside a
+  // square halo.
   &::after {
-    content: ''; position: absolute; inset: -14px; border-radius: 28px; pointer-events: none;
-    background: radial-gradient(circle at 50% 45%, rgba(255, 180, 84, .2), transparent 68%);
+    content: ''; position: absolute; inset: -16px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 180, 84, .22), transparent 70%);
   }
 }
 
