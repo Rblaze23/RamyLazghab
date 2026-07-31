@@ -35,6 +35,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    // The rail is narrower than the image, so cover crops again at display
+    // time. Favouring the top keeps heads intact rather than clipping hair.
+    object-position: 50% 22%;
     opacity: 0;
     transform: scale(1.04);
     transition: opacity .7s ease, transform 1.2s cubic-bezier(.22, .61, .36, 1);
