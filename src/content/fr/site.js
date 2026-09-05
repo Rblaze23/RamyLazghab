@@ -7,7 +7,7 @@ const siteFr = {
   role: 'Ingénieur IA & Machine Learning',
   headline: 'Je construis des systèmes LLM et d’IA agentique prêts pour la production, qui transforment des données éparses en décisions.',
   headlineAccent: 'qui transforment des données éparses en décisions.',
-  tagline: 'Actuellement, je développe des systèmes de veille réglementaire pour l’industrie cosmétique.',
+  tagline: 'Actuellement, je développe des systèmes de veille réglementaire, de surveillance et de prévision pour plusieurs industries.',
   location: 'Basé à Paris, France. Ouvert à la mobilité.',
   email: 'ramy.lazghab@dauphine.eu',
 
@@ -19,7 +19,7 @@ const siteFr = {
 
   about: [
     'Je suis ingénieur IA & Machine Learning, spécialisé dans les systèmes de production fondés sur les LLM, l’IA agentique et le RAG. Je conçois des plateformes de bout en bout qui associent intelligence documentaire, prévision et orchestration multi-agents pour répondre à de vrais besoins métier.',
-    'Je développe actuellement des systèmes de veille réglementaire pour l’industrie cosmétique. Le travail couvre la recherche documentaire sur de larges corpus, des agents autonomes qui collectent des signaux en continu, et des modèles de machine learning dont les résultats doivent rester compréhensibles par des spécialistes qui ne sont pas data scientists.',
+    'Je développe actuellement des systèmes de veille réglementaire, de surveillance et de prévision au service de plusieurs industries. Le travail couvre la recherche documentaire sur de larges corpus, des agents autonomes qui collectent des signaux en continu, et des modèles de machine learning dont les résultats doivent rester compréhensibles par des spécialistes qui ne sont pas data scientists.',
     'M2 Science des Données & Intelligence Artificielle, Université Paris Dauphine-PSL (2024 à 2026). Licence en Génie Informatique (IoT), Faculté des Sciences de Tunis.',
   ],
 
@@ -62,7 +62,7 @@ const siteFr = {
     { label: 'Formation',    value: 'M2 Science des Données & IA, Paris Dauphine-PSL (2024 à 2026)' },
     { label: 'Basé à',       value: 'Paris, France. Ouvert à la mobilité.' },
     { label: 'Langues',      value: 'Anglais courant · Français professionnel' },
-    { label: 'En ce moment', value: 'Systèmes de veille réglementaire pour l’industrie cosmétique' },
+    { label: 'En ce moment', value: 'Veille réglementaire, surveillance et prévision pour plusieurs industries' },
   ],
 
   certifications: [

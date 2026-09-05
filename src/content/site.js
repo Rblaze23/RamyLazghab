@@ -3,7 +3,7 @@ const site = {
   role: 'AI & Machine Learning Engineer',
   headline: 'I build production-grade LLM and agentic AI systems that turn scattered data into decisions.',
   headlineAccent: 'that turn scattered data into decisions.',
-  tagline: 'Currently building regulatory intelligence systems for the cosmetics industry.',
+  tagline: 'Currently building regulatory intelligence, monitoring and forecasting systems across multiple industries.',
   location: 'Based in Paris, France. Open to relocation.',
   email: 'ramy.lazghab@dauphine.eu',
 
@@ -15,7 +15,7 @@ const site = {
 
   about: [
     'I’m an AI & Machine Learning Engineer specialising in production systems built on LLMs, agentic AI and RAG. I design end-to-end platforms that combine document intelligence, forecasting and multi-agent orchestration for real business problems.',
-    'I’m currently building regulatory intelligence systems for the cosmetics industry, where the work spans retrieval over large document corpora, autonomous agents gathering live signals, and machine learning models whose output has to be explainable to people without an ML background.',
+    'I’m currently building regulatory intelligence, monitoring and forecasting systems that serve several industries, where the work spans retrieval over large document corpora, autonomous agents gathering live signals, and machine learning models whose output has to be explainable to people without an ML background.',
     'M.Sc. Data Science & Artificial Intelligence, Université Paris Dauphine-PSL (2024 to 2026). B.Sc. Computer Engineering (IoT), Faculty of Sciences of Tunis.',
   ],
 
@@ -63,7 +63,7 @@ const site = {
     { label: 'Education',    value: 'M.Sc. Data Science & AI, Paris Dauphine-PSL (2024 to 2026)' },
     { label: 'Based in',     value: 'Paris, France. Open to relocation.' },
     { label: 'Languages',    value: 'English fluent · French professional' },
-    { label: 'Now',          value: 'Regulatory intelligence systems for the cosmetics industry' },
+    { label: 'Now',          value: 'Regulatory intelligence, monitoring and forecasting across multiple industries' },
   ],
 
   certifications: [
