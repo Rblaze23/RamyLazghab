@@ -41,7 +41,7 @@ export default function SideRail({ activeId }) {
 
       <div className="rail-cta">
         <LanguageSwitch className="rail-lang" />
-        <a className="rail-cv" href={cv} download="Ramy_Lazghab_CV.pdf">{ui.downloadCv}</a>
+        <a className="rail-cv" href={cv} download={site.cvFileName}>{ui.downloadCv}</a>
         <div className="rail-social">
           <a href={site.links.github} target="_blank" rel="noreferrer">GitHub</a>
           <a href={site.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>

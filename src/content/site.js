@@ -13,6 +13,10 @@ const site = {
     cv: '/assets/Resume.pdf', // resolved against PUBLIC_URL at render time
   },
 
+  // Filename the browser saves the CV under. Per language, so the French
+  // visitor does not end up with a file whose name claims it is the English one.
+  cvFileName: 'Ramy_Lazghab_CV_EN.pdf',
+
   about: [
     'I’m an AI & Machine Learning Engineer specialising in production systems built on LLMs, agentic AI and RAG. I design end-to-end platforms that combine document intelligence, forecasting and multi-agent orchestration for real business problems.',
     'I’m currently building regulatory intelligence, monitoring and forecasting systems that serve several industries, where the work spans retrieval over large document corpora, autonomous agents gathering live signals, and machine learning models whose output has to be explainable to people without an ML background.',

@@ -36,7 +36,7 @@ export default function Hero() {
               hidden, so they appear here instead of being unreachable. */}
           <div className="hero-actions">
             <SectionLink id="work" className="btn-primary">{ui.readCaseStudies}</SectionLink>
-            <a className="btn-ghost only-mobile" href={cv} download="Ramy_Lazghab_CV.pdf">
+            <a className="btn-ghost only-mobile" href={cv} download={site.cvFileName}>
               {ui.downloadCv}
             </a>
           </div>

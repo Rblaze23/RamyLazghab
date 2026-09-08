@@ -14,8 +14,10 @@ const siteFr = {
   links: {
     github: 'https://github.com/Rblaze23',
     linkedin: 'https://www.linkedin.com/in/ramy-lazghab-1464a8201/',
-    cv: '/assets/Resume.pdf',
+    cv: '/assets/Resume-FR.pdf',
   },
+
+  cvFileName: 'Ramy_Lazghab_CV_FR.pdf',
 
   about: [
     'Je suis ingénieur IA & Machine Learning, spécialisé dans les systèmes de production fondés sur les LLM, l’IA agentique et le RAG. Je conçois des plateformes de bout en bout qui associent intelligence documentaire, prévision et orchestration multi-agents pour répondre à de vrais besoins métier.',

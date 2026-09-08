@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
@@ -54,6 +56,20 @@ describe('language bundles', () => {
     });
   });
 
+  // The CV is the one asset that is genuinely different per language, so it
+  // gets its own file rather than a shared one.
+  test('every language ships its own CV, and the file is really there', () => {
+    const seen = new Set();
+    LANGS.forEach((l) => {
+      const { cv } = CONTENT[l].site.links;
+      expect(cv).toMatch(/^\/assets\/.+\.pdf$/);
+      expect(seen.has(cv)).toBe(false);
+      seen.add(cv);
+      expect(fs.existsSync(path.join(__dirname, '../../public', cv))).toBe(true);
+      expect(CONTENT[l].site.cvFileName).toMatch(/\.pdf$/);
+    });
+  });
+
   test('project links are identical across languages', () => {
     const en = CONTENT.en.projects.map((p) => p.links.repo);
     LANGS.forEach((l) => expect(CONTENT[l].projects.map((p) => p.links.repo)).toEqual(en));
@@ -80,6 +96,18 @@ describe('language switch', () => {
 
     userEvent.click(screen.getAllByRole('button', { name: 'EN' })[0]);
     expect(document.documentElement.getAttribute('lang')).toBe('en');
+  });
+
+  test('switching to French switches the downloadable CV', () => {
+    renderAt('/');
+
+    const cvLink = () => screen.getAllByRole('link', { name: /cv/i })[0];
+    expect(cvLink()).toHaveAttribute('href', expect.stringContaining(CONTENT.en.site.links.cv));
+
+    userEvent.click(screen.getAllByRole('button', { name: 'FR' })[0]);
+
+    expect(cvLink()).toHaveAttribute('href', expect.stringContaining(CONTENT.fr.site.links.cv));
+    expect(cvLink()).toHaveAttribute('download', CONTENT.fr.site.cvFileName);
   });
 
   test('a case study renders in French too', () => {

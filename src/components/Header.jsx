@@ -40,7 +40,7 @@ export default function Header() {
               {item.label}
             </SectionLink>
           ))}
-          <a className="cv-button" href={cv} download="Ramy_Lazghab_CV.pdf">
+          <a className="cv-button" href={cv} download={site.cvFileName}>
             {ui.downloadCv}
           </a>
         </nav>

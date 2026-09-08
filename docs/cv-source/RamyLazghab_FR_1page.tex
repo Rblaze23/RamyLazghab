@@ -1,0 +1,97 @@
+\documentclass[9.5pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[a4paper,left=1.15cm,right=1.15cm,top=0.65cm,bottom=0.45cm]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5pt}
+\linespread{1.0}
+
+\definecolor{Primary}{HTML}{1F2937}
+
+\titleformat{\section}{\large\bfseries\color{Primary}}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{4pt}{2.5pt}
+
+\setlist[itemize]{leftmargin=1.2em, itemsep=3pt, topsep=2pt, parsep=0pt}
+
+\newcommand{\cvitem}[2]{\textbf{#1}: #2\\[2pt]}
+\newcommand{\jobtitle}[3]{\textbf{#1}\hfill{\small #2}\\[1pt]\textit{#3}}
+
+\begin{document}
+
+\begin{center}
+{\Huge\bfseries Ramy Lazghab}
+
+\vspace{1.2mm}
+{\large Ing\'enieur IA \& Machine Learning}
+
+\vspace{1.2mm}
+LLMs $\bullet$ IA agentique $\bullet$ RAG $\bullet$ Syst\`emes ML en production
+
+\vspace{1.2mm}
+Paris, France $\bullet$ Ouvert \`a la mobilit\'e
+\hspace{0.3cm}$\bullet$\hspace{0.3cm}
+\href{mailto:ramy.lazghab@dauphine.eu}{ramy.lazghab@dauphine.eu}
+\hspace{0.3cm}$\bullet$\hspace{0.3cm}
++33 7 59 68 79 72
+
+\vspace{1.2mm}
+\href{https://linkedin.com/in/ramy-lazghab-1464a8201}{LinkedIn}
+\hspace{0.3cm}|\hspace{0.3cm}
+\href{https://github.com/Rblaze23}{GitHub}
+\hspace{0.3cm}|\hspace{0.3cm}
+\href{https://rblaze23.github.io/RamyLazghab/}{Portfolio}
+
+\end{center}
+
+\section*{Comp\'etences techniques}
+\cvitem{Programmation}{Python, SQL, Java, JavaScript, C, R}
+\cvitem{Machine Learning}{Deep learning, apprentissage par renforcement, NLP (traitement du langage naturel), transformers, fine-tuning, gradient boosting, explicabilit\'e des mod\`eles (SHAP) ; PyTorch, TensorFlow, XGBoost, LightGBM}
+\cvitem{IA g\'en\'erative \& LLM}{RAG, syst\`emes multi-agents, \'evaluation de LLM, prompt engineering ; LangChain, LangGraph, Hugging Face, Anthropic API, OpenAI API, MCP, LangSmith}
+\cvitem{MLOps, Cloud \& Donn\'ees}{Docker, Git, MLflow, GCP (Vertex AI, BigQuery, Cloud Run), API REST, PostgreSQL, Neo4j, bases vectorielles (FAISS, Qdrant), Spark, Pandas, NumPy, Streamlit}
+
+\section*{Exp\'erience professionnelle}
+
+\jobtitle{Ing\'enieur IA, stage de fin d'\'etudes}{Avr. 2026 -- aujourd'hui}{Relay X, Paris}
+
+\begin{itemize}
+\item \textbf{Oracle AI, pr\'evision du risque r\'eglementaire :} pr\'edit si un r\'egulateur restreindra un ingr\'edient sous 6 ou 18 mois. 1{\,}222 avis scientifiques structur\'es en un vecteur de 70 variables ; ensemble XGBoost + LightGBM, calibration isotonique, explications SHAP. \textbf{AUC-ROC 0,948 \`a 6 mois et 0,914 \`a 18 mois}, avec validation temporelle stricte sur avis non vus.
+\item Enrichissement en temps r\'eel via un pipeline LangGraph (Anthropic Claude) \`a trois n\oe uds parall\`eles (PubMed, PubChem, web), restitu\'e en rapport Streamlit ; tra\c{c}age LangSmith.
+\item \textbf{PIF (g\'en\'eration de dossiers) :} pipeline LLM \`a six agents produisant des Dossiers d'Information Produit conformes au R\`eglement (CE) 1223/2009, avec sections pilot\'ees par template et validation humaine de l'\'evaluation de s\'ecurit\'e. \textbf{Mis en production} sur la plateforme de production (Next.js, TypeScript, Express, Prisma, PostgreSQL).
+\item Conception d'un benchmark de r\'ef\'erence (5 produits, 203 champs de v\'erit\'e terrain) utilis\'e comme boucle de correction sur trois versions : \textbf{affirmations non sourc\'ees r\'eduites de 87,5\,\% \`a 35,0\,\%, F1 port\'e de 81,8 \`a 89,5, pour 0,13\,\$ par dossier}.
+\item \textbf{Magnet (radar r\'eglementaire) :} cascade de recherche \`a cinq niveaux (SQL d'abord, LLM en dernier recours), rapports sourc\'es en trois passes. \'Evalu\'e sur 35 rapports g\'en\'er\'es \`a \textbf{88,6\,\% de tra\c{c}abilit\'e des sources} ; 75 tests de s\'ecurit\'e API.
+\end{itemize}
+
+\vspace{1.8mm}
+\jobtitle{D\'eveloppeur logiciel, stage}{F\'evr. -- Juin 2024}{Infinity Management}\\[2pt]
+Plateforme e-learning utilisant le NLP et une analyse de sentiment bas\'ee sur BERT ; back-end Django REST, front-end React, Docker.
+
+\section*{Formation}
+\jobtitle{M2 Science des Donn\'ees \& Intelligence Artificielle}{2024 -- 2026 (en cours)}{Universit\'e Paris Dauphine -- PSL}
+
+\vspace{1.8mm}
+\jobtitle{Licence en G\'enie Informatique (IoT)}{2021 -- 2024}{Facult\'e des Sciences de Tunis}
+
+\section*{Projets s\'electionn\'es}
+\begin{itemize}
+\item \textbf{TelecomPlus :} support client multi-agents (RAG + routage SQL), \'evaluation LLM-as-a-Judge, tra\c{c}age Langfuse \& MLflow. \textit{LangChain, LangGraph, FAISS, PostgreSQL}
+\item \textbf{RAGenius :} assistant de recherche IA r\'epondant \`a des questions sur PDF et CSV par recherche s\'emantique. \textit{LangChain, Hugging Face, FAISS}
+\item \textbf{Movie Recommender :} syst\`eme de recommandation de bout en bout sur GCP, expos\'e en API REST. \textit{BigQuery ML, Vertex AI, Cloud Run}
+\item \textbf{Pr\'ediction d'Alzheimer :} ensemble XGBoost et deep learning pour la d\'etection pr\'ecoce ; SHAP pour l'interpr\'etabilit\'e clinique. \textit{PyTorch, XGBoost, SHAP}
+\end{itemize}
+
+\section*{Certifications \& Distinctions}
+\begin{itemize}
+\item \textbf{Certifications :} \href{https://academy.langchain.com/certificates/nqrsewnhol}{LangChain Academy} ; \href{https://www.credly.com/badges/9ec1dc8b-494f-42ee-a314-ba30b40342de/public_url}{Google Cloud, BigQuery ML}
+\item \textbf{3\textsuperscript{e} place}, RAISE Summit AI Hackathon Paris ; \textbf{Laur\'eat}, Hack for Good (MoodSync) ; EY Hack for Smart Insurance ; IEEE Xtreme 15.0/16.0 ; membre IEEE, ITLAB \& AIESEC
+\item \textbf{Langues :} Anglais, courant (IELTS) $\vert$ Fran\c{c}ais, professionnel
+\end{itemize}
+
+\end{document}

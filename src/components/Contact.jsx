@@ -22,7 +22,7 @@ export default function Contact() {
             and the point at which someone decides to get in touch; making them
             scroll back up to find a link would be the wrong kind of tidy. */}
         <div className="contact-actions">
-          <a className="contact-cta" href={cv} download="Ramy_Lazghab_CV.pdf">{ui.downloadCv}</a>
+          <a className="contact-cta" href={cv} download={site.cvFileName}>{ui.downloadCv}</a>
           <a className="contact-link is-linkedin" href={site.links.linkedin} target="_blank" rel="noreferrer">
             <span className="ico" aria-hidden="true">in</span>LinkedIn
           </a>
