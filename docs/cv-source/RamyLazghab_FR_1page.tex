@@ -33,9 +33,6 @@
 {\large Ing\'enieur IA \& Machine Learning}
 
 \vspace{1.2mm}
-LLMs $\bullet$ IA agentique $\bullet$ RAG $\bullet$ Syst\`emes ML en production
-
-\vspace{1.2mm}
 Paris, France $\bullet$ Ouvert \`a la mobilit\'e
 \hspace{0.3cm}$\bullet$\hspace{0.3cm}
 \href{mailto:ramy.lazghab@dauphine.eu}{ramy.lazghab@dauphine.eu}
@@ -51,6 +48,9 @@ Paris, France $\bullet$ Ouvert \`a la mobilit\'e
 
 \end{center}
 
+\section*{Profil}
+Ing\'enieur IA concevant des syst\`emes LLM, agentiques, RAG et de ML pr\'edictif, du prototype \`a la mise en production, avec un fort accent sur l'\'evaluation et la fiabilit\'e. En fin de M2 Science des Donn\'ees \& IA \`a l'Universit\'e Paris Dauphine -- PSL.
+
 \section*{Comp\'etences techniques}
 \cvitem{Programmation}{Python, SQL, Java, JavaScript, C, R}
 \cvitem{Machine Learning}{Deep learning, apprentissage par renforcement, NLP (traitement du langage naturel), transformers, fine-tuning, gradient boosting, explicabilit\'e des mod\`eles (SHAP) ; PyTorch, TensorFlow, XGBoost, LightGBM}
@@ -65,13 +65,13 @@ Paris, France $\bullet$ Ouvert \`a la mobilit\'e
 \item \textbf{Oracle AI, pr\'evision du risque r\'eglementaire :} pr\'edit si un r\'egulateur restreindra un ingr\'edient sous 6 ou 18 mois. 1{\,}222 avis scientifiques structur\'es en un vecteur de 70 variables ; ensemble XGBoost + LightGBM, calibration isotonique, explications SHAP. \textbf{AUC-ROC 0,948 \`a 6 mois et 0,914 \`a 18 mois}, avec validation temporelle stricte sur avis non vus.
 \item Enrichissement en temps r\'eel via un pipeline LangGraph (Anthropic Claude) \`a trois n\oe uds parall\`eles (PubMed, PubChem, web), restitu\'e en rapport Streamlit ; tra\c{c}age LangSmith.
 \item \textbf{PIF (g\'en\'eration de dossiers) :} pipeline LLM \`a six agents produisant des Dossiers d'Information Produit conformes au R\`eglement (CE) 1223/2009, avec sections pilot\'ees par template et validation humaine de l'\'evaluation de s\'ecurit\'e. \textbf{Mis en production} sur la plateforme de production (Next.js, TypeScript, Express, Prisma, PostgreSQL).
-\item Conception d'un benchmark de r\'ef\'erence (5 produits, 203 champs de v\'erit\'e terrain) utilis\'e comme boucle de correction sur trois versions : \textbf{affirmations non sourc\'ees r\'eduites de 87,5\,\% \`a 35,0\,\%, F1 port\'e de 81,8 \`a 89,5, pour 0,13\,\$ par dossier}.
-\item \textbf{Magnet (radar r\'eglementaire) :} cascade de recherche \`a cinq niveaux (SQL d'abord, LLM en dernier recours), rapports sourc\'es en trois passes. \'Evalu\'e sur 35 rapports g\'en\'er\'es \`a \textbf{88,6\,\% de tra\c{c}abilit\'e des sources} ; 75 tests de s\'ecurit\'e API.
+\item Conception d'un benchmark de v\'erit\'e terrain (5 produits, 203 champs), boucle de correction sur trois versions : \textbf{affirmations non sourc\'ees r\'eduites de 87,5\,\% \`a 35,0\,\%, F1 port\'e de 81,8 \`a 89,5, pour 0,13\,\$ par dossier}.
+\item \textbf{Magnet (radar r\'eglementaire) :} cascade de recherche \`a cinq niveaux (SQL d'abord, LLM si \'echec), rapports sourc\'es en trois passes. \'Evalu\'e sur 35 rapports g\'en\'er\'es \`a \textbf{88,6\,\% de tra\c{c}abilit\'e des sources} ; 75 tests de s\'ecurit\'e.
 \end{itemize}
 
 \vspace{1.8mm}
 \jobtitle{D\'eveloppeur logiciel, stage}{F\'evr. -- Juin 2024}{Infinity Management}\\[2pt]
-Plateforme e-learning utilisant le NLP et une analyse de sentiment bas\'ee sur BERT ; back-end Django REST, front-end React, Docker.
+Plateforme e-learning personnalis\'ee par NLP (analyse de sentiment BERT) ; Django REST, React, Docker.
 
 \section*{Formation}
 \jobtitle{M2 Science des Donn\'ees \& Intelligence Artificielle}{2024 -- 2026 (en cours)}{Universit\'e Paris Dauphine -- PSL}
@@ -82,7 +82,7 @@ Plateforme e-learning utilisant le NLP et une analyse de sentiment bas\'ee sur B
 \section*{Projets s\'electionn\'es}
 \begin{itemize}
 \item \textbf{TelecomPlus :} support client multi-agents (RAG + routage SQL), \'evaluation LLM-as-a-Judge, tra\c{c}age Langfuse \& MLflow. \textit{LangChain, LangGraph, FAISS, PostgreSQL}
-\item \textbf{RAGenius :} assistant de recherche IA r\'epondant \`a des questions sur PDF et CSV par recherche s\'emantique. \textit{LangChain, Hugging Face, FAISS}
+\item \textbf{RAGenius :} assistant IA de questions-r\'eponses s\'emantiques sur PDF et CSV. \textit{LangChain, Hugging Face, FAISS}
 \item \textbf{Movie Recommender :} syst\`eme de recommandation de bout en bout sur GCP, expos\'e en API REST. \textit{BigQuery ML, Vertex AI, Cloud Run}
 \item \textbf{Pr\'ediction d'Alzheimer :} ensemble XGBoost et deep learning pour la d\'etection pr\'ecoce ; SHAP pour l'interpr\'etabilit\'e clinique. \textit{PyTorch, XGBoost, SHAP}
 \end{itemize}
