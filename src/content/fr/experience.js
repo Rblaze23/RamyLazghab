@@ -37,6 +37,20 @@ const experienceFr = [
     ],
     tech: ['IA générative', 'Compréhension documentaire par LLM', 'RAG', 'Agents de validation', 'Anthropic API'],
   },
+  {
+    id: 'magnet',
+    title: 'Magnet',
+    subtitle: 'Radar réglementaire public',
+    problem:
+      'Les outils de veille réglementaire sont généralement réservés aux abonnés payants, et ceux qui sont gratuits sont curés à la main : ils couvrent un seul secteur et se périment. L’objectif était un outil public qui suit ce qui bouge dans plusieurs industries réglementées, cite ses sources pour chaque affirmation et reste fiable sans que personne ne le cure.',
+    role: [
+      'J’ai conçu et construit un service web public autonome qui suit les évolutions réglementaires dans cinq domaines réglementés, des cosmétiques et de la chimie à l’emballage, aux matériaux au contact des aliments et à l’agriculture, et publie pour chaque sujet une chronologie sourcée, sans création de compte.',
+      'Plutôt qu’une liste de veille entretenue à la main, le système exécute un balayage automatisé qui demande à chaque domaine ce qui a bougé récemment, fusionne les évolutions qui apparaissent dans plusieurs domaines pour ne les analyser et les payer qu’une fois, puis fait passer le reste par un pipeline de recherche et de synthèse à plusieurs voies, dont la sortie est filtrée par une étape de vérification : une affirmation que le système ne peut pas étayer est supprimée, pas nuancée.',
+      'La recherche est une cascade déterministe qui résout ingrédients et sujets par correspondance exacte, insensible aux accents, floue puis lexicale avant tout appel à un modèle, si bien que le chemin courant est instantané et gratuit et que le LLM ne traite que la longue traîne.',
+      'J’ai aussi construit un benchmark reproductible du pipeline : un corpus figé de rapports de production noté selon des invariants que le code lui-même déclare, avec un juge LLM indépendant pour l’ancrage dans les preuves. Il a servi à comparer des cohortes de modèles sur la qualité, le coût et la fiabilité, à localiser les points faibles et à décider quoi corriger ensuite, en rapportant les régressions aux côtés des gains. La première version a été mesurée face à un concurrent établi, et cette comparaison a conduit à la refonte de la recherche comme de l’interface.',
+    ],
+    tech: ['Pipelines agentiques', 'Anthropic API', 'Évaluation LLM-as-a-Judge', 'PostgreSQL', 'TypeScript', 'Next.js', 'Prisma'],
+  },
 ];
 
 export default experienceFr;

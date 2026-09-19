@@ -1,4 +1,4 @@
-// ORACLE and PIF AI are proprietary work projects.
+// ORACLE, PIF AI and Magnet are proprietary work projects.
 //
 // CONFIDENTIALITY BOUNDARY — approved by Ramy Lazghab, 2026-07-29.
 // This copy is deliberately vague and must NOT be expanded. Do not add
@@ -38,6 +38,20 @@ const experience = [
       'It shipped as part of the company’s production web application, as a feature real customers use.',
     ],
     tech: ['Generative AI', 'LLM document understanding', 'RAG', 'Validation agents', 'Anthropic API'],
+  },
+  {
+    id: 'magnet',
+    title: 'Magnet',
+    subtitle: 'Public regulatory radar',
+    problem:
+      'Regulatory intelligence tools are usually locked behind a paid subscription, and the ones that are free are curated by hand, so they cover one sector and go stale. The goal was a public tool that tracks what is moving across several regulated industries, cites its sources for every claim, and stays trustworthy without anyone curating it.',
+    role: [
+      'I designed and built a standalone public web service that follows regulatory developments across five regulated domains, from cosmetics and chemicals to packaging, food contact materials and agriculture, and publishes a sourced timeline for each topic without requiring an account.',
+      'Rather than a hand-maintained watchlist, the system runs an automated sweep that asks each domain what moved recently, collapses the developments that surface in more than one domain so they are analysed and paid for once, and routes the rest through a multi-lane retrieval and synthesis pipeline whose output is gated by a verification step: a claim the system cannot support is dropped, not caveated.',
+      'Search is a deterministic cascade that resolves ingredients and topics through exact, accent-insensitive, fuzzy and vocabulary matching before a model is ever called, so the common path is instant and free and the LLM handles only the long tail.',
+      'I also built a reproducible benchmark for the pipeline: a frozen corpus of production reports scored against invariants the code itself declares, with an independent LLM judge for evidence grounding. It was used to compare model cohorts on quality, cost and reliability, to locate the weak points, and to decide what to fix next, with the regressions reported alongside the gains. The first version was measured against an established competitor, and that comparison drove the redesign of both the search and the interface.',
+    ],
+    tech: ['Agentic pipelines', 'Anthropic API', 'LLM-as-a-Judge evaluation', 'PostgreSQL', 'TypeScript', 'Next.js', 'Prisma'],
   },
 ];
 
