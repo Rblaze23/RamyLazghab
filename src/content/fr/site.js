@@ -22,7 +22,7 @@ const siteFr = {
   about: [
     'Je suis ingénieur IA & Machine Learning, spécialisé dans les systèmes de production fondés sur les LLM, l’IA agentique et le RAG. Je conçois des plateformes de bout en bout qui associent intelligence documentaire, prévision et orchestration multi-agents pour répondre à de vrais besoins métier.',
     'Je développe actuellement des systèmes de veille réglementaire, de surveillance et de prévision au service de plusieurs industries. Le travail couvre la recherche documentaire sur de larges corpus, des agents autonomes qui collectent des signaux en continu, et des modèles de machine learning dont les résultats doivent rester compréhensibles par des spécialistes qui ne sont pas data scientists.',
-    'M2 Science des Données & Intelligence Artificielle, Université Paris Dauphine-PSL (2024 à 2026). Licence en Génie Informatique (IoT), Faculté des Sciences de Tunis.',
+    'Master Intelligence Artificielle & Science des Données, Université Paris Dauphine-PSL (2024 à 2026). Licence en Génie Informatique (IoT), Faculté des Sciences de Tunis.',
   ],
 
   languages: 'Anglais : courant · Français : professionnel',
@@ -61,7 +61,7 @@ const siteFr = {
   // Faits compacts pour la colonne de droite. Tout y est déjà dit ailleurs sur
   // la page ; cela garde l’essentiel à l’écran pendant la lecture.
   glance: [
-    { label: 'Formation',    value: 'M2 Science des Données & IA, Paris Dauphine-PSL (2024 à 2026)' },
+    { label: 'Formation',    value: 'Master Intelligence Artificielle & Science des Données, Paris Dauphine-PSL (2024 à 2026)' },
     { label: 'Basé à',       value: 'Paris, France. Ouvert à la mobilité.' },
     { label: 'Langues',      value: 'Anglais courant · Français professionnel' },
     { label: 'En ce moment', value: 'Veille réglementaire, surveillance et prévision pour plusieurs industries' },

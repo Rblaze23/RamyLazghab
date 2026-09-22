@@ -20,7 +20,7 @@ const site = {
   about: [
     'I’m an AI & Machine Learning Engineer specialising in production systems built on LLMs, agentic AI and RAG. I design end-to-end platforms that combine document intelligence, forecasting and multi-agent orchestration for real business problems.',
     'I’m currently building regulatory intelligence, monitoring and forecasting systems that serve several industries, where the work spans retrieval over large document corpora, autonomous agents gathering live signals, and machine learning models whose output has to be explainable to people without an ML background.',
-    'M.Sc. Data Science & Artificial Intelligence, Université Paris Dauphine-PSL (2024 to 2026). B.Sc. Computer Engineering (IoT), Faculty of Sciences of Tunis.',
+    'M.Sc. Artificial Intelligence & Data Science, Université Paris Dauphine-PSL (2024 to 2026). B.Sc. Computer Engineering (IoT), Faculty of Sciences of Tunis.',
   ],
 
   languages: 'English: Fluent · French: Professional',
@@ -64,7 +64,7 @@ const site = {
   // Compact facts for the right rail. Everything here is already stated
   // elsewhere on the page; this keeps it on screen while a visitor scrolls.
   glance: [
-    { label: 'Education',    value: 'M.Sc. Data Science & AI, Paris Dauphine-PSL (2024 to 2026)' },
+    { label: 'Education',    value: 'M.Sc. Artificial Intelligence & Data Science, Paris Dauphine-PSL (2024 to 2026)' },
     { label: 'Based in',     value: 'Paris, France. Open to relocation.' },
     { label: 'Languages',    value: 'English fluent · French professional' },
     { label: 'Now',          value: 'Regulatory intelligence, monitoring and forecasting across multiple industries' },
