@@ -2,11 +2,13 @@ import TelecomPlusGlyph from './TelecomPlusGlyph';
 import MovieGlyph from './MovieGlyph';
 import AlzheimersGlyph from './AlzheimersGlyph';
 import RAGeniusGlyph from './RAGeniusGlyph';
+import NoSQLGlyph from './NoSQLGlyph';
 import OracleGlyph from './OracleGlyph';
 import PifGlyph from './PifGlyph';
 
 const GLYPHS = {
   telecomplus: TelecomPlusGlyph,
+  nosql: NoSQLGlyph,
   movie: MovieGlyph,
   alzheimers: AlzheimersGlyph,
   ragenius: RAGeniusGlyph,

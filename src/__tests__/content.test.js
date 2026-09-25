@@ -49,9 +49,10 @@ describe('projects content', () => {
     });
   });
 
-  test('exactly four case studies, in the expected order', () => {
+  test('exactly five case studies, in the expected order', () => {
     expect(caseStudies.map((p) => p.slug)).toEqual([
       'telecomplus',
+      'nosql-query-generation',
       'movie-recommender',
       'alzheimers',
       'ragenius',

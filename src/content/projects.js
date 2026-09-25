@@ -51,6 +51,34 @@ const projects = [
   },
 
   {
+    slug: 'nosql-query-generation',
+    tier: 2,
+    title: 'NoSQL Query Generation',
+    subtitle: 'Plain English into five database query languages',
+    context: 'Academic project',
+    summary:
+      'A natural-language interface that turns plain English questions into MongoDB, Neo4j, Redis, HBase and RDF queries, with each database exposed to the LLM through its own Model Context Protocol server.',
+    problem:
+      'Every NoSQL database speaks its own query language: JSON and aggregation pipelines for MongoDB, Cypher for Neo4j, commands for Redis, SPARQL for RDF triple stores. Anyone who needs data from more than one of them has to learn several syntaxes, and people without a technical background cannot get at the data at all.',
+    architecture: {
+      description:
+        'A query engine works out which database a question is aimed at, gathers that database’s schema as context, and asks an LLM to write the query. Each database sits behind its own Model Context Protocol server that exposes schema discovery, validation and execution as tools, so adding a new store means adding a server rather than changing the engine. Generated queries are validated against the live schema before they run, and the same LLM explains in plain English what each query does. A Streamlit interface adds a schema explorer, query history and a side-by-side comparison of how one question translates across the five databases.',
+      glyph: 'nosql',
+    },
+    pipeline: [],
+    tech: ['Python', 'MCP', 'Groq (Llama 3.3 70B)', 'MongoDB', 'Neo4j', 'Redis', 'HBase', 'Apache Jena (SPARQL)', 'Docker', 'Streamlit'],
+    challenges: [],
+    results: [
+      'Five NoSQL database types queried through one natural-language interface.',
+      'Schema-aware validation catches wrong field and collection names before a query runs.',
+      'Every generated query comes with a plain-English explanation of what it does.',
+      'Cross-database comparison shows how the same question translates into each query language.',
+    ],
+    lessons: '',
+    links: { repo: 'https://github.com/Rblaze23/LLM-Assisted_Query_Generation', demo: null },
+    images: [],
+  },
+  {
     slug: 'movie-recommender',
     tier: 2,
     title: 'Movie Recommender',

@@ -50,6 +50,34 @@ const projectsFr = [
   },
 
   {
+    slug: 'nosql-query-generation',
+    tier: 2,
+    title: 'NoSQL Query Generation',
+    subtitle: 'Du langage naturel vers cinq langages de requête',
+    context: 'Projet académique',
+    summary:
+      'Une interface en langage naturel qui transforme des questions en requêtes MongoDB, Neo4j, Redis, HBase et RDF, chaque base étant exposée au LLM par son propre serveur Model Context Protocol.',
+    problem:
+      'Chaque base NoSQL a son propre langage de requête : JSON et pipelines d’agrégation pour MongoDB, Cypher pour Neo4j, commandes pour Redis, SPARQL pour les triplestores RDF. Quiconque a besoin de données issues de plusieurs d’entre elles doit apprendre plusieurs syntaxes, et les personnes sans profil technique n’y ont tout simplement pas accès.',
+    architecture: {
+      description:
+        'Un moteur de requêtes détermine quelle base une question vise, récupère le schéma de cette base comme contexte et demande à un LLM d’écrire la requête. Chaque base se trouve derrière son propre serveur Model Context Protocol, qui expose la découverte du schéma, la validation et l’exécution sous forme d’outils : ajouter un nouveau magasin de données revient à ajouter un serveur, sans modifier le moteur. Les requêtes générées sont validées contre le schéma réel avant d’être exécutées, et le même LLM explique en langage clair ce que fait chaque requête. Une interface Streamlit ajoute un explorateur de schémas, un historique des requêtes et une comparaison côte à côte de la traduction d’une même question dans les cinq bases.',
+      glyph: 'nosql',
+    },
+    pipeline: [],
+    tech: ['Python', 'MCP', 'Groq (Llama 3.3 70B)', 'MongoDB', 'Neo4j', 'Redis', 'HBase', 'Apache Jena (SPARQL)', 'Docker', 'Streamlit'],
+    challenges: [],
+    results: [
+      'Cinq types de bases NoSQL interrogés depuis une seule interface en langage naturel.',
+      'La validation fondée sur le schéma détecte les noms de champs et de collections erronés avant l’exécution.',
+      'Chaque requête générée s’accompagne d’une explication en langage clair de ce qu’elle fait.',
+      'La comparaison inter-bases montre comment une même question se traduit dans chaque langage de requête.',
+    ],
+    lessons: '',
+    links: { repo: 'https://github.com/Rblaze23/LLM-Assisted_Query_Generation', demo: null },
+    images: [],
+  },
+  {
     slug: 'movie-recommender',
     tier: 2,
     title: 'Movie Recommender',
