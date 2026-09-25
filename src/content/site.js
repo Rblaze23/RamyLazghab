@@ -23,7 +23,7 @@ const site = {
     'M.Sc. Artificial Intelligence & Data Science, Université Paris Dauphine-PSL (2024 to 2026). B.Sc. Computer Engineering (IoT), Faculty of Sciences of Tunis.',
   ],
 
-  languages: 'English: Fluent · French: Professional',
+  languages: 'English: Fluent · French: Fluent',
 
   // Every entry below is backed either by the CV or by a public repository:
   // classical ML from Diabetes-Diagnosis and House-Prices-Prediction, deep
@@ -48,7 +48,7 @@ const site = {
     },
     {
       group: 'MLOps & Tooling',
-      items: ['Docker', 'Git', 'MLflow', 'Langfuse', 'Streamlit', 'REST APIs'],
+      items: ['Docker', 'Git', 'MLflow', 'Langfuse', 'Streamlit', 'REST APIs', 'Next.js', 'Prisma'],
     },
     {
       group: 'Cloud & Data',
@@ -57,7 +57,7 @@ const site = {
     },
     {
       group: 'Programming',
-      items: ['Python', 'SQL', 'Java', 'JavaScript', 'C', 'R'],
+      items: ['Python', 'SQL', 'Java', 'JavaScript', 'TypeScript', 'C', 'R'],
     },
   ],
 
@@ -66,7 +66,7 @@ const site = {
   glance: [
     { label: 'Education',    value: 'M.Sc. Artificial Intelligence & Data Science, Paris Dauphine-PSL (2024 to 2026)' },
     { label: 'Based in',     value: 'Paris, France. Open to relocation.' },
-    { label: 'Languages',    value: 'English fluent · French professional' },
+    { label: 'Languages',    value: 'English fluent · French fluent' },
     { label: 'Now',          value: 'Regulatory intelligence, monitoring and forecasting across multiple industries' },
   ],
 

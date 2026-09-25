@@ -1,18 +1,20 @@
 // French translation of src/content/experience.js.
 //
 // CONFIDENTIALITY BOUNDARY — the same rule applies here as in the English file.
-// This is a translation of copy approved by Ramy Lazghab on 2026-07-29 and must
-// stay at exactly that level of detail. Do not add pipeline steps, named data
-// sources, document counts, model architectures, retrieval strategy, prompt
-// design, validation logic, client names, or any performance figure.
+// This is a translation of copy approved by Ramy Lazghab on 2026-07-29 and
+// tightened on 2026-09-25 at the employer's request. It must stay at exactly
+// that level of detail. Do not add product names, a tech stack, pipeline
+// steps, named data sources, document counts, model architectures, retrieval
+// strategy, prompt design, validation logic, evaluation methodology,
+// competitor comparisons, client names, or any performance figure.
 //
 // No `slug` field, deliberately: these render on the homepage only.
 
 const experienceFr = [
   {
     id: 'oracle',
-    title: 'ORACLE',
-    subtitle: 'Veille réglementaire',
+    title: 'Veille réglementaire',
+    subtitle: 'Anticiper les prochaines restrictions',
     problem:
       'Dans un secteur fortement réglementé, les règles évoluent en permanence, et les indices qui annoncent la prochaine restriction sont dispersés dans une vaste littérature scientifique et juridique ainsi que dans des sources publiques qui bougent vite. Aucune équipe ne peut suivre ce volume manuellement. L’apprendre trop tard oblige à reformuler un produit dans l’urgence au lieu de l’anticiper.',
     role: [
@@ -22,34 +24,31 @@ const experienceFr = [
       'Enfin, des modèles de machine learning que j’ai entraînés sur ces signaux pour produire des prévisions de risque, et non uniquement une description du présent.',
       'J’ai également construit la couche d’explication : des LLM qui expliquent pourquoi un modèle aboutit à une prédiction donnée et génèrent un visuel pour chaque facteur contributif. Ce point compte plus qu’il n’y paraît. Les personnes qui agissent sur ces prévisions sont des spécialistes de la réglementation, pas des ingénieurs en ML, et une prévision qu’elles ne peuvent pas interroger est une prévision qu’elles n’utiliseront pas.',
     ],
-    tech: ['Orchestration multi-agents', 'LangGraph', 'RAG', 'Qdrant', 'XGBoost', 'Anthropic API', 'Streamlit'],
   },
   {
     id: 'pif-ai',
-    title: 'PIF AI',
-    subtitle: 'Intelligence documentaire générative',
+    title: 'Intelligence documentaire générative',
+    subtitle: 'Dossiers de conformité produits à partir des documents sources',
     problem:
       'La constitution des dossiers de conformité réglementaire est un travail documentaire lent et manuel. Quelqu’un lit des documents clients épars, en extrait ce qui compte, puis réécrit le tout dans une structure figée et auditable, et recommence pour le produit suivant. C’est coûteux, et c’est exactement le type de tâche où un petit oubli ressort plus tard lors d’un audit.',
     role: [
       'J’ai construit un système d’IA générative qui produit ces dossiers automatiquement. Il lit les documents sources du client, interprète leur contenu et génère le document structuré attendu à partir de cette matière.',
       'Comme le résultat est une pièce de conformité et non un brouillon, la génération seule ne suffit pas, car plausible n’est pas synonyme de correct. Le système exécute donc aussi des agents de validation qui contrôlent ce qui a été produit, et s’appuie sur un circuit de relecture humaine où un relecteur peut accepter ou régénérer n’importe quelle partie du document plutôt que de tout jeter et recommencer.',
-      'Il a été livré au sein de l’application web de production de l’entreprise, comme une fonctionnalité utilisée par de vrais clients.',
+      'Il a été livré en production au sein de l’application web de l’entreprise.',
     ],
-    tech: ['IA générative', 'Compréhension documentaire par LLM', 'RAG', 'Agents de validation', 'Anthropic API'],
   },
   {
     id: 'magnet',
-    title: 'Magnet',
-    subtitle: 'Radar réglementaire public',
+    title: 'Radar réglementaire public',
+    subtitle: 'Veille réglementaire sur plusieurs industries',
     problem:
       'Les outils de veille réglementaire sont généralement réservés aux abonnés payants, et ceux qui sont gratuits sont curés à la main : ils couvrent un seul secteur et se périment. L’objectif était un outil public qui suit ce qui bouge dans plusieurs industries réglementées, cite ses sources pour chaque affirmation et reste fiable sans que personne ne le cure.',
     role: [
       'J’ai conçu et construit un service web public autonome qui suit les évolutions réglementaires dans cinq domaines réglementés, des cosmétiques et de la chimie à l’emballage, aux matériaux au contact des aliments et à l’agriculture, et publie pour chaque sujet une chronologie sourcée, sans création de compte.',
       'Plutôt qu’une liste de veille entretenue à la main, le système exécute un balayage automatisé qui demande à chaque domaine ce qui a bougé récemment, fusionne les évolutions qui apparaissent dans plusieurs domaines pour ne les analyser et les payer qu’une fois, puis fait passer le reste par un pipeline de recherche et de synthèse à plusieurs voies, dont la sortie est filtrée par une étape de vérification : une affirmation que le système ne peut pas étayer est supprimée, pas nuancée.',
       'La recherche est une cascade déterministe qui résout ingrédients et sujets par correspondance exacte, insensible aux accents, floue puis lexicale avant tout appel à un modèle, si bien que le chemin courant est instantané et gratuit et que le LLM ne traite que la longue traîne.',
-      'J’ai aussi construit un benchmark reproductible du pipeline : un corpus figé de rapports de production noté selon des invariants que le code lui-même déclare, avec un juge LLM indépendant pour l’ancrage dans les preuves. Il a servi à comparer des cohortes de modèles sur la qualité, le coût et la fiabilité, à localiser les points faibles et à décider quoi corriger ensuite, en rapportant les régressions aux côtés des gains. La première version a été mesurée face à un concurrent établi, et cette comparaison a conduit à la refonte de la recherche comme de l’interface.',
+      'J’ai aussi construit un benchmark reproductible du pipeline, afin que chaque modification soit mesurée sur des résultats réels plutôt que supposée bénéfique.',
     ],
-    tech: ['Pipelines agentiques', 'Anthropic API', 'Évaluation LLM-as-a-Judge', 'PostgreSQL', 'TypeScript', 'Next.js', 'Prisma'],
   },
 ];
 

@@ -25,7 +25,7 @@ const siteFr = {
     'Master Intelligence Artificielle & Science des Données, Université Paris Dauphine-PSL (2024 à 2026). Licence en Génie Informatique (IoT), Faculté des Sciences de Tunis.',
   ],
 
-  languages: 'Anglais : courant · Français : professionnel',
+  languages: 'Anglais : courant · Français : courant',
 
   skills: [
     {
@@ -45,7 +45,7 @@ const siteFr = {
     },
     {
       group: 'MLOps & outils',
-      items: ['Docker', 'Git', 'MLflow', 'Langfuse', 'Streamlit', 'API REST'],
+      items: ['Docker', 'Git', 'MLflow', 'Langfuse', 'Streamlit', 'API REST', 'Next.js', 'Prisma'],
     },
     {
       group: 'Cloud & données',
@@ -54,7 +54,7 @@ const siteFr = {
     },
     {
       group: 'Programmation',
-      items: ['Python', 'SQL', 'Java', 'JavaScript', 'C', 'R'],
+      items: ['Python', 'SQL', 'Java', 'JavaScript', 'TypeScript', 'C', 'R'],
     },
   ],
 
@@ -63,7 +63,7 @@ const siteFr = {
   glance: [
     { label: 'Formation',    value: 'Master Intelligence Artificielle & Science des Données, Paris Dauphine-PSL (2024 à 2026)' },
     { label: 'Basé à',       value: 'Paris, France. Ouvert à la mobilité.' },
-    { label: 'Langues',      value: 'Anglais courant · Français professionnel' },
+    { label: 'Langues',      value: 'Anglais courant · Français courant' },
     { label: 'En ce moment', value: 'Veille réglementaire, surveillance et prévision pour plusieurs industries' },
   ],
 

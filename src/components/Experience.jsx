@@ -13,8 +13,10 @@ function renderGlyph(id) {
   return <div className="experience-glyph"><Glyph /></div>;
 }
 
-// Rendered as static content. No <Link>, no route, no "read more" —
-// see the confidentiality note in src/content/experience.js.
+// Rendered as static content. No <Link>, no route, no "read more", and no
+// tech chips: the stack behind these systems belongs to the employer and is
+// listed only in Skills as a personal toolkit. See the confidentiality note
+// in src/content/experience.js.
 export default function Experience() {
   const { experience, ui, sections } = useContent();
   const label = sections.find((s) => s.id === 'experience').label;
@@ -41,12 +43,6 @@ export default function Experience() {
                   // eslint-disable-next-line react/no-array-index-key
                   <p className="role" key={i}>{para}</p>
                 ))}
-
-                <div className="chip-row">
-                  {item.tech.map((t) => (
-                    <span className="chip" key={t}>{t}</span>
-                  ))}
-                </div>
               </div>
             </article>
           ))}

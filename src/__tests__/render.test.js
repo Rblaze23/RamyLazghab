@@ -70,15 +70,27 @@ describe('hero', () => {
 });
 
 describe('experience section', () => {
-  test('renders both entries', () => {
+  const TITLES = ['Regulatory intelligence', 'Generative document intelligence', 'Public regulatory radar'];
+
+  test('renders all three entries under generic titles', () => {
     renderAt('/');
-    expect(screen.getByRole('heading', { name: 'ORACLE' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'PIF AI' })).toBeInTheDocument();
+    TITLES.forEach((name) => {
+      expect(screen.getByRole('heading', { name })).toBeInTheDocument();
+    });
+  });
+
+  test('entries carry no tech chips and no internal product name', () => {
+    renderAt('/');
+    TITLES.forEach((name) => {
+      const card = screen.getByRole('heading', { name }).closest('article');
+      expect(card.querySelector('.chip')).toBeNull();
+      expect(card.textContent).not.toMatch(/ORACLE|PIF AI|Magnet/);
+    });
   });
 
   test('entries are not links — there is deliberately no deeper page', () => {
     renderAt('/');
-    ['ORACLE', 'PIF AI'].forEach((name) => {
+    TITLES.forEach((name) => {
       const heading = screen.getByRole('heading', { name });
       const card = heading.closest('article');
       // The whole entry must contain no anchor and no call to action.

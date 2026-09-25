@@ -60,6 +60,10 @@ describe('confidentiality guard', () => {
         expect(e).not.toHaveProperty('slug');
         expect(e).not.toHaveProperty('pipeline');
         expect(e).not.toHaveProperty('challenges');
+        // The stack belongs to the employer; it is listed only under Skills.
+        expect(e).not.toHaveProperty('tech');
+        // Titles describe the work, never the internal product name.
+        expect(`${e.title} ${e.subtitle}`).not.toMatch(/ORACLE|PIF|Magnet/i);
       });
     }
   );
