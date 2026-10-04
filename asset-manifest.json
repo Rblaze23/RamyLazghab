@@ -1,9 +1,10 @@
 {
   "files": {
     "main.css": "/RamyLazghab/static/css/main.93d52057.css",
-    "main.js": "/RamyLazghab/static/js/main.588e48ef.js",
+    "main.js": "/RamyLazghab/static/js/main.80871680.js",
     "static/media/scene-work.jpg": "/RamyLazghab/static/media/scene-work.794acefa6b88db594056.jpg",
     "static/media/scene-home.jpg": "/RamyLazghab/static/media/scene-home.6aacd0455fb27bfbdc16.jpg",
+    "static/media/secops-agent-vs-baseline.png": "/RamyLazghab/static/media/secops-agent-vs-baseline.e1e20a3953c09af1d2b6.png",
     "static/media/scene-contact.jpg": "/RamyLazghab/static/media/scene-contact.7b0384a71807ce62a512.jpg",
     "static/media/scene-experience.jpg": "/RamyLazghab/static/media/scene-experience.ac7d70147c79ac67aa7d.jpg",
     "static/media/hero.jpg": "/RamyLazghab/static/media/hero.ea1d9437b6b47d38345f.jpg",
@@ -14,10 +15,10 @@
     "static/media/avatar-work.jpg": "/RamyLazghab/static/media/avatar-work.c0375eaaf209e7be8344.jpg",
     "index.html": "/RamyLazghab/index.html",
     "main.93d52057.css.map": "/RamyLazghab/static/css/main.93d52057.css.map",
-    "main.588e48ef.js.map": "/RamyLazghab/static/js/main.588e48ef.js.map"
+    "main.80871680.js.map": "/RamyLazghab/static/js/main.80871680.js.map"
   },
   "entrypoints": [
     "static/css/main.93d52057.css",
-    "static/js/main.588e48ef.js"
+    "static/js/main.80871680.js"
   ]
 }
