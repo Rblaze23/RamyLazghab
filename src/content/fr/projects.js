@@ -1,7 +1,69 @@
 // French translation of src/content/projects.js.
 // Slugs stay identical so a link works in either language.
 
+import secopsShot from '../../assets/img/secops-agent-vs-baseline.png';
+import sportiqShot from '../../assets/img/sportiq-landing.png';
+
 const projectsFr = [
+  {
+    slug: 'agentic-security-operations',
+    tier: 1,
+    title: 'Agentic Security Operations',
+    subtitle: 'Détection d’intrusion par ML et investigation d’alertes fondée sur les preuves',
+    context: 'Projet personnel',
+    summary:
+      'Un détecteur de flux LightGBM servi par une API FastAPI, un agent LangGraph qui investigue chaque alerte à travers sept outils de sécurité en lecture seule, et un jeu de référence de 38 cas qui mesure l’agent face à une base de règles.',
+    problem:
+      'Un détecteur d’intrusion au niveau des flux peut atteindre 0,9999 de PR-AUC sur son propre jeu de test et manquer malgré tout 94 % d’un botnet qu’il n’a jamais vu. Un score n’est pas une décision de triage. Un analyste se demande ce que la source a fait d’autre, quelle est la cible, si l’adresse est connue, si une vulnérabilité correspond et si les flux voisins se ressemblent. La plateforme automatise cette investigation avec un agent qui ne peut citer que des preuves renvoyées par des outils, et mesure si l’agent vaut son coût face à des règles qui utilisent les mêmes outils.',
+    architecture: {
+      description:
+        'Les flux réseau de CIC-IDS-2017 sont notés par un détecteur LightGBM servi via FastAPI, avec des attributions SHAP sur chaque alerte. Une alerte entre dans une machine à états LangGraph : une étape de planification liste deux à six questions, un modèle investigateur y répond à travers sept outils typés en lecture seule sur un magasin indexé de 1,7 million de flux, un cache de CVE du NVD, le référentiel MITRE ATT&CK et le détecteur lui-même, puis un critique déterministe vérifie que chaque identifiant de preuve cité existe et que chaque technique ou CVE provient bien d’une consultation, avant qu’une étape finale n’attribue le verdict et la sévérité selon une grille fixe. Chaque investigation conserve ses appels d’outils, ses jetons et son coût, et un jeu de référence versionné avec une barrière de régression décide si un changement est accepté.',
+      glyph: 'secops',
+    },
+    pipeline: [
+      { step: 'Construire le jeu de données', detail: 'Dédoublonner 2,1 millions de flux CIC-IDS-2017 pour en garder 1,7 million, découper chronologiquement au sein de chaque journée et de chaque étiquette, et tenir les identifiants et le port de destination à l’écart des variables.' },
+      { step: 'Entraîner et sélectionner le détecteur', detail: 'Régression logistique, XGBoost et LightGBM suivis dans MLflow. Le seuil de fonctionnement est choisi sur la validation à 1 % de faux positifs et le jeu de test n’est noté qu’une seule fois.' },
+      { step: 'Servir les alertes', detail: 'Une API FastAPI typée renvoie la probabilité, la famille d’attaque et les principales variables SHAP, derrière des clés d’API, une limitation de débit par clé et un conteneur en lecture seule.' },
+      { step: 'Investiguer', detail: 'L’agent LangGraph planifie, appelle les outils dans un budget de douze appels, et ne peut citer que des preuves renvoyées par un outil.' },
+      { step: 'Vérifier et finaliser', detail: 'Des règles rejettent toute conclusion dont l’identifiant de preuve, la CVE ou la technique ne provient pas d’un appel d’outil. La sévérité vient d’une grille, jamais du modèle.' },
+      { step: 'Évaluer et verrouiller', detail: 'Trente-huit alertes de référence, dont quatre cas d’injection de prompt, notent le verdict, l’ancrage, le coût et la latence, et une commande de comparaison fait échouer la construction en cas de régression.' },
+    ],
+    tech: ['Python', 'LightGBM', 'XGBoost', 'SHAP', 'MLflow', 'FastAPI', 'LangGraph', 'Claude (Opus 5.5 / Sonnet 5.5)', 'PostgreSQL', 'SQLAlchemy', 'Docker', 'Streamlit', 'Langfuse', 'GitHub Actions'],
+    challenges: [
+      {
+        title: 'Le chiffre en distribution ne se transférait pas',
+        body:
+          'Le champion atteignait 0,9999 de PR-AUC sur le découpage chronologique de test, là où la plupart des projets s’arrêtent. Mettre entièrement de côté le vendredi, de sorte que le trafic Botnet et DDoS n’apparaisse jamais à l’entraînement, racontait une autre histoire : 6 % de rappel sur le botnet inconnu, et le DDoS détecté uniquement parce que le seuil de fonctionnement était minuscule. Une ablation a aussi montré qu’ajouter le port de destination comme variable portait la PR-AUC à 1,0000, ce qui confirmait un raccourci propre au banc d’essai et justifiait de l’exclure. Je présente d’abord les chiffres hors distribution, parce que ce sont eux qui survivraient au contact d’un vrai réseau.',
+      },
+      {
+        title: 'Le critique à base de modèle dégradait l’agent',
+        body:
+          'La première exécution complète plaçait l’agent derrière la base de règles en exactitude des verdicts, 0,658 contre 0,842, alors qu’il faisait mieux sur tout ce qui touchait aux preuves. Onze de ses treize verdicts erronés étaient des cas renvoyés en revue humaine après deux rejets d’un critique Sonnet chargé de juger si chaque conclusion découlait de ses preuves. Une ablation sur douze cas a isolé le critique comme cause, et le jeu complet l’a confirmé : avec des règles déterministes seules, l’exactitude des verdicts est montée à 0,921 et le coût par cas est passé de 0,183 $ à 0,124 $, avec un ancrage toujours parfait. Ce chiffre est venu du dispositif d’évaluation, pas de la lecture des transcriptions.',
+      },
+      {
+        title: 'Des outils qui ne peuvent ni divulguer la réponse ni être détournés',
+        body:
+          'Chaque outil est en lecture seule, avec des entrées typées et bornées et aucun paramètre de shell, de fichier ou d’URL, et un test du registre prouve qu’aucun n’expose d’étiquette de vérité terrain. Le texte issu de sources externes, comme les descriptions de CVE, est marqué comme non fiable, et quatre cas de référence injectent « ignore all previous instructions » dans des descriptions de CVE et des notes d’actifs. L’agent a résisté aux quatre dans chaque configuration.',
+      },
+    ],
+    results: [
+      'Détecteur : 0,9999 de PR-AUC en test avec 99,93 % de rappel à 0,45 % de faux positifs, et 6 % de rappel sur une famille de botnet mise de côté, présentés côte à côte.',
+      'L’agent bat la base de règles sur le score composite, 0,934 contre 0,884, et sur l’exactitude des verdicts, 0,921 contre 0,842.',
+      'Rappel et précision des preuves parfaits, zéro référence ATT&CK ou CVE non étayée, et les quatre cas d’injection de prompt repoussés.',
+      '0,124 $ par investigation pour une latence médiane de 35 secondes, chaque fichier d’exécution étant versionné et reproductible.',
+      'Une barrière de régression sur le composite, l’ancrage et le coût tourne en CI en rejouant des appels de modèle enregistrés, sans aucun coût.',
+    ],
+    lessons:
+      'Construire le dispositif d’évaluation avant de faire confiance à un composant, y compris ceux censés ajouter de la sécurité. Le critique à base de modèle avait l’air du choix responsable et s’est mesuré comme un net recul. Sans le dispositif, je l’aurais livré. La seconde leçon est de mettre de côté une journée entière plutôt qu’une tranche aléatoire : le chiffre honnête de généralisation était bien pire que le chiffre vedette, et c’est celui qui compterait vraiment pour une équipe de sécurité.',
+    links: { repo: 'https://github.com/Rblaze23/Agentic-security-operations', demo: null },
+    images: [
+      {
+        src: secopsShot,
+        alt: 'Diagramme en barres comparant la base de règles, l’agent avec critique à base de règles et l’agent avec critique à base de modèle sur l’exactitude des verdicts, l’accord de famille, la sévérité, le rappel des preuves, l’ancrage et le score composite sur les 38 cas de référence',
+      },
+    ],
+  },
+
   {
     slug: 'telecomplus',
     tier: 1,
@@ -76,6 +138,47 @@ const projectsFr = [
     lessons: '',
     links: { repo: 'https://github.com/Rblaze23/LLM-Assisted_Query_Generation', demo: null },
     images: [],
+  },
+  {
+    slug: 'sportiq',
+    tier: 2,
+    title: 'SportIQ',
+    subtitle: 'Analyse technique du tennis, coup par coup, à partir d’une vidéo de téléphone',
+    context: 'Projet personnel',
+    summary:
+      'Déposez un extrait d’entraînement et SportIQ suit le joueur, repère chaque frappe, l’identifie, mesure la biomécanique de chaque coup, la compare à l’historique du joueur et rédige un retour de coaching avec des exercices concrets.',
+    problem:
+      'Le travail technique repose sur un œil entraîné qui observe en direct, et la plupart des joueurs s’entraînent sans. La vidéo n’aide que si quelqu’un la transforme en mesures : où était le coude à l’impact, jusqu’où les genoux se sont fléchis, si les hanches ont précédé les épaules puis la main. Le faire à la main pour chaque coup d’une séance n’est pas réaliste, alors les images restent inexploitées et le même défaut se répète pendant des mois.',
+    architecture: {
+      description:
+        'Un pipeline Python sans interface décode la vidéo, estime la posture 3D image par image, lisse les trajectoires des points et détecte les frappes à partir des pics de vitesse du poignet dominant, avec des garde-fous contre les coupures de caméra et les sauts de suivi. Chaque coup est typé par des règles, ou par un classifieur entraîné lorsqu’il existe, puis sept mesures biomécaniques sont calculées et notées selon des plages de référence par type de coup. Une ligne de base personnelle stockée dans SQLite signale les mesures qui se sont écartées de l’historique du joueur. Un LLM transforme le rapport mesuré en un court résumé de coaching avec des exercices, contraint par un schéma JSON strict pour n’expliquer que des chiffres calculés par le pipeline ; sans clé d’API, un coach à base de règles construit sur les mêmes contrôles prend le relais, si bien que l’application fonctionne entièrement hors ligne. Un service FastAPI exécute les analyses en tâches de fond avec progression en direct, et une application web Next.js rejoue chaque séance avec le squelette superposé au joueur, une chronologie cliquable des coups au ralenti, les mesures de chaque coup face aux plages cibles et des courbes de progression par joueur.',
+      glyph: 'sportiq',
+    },
+    pipeline: [
+      { step: 'Décoder et suivre', detail: 'Réduire la vidéo, estimer la posture 3D en mode vidéo, combler les trous et lisser les trajectoires des points.' },
+      { step: 'Détecter les frappes', detail: 'Repérer les coups à partir des pics de vitesse du poignet dominant, en rejetant les coupures de caméra et les sauts de suivi.' },
+      { step: 'Typer chaque coup', detail: 'Coup droit, revers ou service, par des règles ou par une forêt aléatoire entraînée sur des trajectoires normalisées par le corps et symétrisées selon la main dominante.' },
+      { step: 'Mesurer et noter', detail: 'Sept mesures biomécaniques par coup, chacune confrontée à une plage de référence, pour une note de 0 à 100 et un indice de régularité par type de coup.' },
+      { step: 'Comparer à l’historique', detail: 'Une ligne de base personnelle signale toute mesure qui s’est écartée d’au moins un écart-type des séances passées du joueur.' },
+      { step: 'Coacher et rejouer', detail: 'Un LLM ou le coach hors ligne à base de règles rédige le résumé et les exercices ; l’application web rejoue la séance avec le squelette, la chronologie et les courbes.' },
+    ],
+    tech: ['Python', 'MediaPipe Pose', 'scikit-learn', 'SciPy', 'FastAPI', 'SQLite', 'Groq / Anthropic API', 'Next.js', 'TypeScript', 'Docker', 'GitHub Actions'],
+    challenges: [],
+    results: [
+      'Sept mesures biomécaniques par coup, de l’angle du coude à l’impact au timing de la chaîne cinétique et à la vitesse maximale de la main, chacune notée selon une plage de référence.',
+      'Le coach IA est contraint par un schéma JSON strict et ne peut expliquer que des chiffres calculés par le pipeline ; un coach à base de règles le remplace hors ligne.',
+      'Les plages de référence tiennent dans un seul fichier, qu’un entraîneur peut ajuster sans toucher au pipeline.',
+      'Trente-sept tests, dont un joueur synthétique à la géométrie connue, exécutés avec le lint et la compilation web en intégration continue à chaque push.',
+      'Fonctionne en ligne de commande, en API REST avec progression en direct, en application web Next.js ou via une seule commande Docker Compose.',
+    ],
+    lessons: '',
+    links: { repo: 'https://github.com/Rblaze23/SportiQ', demo: null },
+    images: [
+      {
+        src: sportiqShot,
+        alt: 'Page d’accueil de SportIQ invitant le joueur à déposer un extrait d’entraînement pour une analyse coup par coup',
+      },
+    ],
   },
   {
     slug: 'movie-recommender',
@@ -159,14 +262,6 @@ const projectsFr = [
   },
 
   // --- Niveau 3 : cartes seules, sans page dédiée ---
-  {
-    slug: null, tier: 3, title: 'SportIQ', subtitle: 'Analyse de performance au tennis par IA',
-    summary: 'Analyse vidéo en temps réel pour les sportifs : estimation de posture, reconnaissance des émotions et retours d’entraînement en NLP, avec métriques et visualisations pour améliorer la forme et la concentration.',
-    problem: '', architecture: { description: '', glyph: null }, pipeline: [],
-    tech: ['Python', 'Estimation de posture', 'Vision par ordinateur', 'NLP'],
-    challenges: [], results: [], lessons: '',
-    links: { repo: 'https://github.com/Rblaze23/SportiQ', demo: null }, images: [],
-  },
   {
     slug: null, tier: 3, title: 'MoodSync', subtitle: 'Assistant IA pour psychologues',
     summary: 'Assistant temps réel avec détection des émotions, prise de notes intelligente et éclairage LED d’ambiance. Lauréat du Hack for Good.',

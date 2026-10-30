@@ -5,10 +5,47 @@ a content edit; none of them require touching a component.
 
 **After any change:** `CI=true npx react-scripts test --watchAll=false`
 
+**To put it live:** see *Deploy the site* at the end. Pushing to `master` does
+not change the live site on its own.
+
 Two rules the tests enforce, so they are worth knowing before you start:
 
 1. **No em dash (`—`)** in anything a visitor reads. Rewrite the sentence.
-2. **No naming internal tools near ORACLE or PIF AI.** See the last recipe.
+2. **No product names, tech stack or internal detail in the work experience
+   entries.** See *Edit the work experience entries* near the end.
+
+---
+
+## Update the CV
+
+The site serves two PDFs by fixed name. Replace the files, keep the names.
+
+```
+public/assets/Resume.pdf      English site
+public/assets/Resume-FR.pdf   French site
+```
+
+Then:
+
+```bash
+git add public/assets/Resume.pdf public/assets/Resume-FR.pdf
+git commit -m "chore: update CV"
+git push
+npm run deploy
+```
+
+Keep the general AI engineering CV here, the one whose projects match the
+site. Targeted versions (health, cybersecurity, Gulf) go with the application,
+not on the portfolio, because anyone can download this one.
+
+The LaTeX sources are kept in `docs/cv-source/`. If you only ever change the
+PDFs, nothing else needs to move. If you rename the files, the two link
+entries are `links.cv` in `src/content/site.js` and `src/content/fr/site.js`.
+
+When a CV change touches something the site also says (degree name, language
+level, internship dates), update `site.js` and `fr/site.js` in the same commit
+so the two never disagree. Those live in the `about` paragraphs and the
+`glance` facts.
 
 ---
 
@@ -91,8 +128,19 @@ Tiers: **1** gets the full-width feature card and every section. **2** gets a
 normal card and the sections you fill in. **3** is a card in *More projects*
 with no page.
 
-A test asserts both languages have the same slugs in the same order, so it will
-tell you if you forget the French copy.
+Position in the array is display order. The case studies currently run:
+Agentic Security Operations, TelecomPlus, NoSQL Query Generation, SportIQ,
+Movie Recommender, Alzheimer's, RAGenius.
+
+Two tests will fire when you add one, and both are expected:
+
+- `content.test.js` pins the exact list of case-study slugs in order. Add the
+  new slug to that array.
+- `i18n.test.js` asserts both languages have the same slugs in the same order,
+  so it will tell you if you forget the French copy.
+
+A project that is on the CV should be on the site, and the other way round.
+Recruiters read both.
 
 ---
 
@@ -170,21 +218,52 @@ No component changes. The switch, the rails and every page pick it up.
 
 ---
 
-## Edit ORACLE or PIF AI ⚠
+## Edit the work experience entries ⚠
 
-`src/content/experience.js` and `src/content/fr/experience.js`.
+`src/content/experience.js` and `src/content/fr/experience.js`: the three
+internship entries (regulatory intelligence, generative document intelligence,
+public regulatory radar).
 
-This copy was approved word by word on 2026-07-29 and is deliberately vague
-because the work is proprietary. **Do not add** pipeline steps, named data
-sources, document counts, model architectures, retrieval strategy, prompt
-design, validation logic, client names, or performance figures.
+This copy was approved word by word on 2026-07-29 and tightened on 2026-09-25
+at the employer's request. It is deliberately vague because the work is
+proprietary. **Do not add:**
 
-`src/__tests__/confidentiality.test.js` will fail the build if a banned term
-appears anywhere in `src/`. If it fires, the right response is almost always to
-reword, not to widen the allowlist. Widening it is only correct when the term is
-legitimately about an open project or your own skills, which is why `Langfuse`
-and `LightGBM` are allowed in `projects.js` and `site.js` but nowhere near
-`experience.js`.
+- product names, internal or public (titles describe what the system does)
+- a `tech` field or any stack list (the stack lives in Skills, as your toolkit)
+- pipeline steps, named data sources, document counts, model architectures,
+  retrieval strategy, prompt design, validation logic
+- evaluation methodology, competitor comparisons, client names
+- any performance figure
+
+`src/__tests__/confidentiality.test.js` fails the build if a banned term
+appears anywhere in `src/`, if an entry regains a `tech` or `slug` field, or if
+a title contains a product name. If it fires, reword. Widening the allowlist
+is only correct when the term is legitimately about an open project or your
+own skills, which is why `Langfuse` and `LightGBM` are allowed in
+`projects.js` and `site.js` but nowhere near `experience.js`.
 
 The diagrams in `glyphs/OracleGlyph.jsx` and `PifGlyph.jsx` sit at exactly the
-abstraction of the approved words. They must not gain detail either.
+abstraction of the approved words. They must not gain detail either. (The
+glyph ids keep their original names; nothing on screen shows them.)
+
+---
+
+## Deploy the site
+
+The live site is served from the `gh-pages` branch, not from `master`.
+Pushing to `master` saves your work; it does not publish it.
+
+```bash
+git add -A
+git commit -m "describe the change"
+git push
+npm run deploy
+```
+
+`npm run deploy` builds the site and pushes the `build/` folder to `gh-pages`.
+GitHub Pages picks it up within a minute or two; hard-refresh if the old
+version lingers.
+
+Run it from a terminal where you normally push to GitHub (Windows PowerShell
+or Git Bash). From WSL the build succeeds but the push fails, because the
+credential helper in your git config is a Windows executable.

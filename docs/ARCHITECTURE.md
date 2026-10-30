@@ -57,7 +57,7 @@ src/
     index.js                  language registry + all interface strings
     site.js                   identity, skills, certifications, achievements
     projects.js               open projects and case studies
-    experience.js             ORACLE and PIF AI  ⚠ confidentiality rules apply
+    experience.js             three internship entries  ⚠ confidentiality rules apply
     sections.js               section ids, labels, rail captions, scene images
     fr/                       the same four files in French
 
@@ -77,12 +77,25 @@ src/
     ProjectCard               one card, used at three sizes
     DiagramLegend             the colour key
     LanguageSwitch            EN / FR
-    glyphs/                   one hand-drawn SVG per project
+    glyphs/                   one hand-drawn SVG per project, registered in index.js
 
   styles/
     _tokens.scss              every colour, size and spacing value
     _mixins.scss              bp() breakpoints, surface()
     global.scss               reset, shell margins, shared utilities
+
+public/
+  assets/Resume.pdf           the CV the English site serves
+  assets/Resume-FR.pdf        the CV the French site serves
+  404.html, index.html        the GitHub Pages SPA redirect pair (see Routing)
+  sitemap.xml, robots.txt     static SEO files
+
+docs/
+  EDITING.md                  recipes for changing what the site says
+  ARCHITECTURE.md             this file
+  cv-source/                  LaTeX sources of the two CVs
+
+scripts/                      Python image preparation (see EDITING.md)
 ```
 
 ## How content reaches the screen
@@ -121,9 +134,16 @@ branch in the component. It is simply which fields are filled in.
 
 ## Experience is structurally different
 
-ORACLE and PIF AI live in `experience.js`, not `projects.js`, and their objects
-have **no `slug` field**. No slug means no route, so they cannot acquire a
-case-study page even by accident. A test asserts this.
+The three internship entries live in `experience.js`, not `projects.js`, and
+their objects have **no `slug` field and no `tech` field**. No slug means no
+route, so they cannot acquire a case-study page even by accident. No tech
+field means the employer's stack never appears next to a description of their
+systems; it is listed only under Skills as a personal toolkit. A test asserts
+both.
+
+Their titles are generic descriptions of the work (regulatory intelligence,
+generative document intelligence, public regulatory radar), never product
+names. The glyph ids `oracle` and `pif-ai` are internal keys only.
 
 That is deliberate. They are proprietary work, and the copy is deliberately
 vague. Keeping them in a separate file with a different shape means a future
@@ -183,16 +203,24 @@ path. This is the `spa-github-pages` technique and it is why you can paste
 **This cannot be tested locally.** Local static servers and GitHub Pages handle
 unknown paths differently. It only proves itself after deploy.
 
+## Deploying
+
+`npm run deploy` (defined in `package.json`) runs the build and pushes
+`build/` to the `gh-pages` branch with the `gh-pages` package. That branch is
+what GitHub Pages serves. `master` holds the source; pushing it does nothing
+visible. See *Deploy the site* in `EDITING.md`.
+
 ## Tests
 
-68 tests in five files. They are guards more than unit tests.
+Five files, run with `CI=true npx react-scripts test --watchAll=false`. They
+are guards more than unit tests.
 
 | File | Protects |
 | --- | --- |
-| `confidentiality.test.js` | no banned term anywhere in `src/`; experience entries have no slug; the French version is not longer than the English, which would suggest detail was added in translation |
-| `content.test.js` | data shape, no em dash, no TODO in visible strings, all original projects still present, repo URLs well formed |
+| `confidentiality.test.js` | no banned term anywhere in `src/`; experience entries have no slug, no tech field and no product name in their title; the French version is not longer than the English, which would suggest detail was added in translation |
+| `content.test.js` | data shape, no em dash, no TODO in visible strings, the exact ordered list of case-study slugs, repo URLs well formed |
 | `i18n.test.js` | the two languages cannot drift: same sections, same slugs, same interface keys, same repo links |
-| `render.test.js` | sections render, links point where they should, avatars are decorative |
+| `render.test.js` | sections render under their generic titles with no tech chips, links point where they should, avatars are decorative |
 | `scrollspy.test.js` | the active section is correct, including the short final section |
 
 When one of these fails, it has usually caught something real. Read it before

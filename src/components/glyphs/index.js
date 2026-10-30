@@ -1,14 +1,18 @@
+import SecOpsGlyph from './SecOpsGlyph';
 import TelecomPlusGlyph from './TelecomPlusGlyph';
 import MovieGlyph from './MovieGlyph';
 import AlzheimersGlyph from './AlzheimersGlyph';
 import RAGeniusGlyph from './RAGeniusGlyph';
 import NoSQLGlyph from './NoSQLGlyph';
+import SportIQGlyph from './SportIQGlyph';
 import OracleGlyph from './OracleGlyph';
 import PifGlyph from './PifGlyph';
 
 const GLYPHS = {
+  secops: SecOpsGlyph,
   telecomplus: TelecomPlusGlyph,
   nosql: NoSQLGlyph,
+  sportiq: SportIQGlyph,
   movie: MovieGlyph,
   alzheimers: AlzheimersGlyph,
   ragenius: RAGeniusGlyph,

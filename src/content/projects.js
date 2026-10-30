@@ -1,7 +1,69 @@
 // Open projects. Unlike src/content/experience.js, detail is safe here —
 // every one of these has a public repository.
 
+import secopsShot from '../assets/img/secops-agent-vs-baseline.png';
+import sportiqShot from '../assets/img/sportiq-landing.png';
+
 const projects = [
+  {
+    slug: 'agentic-security-operations',
+    tier: 1,
+    title: 'Agentic Security Operations',
+    subtitle: 'ML intrusion detection with evidence-grounded alert investigation',
+    context: 'Personal project',
+    summary:
+      'A LightGBM flow detector served by a FastAPI service, a LangGraph agent that investigates each alert through seven read-only security tools, and a 38-case golden set that measures the agent against a rule-based baseline.',
+    problem:
+      'A flow-level intrusion detector can reach 0.9999 PR-AUC on its own test split and still miss 94% of a botnet it has never seen. A score is not a triage decision. An analyst asks what else the source did, what the target is, whether the address is known, whether a vulnerability matches and whether the neighbouring flows look the same. The platform automates that investigation with an agent that may only cite evidence returned by tools, and measures whether the agent is worth its cost against rules that use the same tools.',
+    architecture: {
+      description:
+        'Network flows from CIC-IDS-2017 are scored by a LightGBM detector served over FastAPI, with SHAP attributions on every alert. An alert enters a LangGraph state machine: a planning step lists two to six questions, an investigator model answers them through seven typed, read-only tools over an indexed store of 1.7 million flows, an NVD CVE cache, the MITRE ATT&CK bundle and the detector itself, then a deterministic critic checks that every cited evidence id exists and every technique or CVE came from a lookup before a finalize step assigns verdict and severity from a fixed rubric. Every investigation persists its tool calls, tokens and cost, and a versioned golden set with a regression gate decides whether a change ships.',
+      glyph: 'secops',
+    },
+    pipeline: [
+      { step: 'Build the dataset', detail: 'Deduplicate 2.1 million CIC-IDS-2017 flows down to 1.7 million, split chronologically within each day and label, and keep identifiers and the destination port out of the features.' },
+      { step: 'Train and select the detector', detail: 'Logistic regression, XGBoost and LightGBM tracked in MLflow. The operating threshold is chosen on validation at a 1% false positive rate and the test split is scored once.' },
+      { step: 'Serve alerts', detail: 'A typed FastAPI service returns probability, attack family and top SHAP features, behind API keys, per-key rate limits and a read-only container.' },
+      { step: 'Investigate', detail: 'The LangGraph agent plans, calls tools within a budget of twelve, and may only cite evidence that a tool returned.' },
+      { step: 'Check and finalize', detail: 'Rules reject any finding whose evidence id, CVE or technique did not come from a tool call. Severity comes from a rubric, never from the model.' },
+      { step: 'Evaluate and gate', detail: 'Thirty-eight golden alerts, including four prompt-injection cases, score verdict, grounding, cost and latency, and a compare command fails the build on regressions.' },
+    ],
+    tech: ['Python', 'LightGBM', 'XGBoost', 'SHAP', 'MLflow', 'FastAPI', 'LangGraph', 'Claude (Opus 5.5 / Sonnet 5.5)', 'PostgreSQL', 'SQLAlchemy', 'Docker', 'Streamlit', 'Langfuse', 'GitHub Actions'],
+    challenges: [
+      {
+        title: 'The in-distribution number did not transfer',
+        body:
+          'The champion scored 0.9999 PR-AUC on the chronological test split, which is where most projects stop. Holding out Friday entirely, so that Botnet and DDoS traffic never appear in training, told a different story: 6% recall on the unseen botnet, and DDoS caught only because the operating threshold was tiny. An ablation also showed that adding the destination port as a feature pushed PR-AUC to 1.0000, which confirmed it was a testbed shortcut and justified leaving it out. I report the held-out numbers first, because they are the ones that would survive contact with a real network.',
+      },
+      {
+        title: 'The model critic was making the agent worse',
+        body:
+          'The first full run put the agent behind the rule-based baseline on verdict accuracy, 0.658 against 0.842, even though it was better on everything that touched evidence. Eleven of its thirteen wrong verdicts were cases pushed to human review after two rejections from a Sonnet critic that judged whether each finding followed from its evidence. A twelve-case ablation isolated the critic as the cause, and the full set confirmed it: with deterministic rules only, verdict accuracy rose to 0.921 and cost per case fell from $0.183 to $0.124, with grounding still perfect. That number came from the evaluation harness, not from reading transcripts.',
+      },
+      {
+        title: 'Tools that cannot leak the answer or be hijacked',
+        body:
+          'Every tool is read-only with typed, bounded inputs and no shell, file or URL parameters, and a registry test proves that none of them exposes a ground-truth label. Text from external sources such as CVE descriptions is flagged as untrusted, and four golden cases inject "ignore all previous instructions" into CVE descriptions and asset notes. The agent resisted all four in every configuration.',
+      },
+    ],
+    results: [
+      'Detector: 0.9999 test PR-AUC with 99.93% recall at a 0.45% false positive rate, and 6% recall on a held-out botnet family, reported side by side.',
+      'The agent beats the rule-based baseline on composite score, 0.934 against 0.884, and on verdict accuracy, 0.921 against 0.842.',
+      'Perfect evidence recall and precision, zero unsupported ATT&CK or CVE references, and all four prompt-injection cases resisted.',
+      '$0.124 per investigation at a median latency of 35 seconds, with every run file committed and reproducible.',
+      'A regression gate on composite, grounding and cost runs in CI by replaying recorded model calls at zero cost.',
+    ],
+    lessons:
+      'Build the evaluation harness before trusting any component, including the ones meant to add safety. The model critic looked like the responsible design and measured as a net negative. Without the harness I would have shipped it. The second lesson is to hold out a whole day rather than a random slice: the honest generalisation number was far worse than the headline one, and it is the number a security team would actually care about.',
+    links: { repo: 'https://github.com/Rblaze23/Agentic-security-operations', demo: null },
+    images: [
+      {
+        src: secopsShot,
+        alt: 'Bar chart comparing the rule-based baseline, the agent with a rules-only critic and the agent with a model critic on verdict accuracy, family agreement, severity, evidence recall, grounding and composite score over the 38-case golden set',
+      },
+    ],
+  },
+
   {
     slug: 'telecomplus',
     tier: 1,
@@ -77,6 +139,47 @@ const projects = [
     lessons: '',
     links: { repo: 'https://github.com/Rblaze23/LLM-Assisted_Query_Generation', demo: null },
     images: [],
+  },
+  {
+    slug: 'sportiq',
+    tier: 2,
+    title: 'SportIQ',
+    subtitle: 'Stroke-level tennis technique analysis from one phone video',
+    context: 'Personal project',
+    summary:
+      'Upload a training clip and SportIQ tracks the player, finds every swing, labels it, measures the biomechanics of each stroke, compares them with the player’s own history and writes coaching feedback with concrete drills.',
+    problem:
+      'Technique coaching depends on a trained eye watching in real time, and most players train without one. Video helps only if someone turns it into measurements: where the elbow was at contact, how deep the knees loaded, whether hips led shoulders led hand. Doing that by hand for every stroke in a session is not realistic, so the footage goes unwatched and the same flaw repeats for months.',
+    architecture: {
+      description:
+        'A pure-Python core pipeline decodes the video, runs 3-D pose estimation per frame, smooths the landmark tracks and detects strokes from hitting-wrist speed peaks, with guards against camera cuts and tracking jumps. Each stroke is typed by rules or by a trained classifier when one is available, then seven biomechanical measures are computed and scored against reference ranges per stroke type. A personal baseline stored in SQLite flags measures that moved from the player’s history. An LLM turns the measured report into a short coaching summary and drills, constrained to a strict JSON schema so it only explains numbers the pipeline computed; without an API key a rule-based coach built from the same checks takes over, so the app works fully offline. A FastAPI service runs analyses as background jobs with live progress, and a Next.js web app replays each session with the skeleton drawn over the player, a clickable stroke timeline in slow motion, per-stroke measurements against target ranges and progress charts per player.',
+      glyph: 'sportiq',
+    },
+    pipeline: [
+      { step: 'Decode and track', detail: 'Downscale the clip, run 3-D pose estimation in video mode, fill gaps and smooth the landmark tracks.' },
+      { step: 'Detect strokes', detail: 'Find swings from hitting-wrist speed peaks, rejecting camera cuts and tracking jumps.' },
+      { step: 'Type each stroke', detail: 'Forehand, backhand or serve, by rules or by a random forest trained on body-normalised, handedness-mirrored pose trajectories.' },
+      { step: 'Measure and score', detail: 'Seven biomechanical measures per stroke, each checked against a reference range, giving a 0 to 100 score and a consistency figure per stroke type.' },
+      { step: 'Compare with history', detail: 'A personal baseline flags any measure that moved by at least one standard deviation from the player’s past sessions.' },
+      { step: 'Coach and replay', detail: 'An LLM or the offline rule-based coach writes the summary and drills; the web app replays the session with the skeleton, timeline and charts.' },
+    ],
+    tech: ['Python', 'MediaPipe Pose', 'scikit-learn', 'SciPy', 'FastAPI', 'SQLite', 'Groq / Anthropic API', 'Next.js', 'TypeScript', 'Docker', 'GitHub Actions'],
+    challenges: [],
+    results: [
+      'Seven biomechanical measures per stroke, from elbow angle at contact to kinetic-chain timing and peak hand speed, each scored against a reference range.',
+      'The AI coach is constrained to a strict JSON schema and can only explain numbers the pipeline computed; a rule-based coach replaces it offline.',
+      'Reference ranges live in one file so a coach can tune them without touching the pipeline.',
+      'Thirty-seven tests, including a synthetic player with known geometry, run with lint and the web build in CI on every push.',
+      'Runs as a CLI, a REST API with live progress events, a Next.js web app or a single Docker Compose command.',
+    ],
+    lessons: '',
+    links: { repo: 'https://github.com/Rblaze23/SportiQ', demo: null },
+    images: [
+      {
+        src: sportiqShot,
+        alt: 'SportIQ landing page inviting the player to upload a training clip for stroke-level analysis',
+      },
+    ],
   },
   {
     slug: 'movie-recommender',
@@ -162,14 +265,6 @@ const projects = [
   },
 
   // --- Tier 3: cards only, no case-study route ---
-  {
-    slug: null, tier: 3, title: 'SportIQ', subtitle: 'AI tennis performance analysis',
-    summary: 'Real-time video analysis for athletes: pose estimation, emotion recognition and NLP coaching feedback, with metrics and visualisations to improve form and focus.',
-    problem: '', architecture: { description: '', glyph: null }, pipeline: [],
-    tech: ['Python', 'Pose Estimation', 'Computer Vision', 'NLP'],
-    challenges: [], results: [], lessons: '',
-    links: { repo: 'https://github.com/Rblaze23/SportiQ', demo: null }, images: [],
-  },
   {
     slug: null, tier: 3, title: 'MoodSync', subtitle: 'AI assistant for psychologists',
     summary: 'Real-time assistant with emotion detection, smart note-taking and LED mood lighting. Winner of Hack for Good.',
