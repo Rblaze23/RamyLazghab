@@ -2,6 +2,8 @@
 // every one of these has a public repository.
 
 import secopsShot from '../assets/img/secops-agent-vs-baseline.png';
+import finriskCalibShot from '../assets/img/finrisk-calibration.png';
+import finriskMonitorShot from '../assets/img/finrisk-monitoring.png';
 import sportiqShot from '../assets/img/sportiq-landing.png';
 
 const projects = [
@@ -60,6 +62,69 @@ const projects = [
       {
         src: secopsShot,
         alt: 'Bar chart comparing the rule-based baseline, the agent with a rules-only critic and the agent with a model critic on verdict accuracy, family agreement, severity, evidence recall, grounding and composite score over the 38-case golden set',
+      },
+    ],
+  },
+
+  {
+    slug: 'finrisk',
+    tier: 1,
+    title: 'FinRisk Lab',
+    subtitle: 'Credit-risk modelling, validation and monitoring on LendingClub loans',
+    context: 'Personal project',
+    summary:
+      'A Weight-of-Evidence scorecard champion and XGBoost/LightGBM challengers on 589,488 LendingClub loans, audited by a model-risk validation suite across 36 monthly vintages and documented by a number-guarded report generator.',
+    problem:
+      'Most credit-scoring projects report test accuracy or ROC-AUC and stop there. Regulated lenders evaluate models differently: can the model be trusted with real capital, how well are default probabilities calibrated out of time, and when does the system fail? Between 2014 and 2015, portfolio default rates rose from 12.5% to 15.6% while origination volume surged 2.6x. Under those conditions, a model that maintains ranking power can still misprice risk if its calibration drifts, and outcome lags hide that drift until hundreds of thousands of loans have already been issued.',
+    architecture: {
+      description:
+        'A modular credit risk pipeline ingests 589k resolved 36-month loans into PostgreSQL with strict origination-year splits (train 2012-2013, validation 2014, out-of-time test 2015, censored monitoring 2016). MLflow tracks a monotone WoE logistic regression scorecard champion alongside XGBoost and LightGBM challengers. An independent validation suite executes discrimination, calibration, PSI/CSI stability, leakage and proxy fairness checks across 36 monthly vintages, feeding a FastAPI scoring service and a Streamlit dashboard. An LLM report generator drafts audit findings behind a deterministic number guard that cross-verifies every metric against raw validation outputs.',
+      glyph: 'finrisk',
+    },
+    pipeline: [
+      { step: 'Split and clean data', detail: 'Split 589,488 resolved 36-month loans strictly by issue year (train 2012-2013, validation 2014, out-of-time 2015, monitoring 2016) with zero temporal overlap and non-origination fields removed.' },
+      { step: 'Train champion and challengers', detail: 'Fit a Weight-of-Evidence logistic scorecard with monotone constraints alongside regularised XGBoost and LightGBM models tracked in MLflow.' },
+      { step: 'Audit discrimination and calibration', detail: 'Compute Gini and KS across periods, assess decile calibration ratios with binomial confidence intervals, and test one-sided under-prediction across risk bands.' },
+      { step: 'Run stability and proxy fairness checks', detail: 'Measure population stability index (PSI), characteristic stability index (CSI) across inputs, and proxy calibration deviations across borrower sub-segments.' },
+      { step: 'Simulate vintage monitoring', detail: 'Track 36 monthly origination cohorts with realistic 12-month outcome lags, quantifying how volume growth interacts with delayed default signals.' },
+      { step: 'Guard and report', detail: 'Generate an audit-style validation report with Groq LLM where an automated regex number guard verifies every cited metric against JSON execution artifacts.' },
+    ],
+    tech: ['Python', 'Scikit-learn', 'XGBoost', 'LightGBM', 'Optuna', 'MLflow', 'PostgreSQL', 'FastAPI', 'Streamlit', 'Groq', 'Pytest', 'Docker'],
+    challenges: [
+      {
+        title: 'Stable ranking power masked deteriorating probability calibration',
+        body:
+          'On the out-of-time 2015 test set, the champion scorecard retained a solid Gini of 0.298 (up 1.1% over training), and the XGBoost challenger achieved 0.334. Despite stable discrimination, both models severely under-predicted defaults: observed default rate was 14.9% against a predicted 12.4%, yielding an out-of-time calibration ratio of 1.204 and under-predicting 5 of 6 risk bands. Recalibration on 2014 data only partially mitigated the gap, demonstrating why probability calibration must be validated independently from ROC-AUC.',
+      },
+      {
+        title: '12-month outcome lags blinded input-level drift monitors',
+        body:
+          'Over 36 monthly vintages, score PSI never exceeded threshold and gave no warning of deteriorating loan performance. While the calibration monitor caught vintage deterioration starting in October 2014, the 12-month outcome maturity lag meant the alert was invisible until October 2015. During that blind window, 250,990 additional loans were originated as monthly volume expanded 2.6x, highlighting the necessity of leading-indicator volume monitors in credit risk operations.',
+      },
+      {
+        title: 'Controlling hallucinations in GenAI audit reporting',
+        body:
+          'Automated LLM report generation frequently hallucinates numerical precision or misquotes calibration statistics. Rather than trusting raw model prose, I built an audit guard that parses all numerical claims, percentages and dates from generated sections and verifies them directly against the ground-truth JSON outputs. Any discrepancy aborts the section build, ensuring audit-grade reliability.',
+      },
+    ],
+    results: [
+      'Champion scorecard achieved 0.298 out-of-time Gini on 2015 loans with zero degradation from training (0.295), proving superior stability over challenger XGBoost (which dropped 17.0% from train to test).',
+      'Quantified a 1.204 out-of-time calibration ratio (14.9% observed default vs 12.4% predicted) across 589,488 loans, surfacing systemic under-prediction that ROC-AUC overlooked.',
+      'Simulated 36 monthly vintages, identifying a 12-month detection blind spot during which 250,990 loans were booked while mean predicted PD fell from 12.8% to 12.1% against rising defaults.',
+      'Implemented an end-to-end audit validation suite evaluating discrimination, calibration slopes, input CSI drift, proxy fairness, and feature leakage.',
+      'Zero numerical hallucinations achieved in automated validation reports via deterministic regex and JSON verification guards.',
+    ],
+    lessons:
+      'A high Gini or ROC-AUC only guarantees that bad loans are scored higher than good loans; it does not mean the predicted probabilities are accurate enough to price risk or allocate capital. In credit cycles, probability calibration drifts before ranking power collapses. Furthermore, because credit outcomes require maturity to observe, standard drift monitoring must be paired with leading origination and macroeconomic indicators to avoid large blind spots.',
+    links: { repo: 'https://github.com/Rblaze23/Finrisk', demo: null },
+    images: [
+      {
+        src: finriskCalibShot,
+        alt: 'Decile calibration plot showing observed default rate versus predicted probability of default with confidence intervals on out-of-time test loans',
+      },
+      {
+        src: finriskMonitorShot,
+        alt: 'Monitoring dashboard showing score PSI, vintage default rate shifts, and the 12-month lag between risk deterioration and alert visibility across 36 cohorts',
       },
     ],
   },

@@ -49,9 +49,10 @@ describe('projects content', () => {
     });
   });
 
-  test('exactly seven case studies, in the expected order', () => {
+  test('exactly eight case studies, in the expected order', () => {
     expect(caseStudies.map((p) => p.slug)).toEqual([
       'agentic-security-operations',
+      'finrisk',
       'telecomplus',
       'nosql-query-generation',
       'sportiq',

@@ -2,6 +2,8 @@
 // Slugs stay identical so a link works in either language.
 
 import secopsShot from '../../assets/img/secops-agent-vs-baseline.png';
+import finriskCalibShot from '../../assets/img/finrisk-calibration.png';
+import finriskMonitorShot from '../../assets/img/finrisk-monitoring.png';
 import sportiqShot from '../../assets/img/sportiq-landing.png';
 
 const projectsFr = [
@@ -60,6 +62,69 @@ const projectsFr = [
       {
         src: secopsShot,
         alt: 'Diagramme en barres comparant la base de règles, l’agent avec critique à base de règles et l’agent avec critique à base de modèle sur l’exactitude des verdicts, l’accord de famille, la sévérité, le rappel des preuves, l’ancrage et le score composite sur les 38 cas de référence',
+      },
+    ],
+  },
+
+  {
+    slug: 'finrisk',
+    tier: 1,
+    title: 'FinRisk Lab',
+    subtitle: 'Modélisation du risque de crédit, validation hors échantillon et suivi des cohortes',
+    context: 'Projet personnel',
+    summary:
+      'Un scorecard champion basé sur le poids de la preuve (WoE) et des challengers XGBoost/LightGBM sur 589 488 prêts LendingClub, audités par une suite de validation du risque de modèle sur 36 cohortes mensuelles et documentés par un générateur de rapports fiabilisé.',
+    problem:
+      'La plupart des projets de risque de crédit s’arrêtent à l’exactitude ou à l’aire sous la courbe ROC. Les institutions régulées posent une question plus difficile : peut-on confier des capitaux réels à ce modèle, comment ses probabilités sont-elles calibrées hors échantillon et où cède-t-il ? Entre 2014 et 2015, le taux de défaut a grimpé de 12,5 % à 15,6 % tandis que les volumes de production étaient multipliés par 2,6. Dans ces conditions, un modèle qui conserve son pouvoir de classement peut sous-estimer le risque si sa calibration dérive, et le délai de maturité masque cette dérive pendant que des centaines de milliers de prêts sont émis.',
+    architecture: {
+      description:
+        'Un pipeline modulaire charge 589k prêts de 36 mois résolus dans PostgreSQL avec des découpages stricts par année d’émission (entraînement 2012-2013, validation 2014, test hors échantillon 2015, suivi censuré 2016). MLflow suit un scorecard champion monotone par régression logistique WoE aux côtés de challengers XGBoost et LightGBM. Une suite de validation indépendante exécute des tests de discrimination, de calibration, de stabilité PSI/CSI, d’étanchéité des variables et d’équité par procuration sur 36 cohortes, alimentant un service FastAPI et un tableau de bord Streamlit. Un générateur de rapports à base de LLM rédige les constats d’audit derrière une barrière déterministe qui contrôle chaque chiffre face aux sorties d’exécution.',
+      glyph: 'finrisk',
+    },
+    pipeline: [
+      { step: 'Découper et nettoyer les données', detail: 'Découper 589 488 prêts de 36 mois strictement par année d’émission (entraînement 2012-2013, validation 2014, test 2015, suivi 2016) sans aucun chevauchement et en excluant les variables postérieures à l’octroi.' },
+      { step: 'Entraîner champion et challengers', detail: 'Ajuster un scorecard logistique par poids de la preuve (WoE) avec contraintes monotones aux côtés de modèles XGBoost et LightGBM régularisés suivis dans MLflow.' },
+      { step: 'Auditer discrimination et calibration', detail: 'Calculer Gini et KS par période, évaluer les ratios de calibration par décile avec intervalles de confiance binomiaux, et tester la sous-estimation unilatérale par classe de risque.' },
+      { step: 'Contrôler stabilité et équité par procuration', detail: 'Mesurer l’indice de stabilité de population (PSI), l’indice de stabilité des caractéristiques (CSI) sur les variables et les écarts de calibration sur des sous-segments d’emprunteurs.' },
+      { step: 'Simuler le suivi des cohortes', detail: 'Suivre 36 cohortes mensuelles d’origination avec un décalage de maturité de 12 mois, en mesurant l’impact de la croissance des volumes face au retard du signal de défaut.' },
+      { step: 'Sécuriser et rapporter', detail: 'Générer un rapport d’audit avec le LLM Groq où une barrière déterministe par expressions régulières vérifie chaque chiffre cité face aux artéfacts JSON.' },
+    ],
+    tech: ['Python', 'Scikit-learn', 'XGBoost', 'LightGBM', 'Optuna', 'MLflow', 'PostgreSQL', 'FastAPI', 'Streamlit', 'Groq', 'Pytest', 'Docker'],
+    challenges: [
+      {
+        title: 'Un pouvoir de classement stable masquait la dégradation des probabilités',
+        body:
+          'Sur le jeu de test hors échantillon de 2015, le scorecard champion a maintenu un Gini solide de 0,298 (+1,1 % par rapport à l’entraînement), et le challenger XGBoost a atteint 0,334. Malgré cette discrimination stable, les deux modèles ont fortement sous-estimé les défauts : le taux de défaut observé était de 14,9 % contre 12,4 % prédit, soit un ratio de calibration de 1,204 et 5 bandes de risque sur 6 sous-estimées. Une recalibration sur 2014 n’a que partiellement comblé l’écart, prouvant que la calibration des probabilités doit être validée indépendamment du score ROC-AUC.',
+      },
+      {
+        title: 'Le décalage de maturité de 12 mois a aveuglé les indicateurs de dérive',
+        body:
+          'Sur 36 cohortes mensuelles, le PSI du score n’a jamais franchi le seuil d’alerte et n’a donné aucun signal de dégradation. Si le moniteur de calibration a détecté la détérioration dès la cohorte d’octobre 2014, le décalage de 12 mois nécessaire à l’observation des défauts a rendu l’alerte visible seulement en octobre 2015. Pendant cette période aveugle, 250 990 prêts supplémentaires ont été accordés alors que le volume mensuel augmentait de 2,6 fois, illustrant l’impératif d’indicateurs avancés de volume dans le suivi du risque de crédit.',
+      },
+      {
+        title: 'Contrôler les hallucinations dans la rédaction d’audit par IA générative',
+        body:
+          'La rédaction automatisée de rapports par LLM introduit fréquemment des chiffres inventés ou altère les statistiques de calibration. Plutôt que de faire confiance au texte brut du modèle, j’ai conçu une barrière de vérification qui extrait chaque valeur numérique, pourcentage et date des sections rédigées et les compare directement aux résultats JSON certifiés. Toute divergence annule la section, garantissant une rigueur conforme aux exigences d’audit.',
+      },
+    ],
+    results: [
+      'Le scorecard champion atteint un Gini de 0,298 hors échantillon sur les prêts de 2015 sans dégradation par rapport à l’entraînement (0,295), confirmant sa robustesse face au challenger XGBoost (qui perd 17,0 % du train au test).',
+      'Mesure d’un ratio de calibration hors échantillon de 1,204 (14,9 % de défauts observés contre 12,4 % prédits) sur 589 488 prêts, révélant une sous-estimation que la courbe ROC ne montrait pas.',
+      'Simulation sur 36 cohortes mensuelles révélant un angle mort de 12 mois durant lequel 250 990 prêts ont été émis tandis que la probabilité moyenne prédite passait de 12,8 % à 12,1 % face à des défauts en hausse.',
+      'Mise en œuvre d’une suite complète de validation évaluant la discrimination, la pente de calibration, la dérive CSI des variables, l’équité par procuration et l’étanchéité des données.',
+      'Zéro hallucination numérique dans les rapports de validation grâce à un garde-fou déterministe validant les métriques face aux sorties JSON.',
+    ],
+    lessons:
+      'Un Gini ou un ROC-AUC élevé garantit seulement que les mauvais dossiers sont moins bien notés que les bons ; il ne garantit en rien que les probabilités prédites sont exactes pour tarifer le risque ou allouer du capital. Dans un cycle de crédit, la calibration dérive avant que le pouvoir séparateur ne s’effondre. De plus, comme les résultats de crédit exigent du temps pour mûrir, le suivi de dérive classique doit être complété par des indicateurs avancés d’origination pour éviter des angles morts majeurs.',
+    links: { repo: 'https://github.com/Rblaze23/Finrisk', demo: null },
+    images: [
+      {
+        src: finriskCalibShot,
+        alt: 'Graphique de calibration par décile comparant le taux de défaut observé à la probabilité prédite avec intervalles de confiance sur les prêts de test hors échantillon',
+      },
+      {
+        src: finriskMonitorShot,
+        alt: 'Tableau de bord de suivi montrant le PSI du score, l’évolution du taux de défaut par cohorte et le décalage de 12 mois avant détection sur 36 cohortes',
       },
     ],
   },

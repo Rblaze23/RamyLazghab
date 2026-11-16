@@ -1,4 +1,5 @@
 import SecOpsGlyph from './SecOpsGlyph';
+import FinriskGlyph from './FinriskGlyph';
 import TelecomPlusGlyph from './TelecomPlusGlyph';
 import MovieGlyph from './MovieGlyph';
 import AlzheimersGlyph from './AlzheimersGlyph';
@@ -10,6 +11,7 @@ import PifGlyph from './PifGlyph';
 
 const GLYPHS = {
   secops: SecOpsGlyph,
+  finrisk: FinriskGlyph,
   telecomplus: TelecomPlusGlyph,
   nosql: NoSQLGlyph,
   sportiq: SportIQGlyph,
