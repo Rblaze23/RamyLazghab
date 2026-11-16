@@ -1,8 +1,9 @@
 {
   "files": {
     "main.css": "/RamyLazghab/static/css/main.93d52057.css",
-    "main.js": "/RamyLazghab/static/js/main.13de626d.js",
+    "main.js": "/RamyLazghab/static/js/main.bbe51c82.js",
     "static/media/sportiq-landing.png": "/RamyLazghab/static/media/sportiq-landing.ce2297989b8dff6f861c.png",
+    "static/media/finrisk-monitoring.png": "/RamyLazghab/static/media/finrisk-monitoring.6adc68a8a16eb3c251ce.png",
     "static/media/scene-work.jpg": "/RamyLazghab/static/media/scene-work.794acefa6b88db594056.jpg",
     "static/media/scene-home.jpg": "/RamyLazghab/static/media/scene-home.6aacd0455fb27bfbdc16.jpg",
     "static/media/secops-agent-vs-baseline.png": "/RamyLazghab/static/media/secops-agent-vs-baseline.e1e20a3953c09af1d2b6.png",
@@ -13,13 +14,14 @@
     "static/media/scene-about.jpg": "/RamyLazghab/static/media/scene-about.0ba5283d8bb3cc62b48d.jpg",
     "static/media/scene-certifications.jpg": "/RamyLazghab/static/media/scene-certifications.ed27d9b0fb65c23e1472.jpg",
     "static/media/about-3d.jpg": "/RamyLazghab/static/media/about-3d.fa1eae5419e776a7ef7d.jpg",
+    "static/media/finrisk-calibration.png": "/RamyLazghab/static/media/finrisk-calibration.4670545c2793c5aae404.png",
     "static/media/avatar-work.jpg": "/RamyLazghab/static/media/avatar-work.c0375eaaf209e7be8344.jpg",
     "index.html": "/RamyLazghab/index.html",
     "main.93d52057.css.map": "/RamyLazghab/static/css/main.93d52057.css.map",
-    "main.13de626d.js.map": "/RamyLazghab/static/js/main.13de626d.js.map"
+    "main.bbe51c82.js.map": "/RamyLazghab/static/js/main.bbe51c82.js.map"
   },
   "entrypoints": [
     "static/css/main.93d52057.css",
-    "static/js/main.13de626d.js"
+    "static/js/main.bbe51c82.js"
   ]
 }
